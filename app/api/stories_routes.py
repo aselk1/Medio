@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import Story
+from app.models import Story, db
 
 stories_routes = Blueprint('stories', __name__)
 
@@ -16,3 +16,23 @@ def post_story():
                 body=data['body'],
                 user_id=data['user_id']
                 )
+    db.session.add(story)
+    db.session.commit()
+    return story.to_dict()
+
+@stories_routes.route('/<int:id>',  methods=['PUT'])
+def edit_story(id):
+    data = request.json
+    story = Story.query.get(id)
+    story.title = data['title']
+    story.body = data['body']
+    db.session.add(story)
+    db.session.commit()
+    return story.to_dict()
+
+@stories_routes.route('/<int:id>', methods=['DELETE'])
+def delete_story(id):
+    story = Story.query.get(id)
+    db.session.delete(story)
+    db.session.commit()
+    return story.to_dict()
