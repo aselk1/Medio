@@ -10,13 +10,14 @@ from .api.auth_routes import auth_routes
 from .seeds import seed_commands
 from .config import Config
 
+
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
 # Setup login manager
 login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
 
-#-
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
