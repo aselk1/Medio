@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .story import Story
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -7,6 +8,14 @@ follows = db.Table(
     db.Column("follower_id", db.Integer, db.ForeignKey("users.id")),
     db.Column("followed_id", db.Integer, db.ForeignKey("users.id"))
 )
+
+class Story(db.Model):
+    __tablename__ = 'stories'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String)
+    body = db.Column(db.String)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    user = db.relationship("User", back_populates="stories")
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
