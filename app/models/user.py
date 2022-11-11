@@ -2,6 +2,11 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+follows = db.Table(
+    "follows",
+    db.Column("follower_id", db.Integer, db.ForeignKey("users.id")),
+    db.Column("followed_id", db.Integer, db.ForeignKey("users.id"))
+)
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -31,3 +36,14 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email
         }
+
+    followers = db.relationship(
+        "User",
+        secondary=follows,
+        primaryjoin=(follows.c.followed_id == id),
+        secondaryjoin=(follows.c.follower_id == id),
+        backref=db.backref("following", lazy="dynamic"),
+        lazy="dynamic"
+    )
+
+    stories = db.relationship("Story", back_populates="user")
