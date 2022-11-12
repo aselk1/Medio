@@ -56,3 +56,4 @@ class User(db.Model, UserMixin):
     )
 
     stories = db.relationship("Story", back_populates="user")
+    user_id = db.relationship("LikeStory", back_populates="")
