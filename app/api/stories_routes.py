@@ -3,13 +3,14 @@ from app.models import Story, db
 
 stories_routes = Blueprint('stories', __name__)
 
-@stories_routes.route('/')
+@stories_routes.route('')
 def get_stories():
     data = Story.query.all()
+    print(data)
     return {'data': [story.to_dict() for story in data]}
 
 
-@stories_routes.route('/', methods=['POST'])
+@stories_routes.route('', methods=['POST'])
 def post_story():
     data = request.json
     story = Story(title=data['title'],
