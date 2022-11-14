@@ -86,8 +86,8 @@ def get_one_story_like(id):
 def post_like(id):
     story = Story.query.get(id)
     user = User.query.get(current_user.id)
-    # if user.liked.story_id == id
-    user.liked.append(story)
+    # user.liked.append(story)
+    story.liked_user(user)
 
     db.session.commit()
     print("the number of story like",len(story.liked_user))
