@@ -10,11 +10,11 @@ followers_routes = Blueprint("followers", __name__)
 @login_required
 def follower(id):
     user = User.query.get(id)
-    my_followers = user.followers.all()
+    # my_followers = user.followers.all().to_dict()
     following = user.following.all()
-    return (
-        f"{user.username} follows {following} and {my_followers} follow {user.username}"
-    )
+    print(user)
+    print(following)
+    return user.to_dict()
 
 
 @followers_routes.route("", methods=["POST"])
