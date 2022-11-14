@@ -1,6 +1,6 @@
 from flask import Blueprint, request
-from app.models import Story, db, Comment
-from flask_login import login_required
+from app.models import Story, db, Comment, User
+from flask_login import login_required, current_user
 
 stories_routes = Blueprint('stories', __name__)
 
@@ -88,24 +88,19 @@ def post_like(id):
     user = User.query.get(current_user.id)
     # if user.liked.story_id == id
     user.liked.append(story)
-    
-    
 
-    allStory = user.liked
-    print ("one story???", allStory[0].to_dict())
-    # what = user.users.all()
-    # num = like_story.query.filter(story_id == id)
-
-    print("current user",current_user.id)
-    print ("all like story?????",allStory)
-    # print ("the number of like",num)
-    # print("what????????",what)
-
-
-    # allUser=story.likedUser.all()
-    # print("all users ???????", allUser)
-  
     db.session.commit()
+    print("the number of story like",len(story.liked_user))
+
+    # allStory = user.liked
+    # print ("one story???", allStory[0].to_dict())
+    
+    # # num = like_story.query.filter(story_id == id)
+
+    # print("current user",current_user.id)
+    # print ("all like story?????",allStory)
+  
+  
     return "like"
 
 

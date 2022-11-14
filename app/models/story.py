@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from app.models.user import like_story
 
 
 class Story(db.Model):
@@ -15,6 +16,7 @@ class Story(db.Model):
     user = db.relationship("User", back_populates="stories")
     liked_user = db.relationship(
         "User", 
+        secondary=like_story,
         lazy='dynamic',
         back_populates = 'liked')
 

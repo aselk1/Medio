@@ -25,6 +25,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+
     followers = db.relationship(
         "User",
         secondary=follows,
@@ -38,7 +39,7 @@ class User(db.Model, UserMixin):
         "Story",
         secondary=like_story,
         lazy='dynamic',
-        backref=db.backref('users', lazy='dynamic')
+        back_populates = "liked_user"
     )
 
 
@@ -72,7 +73,7 @@ class User(db.Model, UserMixin):
 
     stories = db.relationship("Story", back_populates="user")
 
-    user_id = db.relationship("LikeStory", back_populates="")
+    # user_id = db.relationship("LikeStory", back_populates="")
 
     comments = db.relationship("Comment", back_populates="user")
 
