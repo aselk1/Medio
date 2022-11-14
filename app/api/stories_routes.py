@@ -38,3 +38,26 @@ def delete_story(id):
     db.session.delete(story)
     db.session.commit()
     return story.to_dict()
+
+@stories_routes.route('/<int:id>/comments')
+@login_required
+def get_comments():
+    """
+    Query for all comments for a story and returns them in a list of dictionaries
+    """
+    comments = Comment.query.all()
+    return {'comments': [comment.to_dict() for comment in comments]}
+
+@stories_routes.route('/<int:id>/comments', methods=['POST'])
+@login_required
+def post_comment():
+    """
+    Posts a comment to a story
+    """
+    data = request.json()
+    comment = Comment(body=data['Body'],
+                      user_id=data['user_id'],
+                      story_id=data['story_id'])
+    db.session.add(comment)
+    db.session.commit()
+    return comment.to_dict()
