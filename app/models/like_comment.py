@@ -7,8 +7,8 @@ class LikeComment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     comment_id = db.Column(db.Integer, db.ForeignKey("comments.id"))
 
-    user = db.relationship("User", back_populates="likeStory")
-    comment = db.relationship("Comment", back_populates="likeStory")
+    user = db.relationship("User", back_populates="likeComment")
+    comment = db.relationship("Comment", back_populates="likeComment")
 
     def to_dict(self):
         return {
