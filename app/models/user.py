@@ -48,3 +48,4 @@ class User(db.Model, UserMixin):
     )
 
     stories = db.relationship("Story", back_populates="user")
+    comments = db.relationship("Comment", back_populates="user")
