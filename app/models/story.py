@@ -10,3 +10,12 @@ class Story(db.Model):
     body = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     user = db.relationship("User", back_populates="stories")
+    comments = db.relationship("Comment", back_populates="story")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'body': self.body,
+            'user_id': self.user_id
+        }

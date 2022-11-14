@@ -13,6 +13,7 @@ def get_stories():
 @stories_routes.route('', methods=['POST'])
 def post_story():
     data = request.json
+    print(data)
     story = Story(title=data['title'],
                 body=data['body'],
                 user_id=data['user_id']
