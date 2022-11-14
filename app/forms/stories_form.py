@@ -3,6 +3,6 @@ from wtforms import StringField
 from wtforms.validators import DataRequired, Email, ValidationError
 
 
-class SignUpForm(FlaskForm):
+class StoryForm(FlaskForm):
     title = StringField('title', validators=[DataRequired()])
     body = StringField('body', validators=[DataRequired()])
