@@ -36,6 +36,6 @@ def unfollow(id):
     user_follower = User.query.get(id)
     user_followed = User.query.get(req_body["followed_id"])
     print(user_follower.id)
-    user_follower.followers.remove(user_followed)
+    user_follower.followers.remove(user_followed.id)
     db.session.commit()
     return f"{user_follower.id} deleted"
