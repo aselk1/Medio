@@ -8,6 +8,11 @@ follows = db.Table(
     db.Column("followed_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
 )
 
+like_story = db.Table(
+    "like_story",
+    db.Column("user_id", db.Integer, db.ForeignKey("users.id")),
+    db.Column("story_id", db.Integer, db.ForeignKey("stories.id"))
+)
 
 class User(db.Model, UserMixin):
     __tablename__ = "users"
@@ -29,7 +34,13 @@ class User(db.Model, UserMixin):
         lazy="dynamic",
     )
 
-    stories = db.relationship("Story", back_populates="user")
+    liked = db.relationship(
+        "Story",
+        secondary=like_story,
+        lazy='dynamic',
+        backref=db.backref('users', lazy='dynamic')
+    )
+
 
     @property
     def password(self):

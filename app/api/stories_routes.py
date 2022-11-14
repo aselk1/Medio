@@ -65,3 +65,57 @@ def post_comment():
     db.session.add(comment)
     db.session.commit()
     return comment.to_dict()
+
+# ====================likes stories====================================
+
+#get all likes 
+@stories_routes.route('/')
+def get_likes_story():
+    likes = like_story.query.all()
+    return likes
+
+#get likes of one story
+@stories_routes.route('/<int:id>/likes')
+def get_one_story_like(id):
+    like= like_story.query.filter(story_id==id)
+    return like
+
+#post like story
+@stories_routes.route('/<int:id>/likes', methods=['POST'])
+@login_required
+def post_like(id):
+    story = Story.query.get(id)
+    user = User.query.get(current_user.id)
+    # if user.liked.story_id == id
+    user.liked.append(story)
+    
+    
+
+    allStory = user.liked
+    print ("one story???", allStory[0].to_dict())
+    # what = user.users.all()
+    # num = like_story.query.filter(story_id == id)
+
+    print("current user",current_user.id)
+    print ("all like story?????",allStory)
+    # print ("the number of like",num)
+    # print("what????????",what)
+
+
+    # allUser=story.likedUser.all()
+    # print("all users ???????", allUser)
+  
+    db.session.commit()
+    return "like"
+
+
+
+#delete like of one story
+@stories_routes.route('/<int:id>/likes', methods=['DELETE'])
+@login_required
+def delete_like(id):
+    user = User.query.get(current_user.id)
+    user.liked.remove(user)
+    db.session.commit()
+    return "unlike"
+

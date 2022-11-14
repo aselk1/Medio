@@ -12,6 +12,12 @@ class Story(db.Model):
     user = db.relationship("User", back_populates="stories")
     comments = db.relationship("Comment", back_populates="story")
 
+    user = db.relationship("User", back_populates="stories")
+    liked_user = db.relationship(
+        "User", 
+        lazy='dynamic',
+        back_populates = 'liked')
+
     def to_dict(self):
         return {
             'id': self.id,
