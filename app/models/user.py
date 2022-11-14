@@ -48,3 +48,20 @@ class User(db.Model, UserMixin):
             "username": self.username,
             "email": self.email,
         }
+
+
+    followers = db.relationship(
+        "User",
+        secondary=follows,
+        primaryjoin=(follows.c.followed_id == id),
+        secondaryjoin=(follows.c.follower_id == id),
+        backref=db.backref("following", lazy="dynamic"),
+        lazy="dynamic"
+    )
+
+    stories = db.relationship("Story", back_populates="user")
+
+    user_id = db.relationship("LikeStory", back_populates="")
+
+    comments = db.relationship("Comment", back_populates="user")
+
