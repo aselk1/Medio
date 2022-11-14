@@ -1,5 +1,6 @@
 from flask import Blueprint, request
-from app.models import Story, db
+from app.models import Story, db, Comment
+from flask_login import login_required
 
 stories_routes = Blueprint('stories', __name__)
 
@@ -11,6 +12,7 @@ def get_stories():
 
 
 @stories_routes.route('', methods=['POST'])
+@login_required
 def post_story():
     data = request.json
     print(data)
@@ -23,6 +25,7 @@ def post_story():
     return story.to_dict()
 
 @stories_routes.route('/<int:id>',  methods=['PUT'])
+@login_required
 def edit_story(id):
     data = request.json
     story = Story.query.get(id)
@@ -33,6 +36,7 @@ def edit_story(id):
     return story.to_dict()
 
 @stories_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
 def delete_story(id):
     story = Story.query.get(id)
     db.session.delete(story)
