@@ -1,24 +1,35 @@
-from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .db import db, environment, SCHEMA
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 follows = db.Table(
     "follows",
-    db.Column("follower_id", db.Integer, db.ForeignKey("users.id")),
-    db.Column("followed_id", db.Integer, db.ForeignKey("users.id"))
+    db.Column("follower_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
+    db.Column("followed_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
 )
 
 
 class User(db.Model, UserMixin):
-    __tablename__ = 'users'
+    __tablename__ = "users"
 
     if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
+        __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+    followers = db.relationship(
+        "User",
+        secondary=follows,
+        primaryjoin=(follows.c.followed_id == id),
+        secondaryjoin=(follows.c.follower_id == id),
+        backref=db.backref("following", lazy="dynamic"),
+        lazy="dynamic",
+    )
+
+    stories = db.relationship("Story", back_populates="user")
 
     @property
     def password(self):
@@ -33,19 +44,7 @@ class User(db.Model, UserMixin):
 
     def to_dict(self):
         return {
-            'id': self.id,
-            'username': self.username,
-            'email': self.email
+            "id": self.id,
+            "username": self.username,
+            "email": self.email,
         }
-
-    followers = db.relationship(
-        "User",
-        secondary=follows,
-        primaryjoin=(follows.c.followed_id == id),
-        secondaryjoin=(follows.c.follower_id == id),
-        backref=db.backref("following", lazy="dynamic"),
-        lazy="dynamic"
-    )
-
-    stories = db.relationship("Story", back_populates="user")
-    comments = db.relationship("Comment", back_populates="user")
