@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -27,13 +27,34 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path='/home' exact={true}>
+          <div className='sideBar'>
+              <img className='home-logo' src="https://miro.medium.com/max/1400/1*psYl0y9DUzZWtHzFJLIvTw.png" alt="logo" />
+              <div>
+                <i id="icon2" class="fa-solid fa-house-chimney"></i>
+              </div>
+              <div>
+                <i id="icon3" class="fa-regular fa-file-lines"></i>
+              </div>
+              <div>
+                <i id="icon4" class="fa-regular fa-pen-to-square"></i>
+              </div>
+              <div>
+                <i id="icon5" class="fa-solid fa-ellipsis"></i>
+              </div>
+              <img />
+              <img />
+              <img />
+              <img />
+              <img />
+          </div>
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
@@ -42,19 +63,20 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path='/' exact={true} >
-      <div className='splash'>
-        <div className="header">
-            <h2 className='title'>
-                Stay&nbsp;curious.
-            </h2>
-            <p className="header__text">
-                Discover stories, thinking, and expertise from writers on any topic.
-            </p>
-            <button className="start__reading" type="button">
-                Start reading
-            </button>
-        </div>
-        <div class="medium__Ms">
+          <NavBar />
+          <div className='splash'>
+            <div className="header">
+              <h2 className='title'>
+                  Stay&nbsp;curious.
+              </h2>
+              <p className="header__text">
+                  Discover stories, thinking, and expertise from writers on any topic.
+              </p>
+              <button className="start__reading" type="button">
+                <NavLink className='start-reading-text' to='/sign-up' exact={true} activeClassName='active'>Start reading</NavLink>
+              </button>
+          </div>
+          <div class="medium__Ms">
             <img class="screenshot" id="m1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/LetterM.svg/1200px-LetterM.svg.png" alt="background-image" />
             <img class="screenshot" id="m2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/LetterM.svg/1200px-LetterM.svg.png" alt="background-image" />
             <img class="screenshot" id="m3" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/LetterM.svg/1200px-LetterM.svg.png" alt="background-image" />
@@ -250,8 +272,8 @@ function App() {
             <img class="screenshot" id="m81" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/LetterM.svg/1200px-LetterM.svg.png" alt="background-image" />
             <img class="screenshot" id="m82" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/LetterM.svg/1200px-LetterM.svg.png" alt="background-image" />
             <img class="screenshot" id="m83" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/LetterM.svg/1200px-LetterM.svg.png" alt="background-image" />
+            </div>
           </div>
-        </div>
         </Route>
         <Route path='/new-story'>
           <StoryForm />

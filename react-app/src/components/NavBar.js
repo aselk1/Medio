@@ -13,13 +13,10 @@ const NavBar = () => {
             Home
           </NavLink>
           <NavLink className='navigation-text' to='/login' exact={true} activeClassName='active'>
-            <LogoutButton />
+            Sign In
           </NavLink>
           <NavLink className='navigation-text' to='/sign-up' exact={true} activeClassName='active'>
             Sign Up
-          </NavLink>
-          <NavLink className='navigation-text' to='/users' exact={true} activeClassName='active'>
-            Users
           </NavLink>
         <button id='get__started'><NavLink id='get-started-text' to='/sign-up' exact={true} activeClassName='active'>
             Get Started
