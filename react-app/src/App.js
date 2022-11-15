@@ -8,7 +8,8 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
-import StoryForm from './components/StoryForm';
+import StoryForm from './components/story/StoryForm';
+import Stories from "./components/story/Stories";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -29,23 +30,26 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path='/login' exact={true}>
+        <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
-        <Route path='/sign-up' exact={true}>
+        <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+        <ProtectedRoute path="/users" exact={true}>
+          <UsersList />
         </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
+        <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
-        <Route path='/' exact={true} >
+        <Route path="/" exact={true}>
           <h1>My Home Page</h1>
         </Route>
-        <Route path='/new-story'>
+        <Route path="/new-story">
           <StoryForm />
+        </Route>
+        <Route path="/stories">
+          <Stories />
         </Route>
       </Switch>
     </BrowserRouter>
