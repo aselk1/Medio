@@ -2,12 +2,20 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
 import stories from './stories'
+<<<<<<< HEAD
 import commentReducer from './comment'
+=======
+import follower from './follower'
+>>>>>>> e0d632e (Fixes to followers route)
 
 const rootReducer = combineReducers({
   session,
   stories,
+<<<<<<< HEAD
   comment: commentReducer
+=======
+  follower
+>>>>>>> e0d632e (Fixes to followers route)
 });
 
 

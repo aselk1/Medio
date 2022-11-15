@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request
 from flask_login import login_required
 from app.models import db, User
 
@@ -10,14 +10,10 @@ followers_routes = Blueprint("followers", __name__)
 def follower(id):
     user = User.query.get(id)
     following = user.following.all()
-    following_users = [(follower.id,follower.username) for follower in following]
-    print('users', following_users)
     users = {}
-    for i in range(len(following_users)):
-        users['id'] = following_users[i][0]
-        users['username'] = following_users[i][1]
-    print('users dictionary', users)
-    return user.to_dict()
+    for i in range(len(following)):
+        users[i]=user.following[i].to_dict()
+    return users
 
 
 @followers_routes.route("", methods=["POST"])
@@ -30,6 +26,10 @@ def follow():
     user_follower = User.query.get(req_body["follower_id"])
     user_followed.followers.append(user_follower)
     db.session.commit()
+    updated_followers = user_followed.followers.all()
+    users = {}
+    for i in range(len(updated_followers)):
+        users[i]=user_followed.updated_followers[i].to_dict()
     #  not sure what we should return here. Maybe a sucess message or a redirection on the frontend
     return f"{user_followed.username} is followed by {user_follower.username}"
 
