@@ -23,6 +23,7 @@ login.login_view = "auth.unauthorized"
 
 @login.user_loader
 def load_user(id):
+    print("Load User is running")
     return User.query.get(int(id))
 
 
