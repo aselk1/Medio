@@ -89,48 +89,52 @@ def post_comment():
 
 # ====================likes stories====================================
 
-#get all likes
-@stories_routes.route('/')
-def get_likes_story():
-    likes = like_story.query.all()
-    return likes
-
-#get likes of one story
-@stories_routes.route('/<int:id>/likes')
-def get_one_story_like(id):
-    like= like_story.query.filter(story_id==id)
-    return like
-
 #post like story
 @stories_routes.route('/<int:id>/likes', methods=['POST'])
 @login_required
 def post_like(id):
     story = Story.query.get(id)
-    user = User.query.get(current_user.id)
-    # if user.liked.story_id == id
-    user.liked.append(story)
+    like_story_user = User.query.get(current_user.id)
+    all_liked_user =  story.liked_story_user.all()
 
-    db.session.commit()
-    print("the number of story like",len(story.liked_user))
+    if not all_liked_user:
+        story.liked_story_user.append(like_story_user)
+        db.session.commit()
+    else:
 
-    # allStory = user.liked
-    # print ("one story???", allStory[0].to_dict())
+        for user in all_liked_user:
+            if user.id == current_user.id:
+                return "You already clicked"
+            else:
+                story.liked_story_user.append(like_story_user)
+                db.session.commit()
 
-    # # num = like_story.query.filter(story_id == id)
+    # the number of like for the story
+    num = story.liked_story_user.count()
+    print ("current_user id", current_user.id)
+    print("the number of like story",num)
 
-    # print("current user",current_user.id)
-    # print ("all like story?????",allStory)
+    num_like = {
+        'story_id':story.id,
+        'num':num
+    }
+      
+    return num_like
 
-
-    return "like"
-
-
-
-#delete like of one story
+#delete like of one story,  for the unlike button
+>>>>>>> namju2
 @stories_routes.route('/<int:id>/likes', methods=['DELETE'])
 @login_required
 def delete_like(id):
+    story = Story.query.get(id)
     user = User.query.get(current_user.id)
-    user.liked.remove(user)
-    db.session.commit()
+    all_liked_user =  story.liked_story_user.all()
+
+    for user in all_liked_user:
+        if user.id == current_user.id:
+            story.liked_story_user.remove(user)
+            db.session.commit()
+        else:
+            return "You havn't click the like"
+
     return "unlike"

@@ -14,6 +14,12 @@ like_story = db.Table(
     db.Column("story_id", db.Integer, db.ForeignKey("stories.id"))
 )
 
+like_comment = db.Table(
+    "like_comment",
+    db.Column("user_id", db.Integer, db.ForeignKey("users.id")),
+    db.Column("comment_id", db.Integer, db.ForeignKey("comments.id"))
+)
+
 class User(db.Model, UserMixin):
     __tablename__ = "users"
 
@@ -39,7 +45,14 @@ class User(db.Model, UserMixin):
         "Story",
         secondary=like_story,
         lazy='dynamic',
-        back_populates = "liked_user"
+        back_populates = "liked_story_user"
+    )
+
+    liked_comment = db.relationship(
+        "Comment",
+        secondary=like_comment,
+        lazy='dynamic',
+        back_populates = "liked_comment_user"
     )
 
 
