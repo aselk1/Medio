@@ -1,7 +1,6 @@
 from flask import Blueprint, request
 from app.models import Story, db, Comment, User
 from flask_login import login_required, current_user
-from app.models.user import like_story
 
 stories_routes = Blueprint('stories', __name__)
 
