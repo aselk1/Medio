@@ -1,51 +1,87 @@
-const ADD_FOLLOWER = 'followers/ADD_FOLLOWER'
-const REMOVE_FOLLOWER = 'followers/REMOVE_FOLLOWER'
+const LOAD_FOLLOWING = 'followers/LOAD_FOLLOWING'
+const LOAD_FOLLOWERS = 'followers/LOAD_FOLLOWERS'
+const ADD_FOLLOWING = 'followers/ADD_FOLLOWING'
+const REMOVE_FOLLOWING = 'followers/REMOVE_FOLLOWING'
 
-const addFollower = ({ follower_id }) => ({
-    type: ADD_FOLLOWER,
-    payload: follower_id
+const loadFollowing = (listOfFollowing) => ({
+    type: LOAD_FOLLOWING,
+    payload: listOfFollowing
 })
 
-const removeFollower = () => ({
-    type: REMOVE_FOLLOWER
-})
+// const loadFollowers = (listOfFollowers) => ({
+//     type: LOAD_FOLLOWERS,
+//     payload: listOfFollowers
+// })
 
+// const addFollowing = ({ follower_id }) => ({
+//     type: ADD_FOLLOWING,
+//     payload: follower_id
+// })
 
-export const follow = (follower_id, followed_id) => async (dispatch) => {
-    const res = await fetch('/api/followers', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            follower_id,
-            followed_id
-        })
-    })
+// const removeFollowing = () => ({
+//     type: REMOVE_FOLLOWING
+// })
 
+export const followingList = (id) => async (dispatch) => {
+    const res = await fetch(`/api/${id}/following`)
     if (res.ok) {
-        const followData = await res.json()
-        dispatch(addFollower(followData))
-        return
-    } else if (res.status < 500) {
-        const data = await res.json()
-        if (data.errors) {
-            return data.errors
-        }
-    } else {
-        return ['An error occured. Please try again.']
+        const list = await res.json()
+        // might have to tap into the list object
+        // console.log for testing to see what is in list
+        dispatch(loadFollowing(list))
+        return list
     }
 }
 
-const initialState = { followers: null }
+// export const follow = (follower_id, followed_id) => async (dispatch) => {
+//     const res = await fetch('/api/followers', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({
+//             follower_id,
+//             followed_id
+//         })
+//     })
 
-export default function followerReducer(state = initialState, action) {
+//     if (res.ok) {
+//         const followData = await res.json()
+//         dispatch(addFollowing(followData))
+//         return
+//     } else if (res.status < 500) {
+//         const data = await res.json()
+//         if (data.errors) {
+//             return data.errors
+//         }
+//     } else {
+//         return ['An error occured. Please try again.']
+//     }
+// }
+
+const initialState = {
+    followers: null,
+    following: null
+}
+
+export default function followReducer(state = initialState, action) {
+    let newState = {}
+    let followers = {}
+    let following = {}
     switch (action.type) {
-        case ADD_FOLLOWER:
+        case LOAD_FOLLOWERS:
+
+        case LOAD_FOLLOWING:
+            action.payload.forEach(user => {
+                following[user.id] = user
+            })
             return {
-                following: action.payload
+                ...state,
+                following: { ...following }
             }
-        case REMOVE_FOLLOWER:
+        case ADD_FOLLOWING:
+            return
+        case REMOVE_FOLLOWING:
             return {
 
             }

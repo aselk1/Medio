@@ -4,10 +4,10 @@ from app.models import db, User
 
 followers_routes = Blueprint("followers", __name__)
 
-
-@followers_routes.route("/<int:id>")
+# # get all users I am following
+@followers_routes.route("/following/<int:id>")
 @login_required
-def follower(id):
+def following(id):
     user = User.query.get(id)
     following = user.following.all()
     users = {}
@@ -15,7 +15,18 @@ def follower(id):
         users[i]=user.following[i].to_dict()
     return users
 
+# # get all users who follow me
+# @followers_routes.route("/<int:id>")
+# @login_required
+# def followers(id):
+#     user = User.query.get(id)
+#     followers = user.followers.all()
+#     users = {}
+#     for i in range(len(followers)):
+#         users[i] = user.followers[i].to_dict()
+#     return users
 
+# I am able to follow other users
 @followers_routes.route("", methods=["POST"])
 @login_required
 def follow():
@@ -31,9 +42,9 @@ def follow():
     for i in range(len(updated_followers)):
         users[i]=user_followed.updated_followers[i].to_dict()
     #  not sure what we should return here. Maybe a sucess message or a redirection on the frontend
-    return f"{user_followed.username} is followed by {user_follower.username}"
+    return users
 
-
+#  I am able to unfollow other users
 @followers_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
 def unfollow(id):
