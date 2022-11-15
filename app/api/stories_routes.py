@@ -118,11 +118,11 @@ def post_like(id):
         'story_id':story.id,
         'num':num
     }
-      
+
     return num_like
 
 #delete like of one story,  for the unlike button
->>>>>>> namju2
+
 @stories_routes.route('/<int:id>/likes', methods=['DELETE'])
 @login_required
 def delete_like(id):
