@@ -65,6 +65,13 @@
     border-style: none;
 }
 
+.start-reading-text {
+    font-size: 20px;
+    font-weight: 100;
+    color: white;
+    text-decoration: none;
+}
+
 #get__started {
     background-color: rgb(18, 18, 18);
     border-style: none;
@@ -275,6 +282,48 @@
     font-family: Georgia, "Times New Roman", Times, serif;
     font-weight: 400;
 }
+
+.sideBar {
+    width: 70px;
+    height: 100%;
+    border-right: .3px solid rgb(227, 226, 226);
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-logo {
+    width: 40px;
+    margin-left: 0%;
+    margin-top: 30%;
+}
+
+#icon2 {
+    width: 35px;
+    margin-top: 175px;
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+#icon3 {
+    width: 30px;
+    font-size: 20px;
+    margin-top: 25px;
+}
+
+#icon4 {
+    width: 30px;
+    font-size: 20px;
+    margin-top: 25px;
+}
+
+#icon5 {
+    width: 30px;
+    font-size: 20px;
+    margin-top: 300px;
+}
+
 
 @keyframes myAnimation{
     0%{
