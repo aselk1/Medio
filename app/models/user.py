@@ -8,6 +8,17 @@ follows = db.Table(
     db.Column("followed_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
 )
 
+like_story = db.Table(
+    "like_story",
+    db.Column("user_id", db.Integer, db.ForeignKey("users.id")),
+    db.Column("story_id", db.Integer, db.ForeignKey("stories.id"))
+)
+
+like_comment = db.Table(
+    "like_comment",
+    db.Column("user_id", db.Integer, db.ForeignKey("users.id")),
+    db.Column("comment_id", db.Integer, db.ForeignKey("comments.id"))
+)
 
 class User(db.Model, UserMixin):
     __tablename__ = "users"
@@ -20,6 +31,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+
     followers = db.relationship(
         "User",
         secondary=follows,
@@ -29,7 +41,20 @@ class User(db.Model, UserMixin):
         lazy="dynamic",
     )
 
-    stories = db.relationship("Story", back_populates="user")
+    liked = db.relationship(
+        "Story",
+        secondary=like_story,
+        lazy='dynamic',
+        back_populates = "liked_story_user"
+    )
+
+    liked_comment = db.relationship(
+        "Comment",
+        secondary=like_comment,
+        lazy='dynamic',
+        back_populates = "liked_comment_user"
+    )
+
 
     @property
     def password(self):
@@ -61,7 +86,7 @@ class User(db.Model, UserMixin):
 
     stories = db.relationship("Story", back_populates="user")
 
-    user_id = db.relationship("LikeStory", back_populates="")
+    # user_id = db.relationship("LikeStory", back_populates="")
 
     comments = db.relationship("Comment", back_populates="user")
 

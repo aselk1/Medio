@@ -1,7 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_required
 from app.models import db, User
-from app.models.user import follows
 
 followers_routes = Blueprint("followers", __name__)
 
@@ -10,16 +9,20 @@ followers_routes = Blueprint("followers", __name__)
 @login_required
 def follower(id):
     user = User.query.get(id)
-    # my_followers = user.followers.all().to_dict()
+    my_followers = user.followers.all()
     following = user.following.all()
     print(user)
     print(following)
+    
+    print(my_followers)
     return user.to_dict()
 
 
 @followers_routes.route("", methods=["POST"])
 @login_required
 def follow():
+    # pass in follower and followed id's from frontend
+    # use those parameters on lines 27 and 28 instead
     req_body = request.json
     user_followed = User.query.get(req_body["followed_id"])
     user_follower = User.query.get(req_body["follower_id"])
@@ -36,6 +39,6 @@ def unfollow(id):
     user_follower = User.query.get(id)
     user_followed = User.query.get(req_body["followed_id"])
     print(user_follower.id)
-    user_follower.followers.remove(user_followed.id)
-    db.session.commit()
+    # user_follower.followers.remove(user_followed.id)
+    # db.session.commit()
     return f"{user_follower.id} deleted"

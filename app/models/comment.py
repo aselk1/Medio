@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
+from .db import db
+from app.models.user import like_comment
 
-db = SQLAlchemy()
 
 class Comment(db.Model):
     __tablename__ = 'comments'
@@ -10,3 +11,9 @@ class Comment(db.Model):
     story_id = db.Column(db.Integer, db.ForeignKey("stories.id"))
     user = db.relationship("User", back_populates="comments")
     story = db.relationship("Story", back_populates="comments")
+
+    liked_comment_user = db.relationship(
+        "User", 
+        secondary=like_comment,
+        lazy='dynamic',
+        back_populates = 'liked_comment')
