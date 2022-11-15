@@ -8,6 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import StoryForm from './components/StoryForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -251,6 +252,9 @@ function App() {
             <img class="screenshot" id="m83" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/LetterM.svg/1200px-LetterM.svg.png" alt="background-image" />
           </div>
         </div>
+        </Route>
+        <Route path='/new-story'>
+          <StoryForm />
         </Route>
       </Switch>
     </BrowserRouter>
