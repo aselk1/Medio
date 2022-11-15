@@ -1,0 +1,28 @@
+.center {
+    align-items: center;
+}
+
+.flexCol {
+    display: flex;
+    flex-direction: column
+}
+
+.heightFitContent {
+    overflow: visible
+}
+
+.noResize {
+    resize: none;
+}
+
+.width700 {
+    width: 700px;
+}
+
+.fontSize42 {
+    font-size: 42px;
+}
+
+.fontSize21 {
+    font-size: 21px;
+}
