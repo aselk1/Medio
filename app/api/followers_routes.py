@@ -9,12 +9,14 @@ followers_routes = Blueprint("followers", __name__)
 @login_required
 def follower(id):
     user = User.query.get(id)
-    my_followers = user.followers.all()
     following = user.following.all()
-    print(user)
-    print(following)
-    
-    print(my_followers)
+    following_users = [(follower.id,follower.username) for follower in following]
+    print('users', following_users)
+    users = {}
+    for i in range(len(following_users)):
+        users['id'] = following_users[i][0]
+        users['username'] = following_users[i][1]
+    print('users dictionary', users)
     return user.to_dict()
 
 
