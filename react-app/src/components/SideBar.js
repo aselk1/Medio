@@ -43,6 +43,7 @@ const SideBar = () => {
             <div>name</div>
             <div>email</div>
             <div>Home</div>
+            <div>Profile</div>
             <div>Followers</div>
             <div className='logout'><LogoutButton /></div>
           </ul>
