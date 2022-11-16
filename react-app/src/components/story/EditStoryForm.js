@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as storyActions from "../../store/stories";
 import * as storyDetailsActions from "../../store/storyDetails";
+import SideBar from "../SideBar";
 
 const StoryForm = () => {
   const story = useSelector((state) => state.storyDetails);
@@ -34,6 +35,8 @@ const StoryForm = () => {
   };
 
   return (
+    <div>
+      <SideBar />
     <div className="centerCol flexCol">
       <form className="flexCol centerCol" onSubmit={editStory}>
         <div>
@@ -65,6 +68,7 @@ const StoryForm = () => {
         </div>
         <button type="submit">Edit Story</button>
       </form>
+    </div>
     </div>
   );
 };
