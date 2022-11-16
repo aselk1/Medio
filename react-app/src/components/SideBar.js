@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import "./Navigation.css"
 
 const SideBar = () => {
-
   const [showMenu, setShowMenu] = useState(false)
 
   const openMenu = () => {
@@ -24,6 +24,8 @@ const SideBar = () => {
     return () => document.removeEventListener("click", closeMenu)
   }, [showMenu])
 
+  const user = useSelector((state) => state.session.user);
+
   return (
     <div className='sideBar'>
       <NavLink to='/home' exact={true} activeClassName='active'><img className='home-logo' src="https://miro.medium.com/max/1400/1*psYl0y9DUzZWtHzFJLIvTw.png" alt="logo" /></NavLink>
@@ -40,8 +42,9 @@ const SideBar = () => {
         <i onClick={openMenu} id="icon5" class="fa-solid fa-ellipsis"></i>
         {showMenu && <div class="dropdown">
           <ul className='dropdown-text'>
-            <div>name</div>
-            <div>email</div>
+            <div>{user.username}</div>
+            <div>{user.email}</div>
+            <hr />
             <div>Home</div>
             <div>Profile</div>
             <div>Followers</div>
