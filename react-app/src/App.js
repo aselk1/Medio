@@ -16,8 +16,9 @@ import SideBar from './components/SideBar';
 
 function App() {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.session)
+  const user = useSelector(state => state.session.user)
   const [loaded, setLoaded] = useState(false);
+  console.log('user', user)
 
   useEffect(() => {
     (async () => {
@@ -34,10 +35,10 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path='/'>
-          {user ? <Redirect to='/home' /> : <SplashPage />}
+          {user != null ? <Redirect to='/home' /> : <SplashPage />}
         </Route>
         <Route exact path='/home'>
-          <SideBar />
+          {user === null ? <Redirect to='/' /> : <SideBar />}
         </Route>
         <Route path="/new-story" exact={true}>
           <StoryForm />
