@@ -12,6 +12,25 @@ const StoryDetails = () => {
   const story = useSelector((state) => state.storyDetails);
   const storyId = Number(useLocation().pathname.split("/")[2]);
 
+  const [showMenu, setShowMenu] = useState(false)
+
+  const openMenu = () => {
+    if (showMenu) return
+    setShowMenu(true)
+    console.log("opening")
+  }
+
+  useEffect(() => {
+    const closeMenu = () => {
+      if (!showMenu) return
+      setShowMenu(false)
+      console.log("closing")
+    }
+
+    document.addEventListener("click", closeMenu)
+    return () => document.removeEventListener("click", closeMenu)
+  }, [showMenu])
+
   const deleteStory = async () => {
     await dispatch(storyActions.fetchDeleteStory(storyId))
     await dispatch(storyDetailsActions.deleteStoryDetails())
@@ -32,6 +51,18 @@ const StoryDetails = () => {
         <h4>{story?.User?.username}</h4>
         <h2>{story?.title}</h2>
         <p className="width700">{story?.body}</p>
+      </div>
+      <div className="comments">
+        <div onClick={openMenu} className="comment-icon"></div>
+        {showMenu && <div class="comments-sidebar">
+          <ul>
+            <li>Option 1</li>
+            <li>Option 2</li>
+            <li>Option 3</li>
+            <li>Option 4</li>
+          </ul>
+        </div>
+        }
       </div>
     </div>
   );
