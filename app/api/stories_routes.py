@@ -92,7 +92,23 @@ def post_comment():
     db.session.commit()
     return comment.to_dict()
 
-# ====================likes stories====================================
+
+
+#====================LIKE STORIES====================================
+
+#get like story
+@stories_routes.route('/<int:id>/likes')
+def get_like(id):
+    story = Story.query.get(id)
+    num = story.liked_story_user.count()
+    all_liked_user =  story.liked_story_user.all()
+    num_like = {
+        'story_id':story.id,
+        'num':num,
+        'allUser':[(user.id) for user in all_liked_user]
+    }
+    
+    return num_like
 
 #post like story
 @stories_routes.route('/<int:id>/likes', methods=['POST'])
@@ -104,16 +120,15 @@ def post_like(id):
 
     if not all_liked_user:
         story.liked_story_user.append(like_story_user)
-        db.session.commit()
+        # db.session.commit()
     else:
-
         for user in all_liked_user:
             if user.id == current_user.id:
                 return "You already clicked"
             else:
                 story.liked_story_user.append(like_story_user)
-                db.session.commit()
 
+    db.session.commit()
     # the number of like for the story
     num = story.liked_story_user.count()
     print ("current_user id", current_user.id)

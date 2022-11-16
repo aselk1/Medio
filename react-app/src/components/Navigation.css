@@ -12,6 +12,10 @@
     margin-top: 1%;
 }
 
+.splash {
+    background-color: #FFC017;
+}
+
 .logo {
     width: 230px;
     height: 50px;
@@ -357,13 +361,13 @@
     box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14);
 }
 
-  .dropdown-text {
+.dropdown-text {
     display: flex;
     flex-direction: column;
     margin-left: 10%;
     gap: 25px;
     margin-top: 15%;
-  }
+}
 
 
 @keyframes myAnimation {

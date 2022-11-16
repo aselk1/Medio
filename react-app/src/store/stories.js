@@ -1,12 +1,18 @@
 import { csrfFetch } from "./csrf";
 
 const POST_STORY = "stories/POST_STORY";
+const EDIT_STORY = "stories/EDIT_STORY";
 const GET_STORIES = "stories/GET_STORIES";
 const DELETE_STORY = "stories/DELETE_STORY"
 
 const postStory = (story) => ({
   type: POST_STORY,
   payload: story,
+});
+
+const editStory = (story) => ({
+  type: EDIT_STORY,
+  payload: story
 });
 
 const getStories = (stories) => ({
@@ -47,6 +53,26 @@ export const fetchPostStory = (story) => async (dispatch) => {
   }
 };
 
+export const fetchEditStory = (id, story) => async (dispatch) => {
+  const { title, body } = story;
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("body", body);
+  const res = await csrfFetch(`/api/stories/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "multipart/form-data"
+    },
+    body: formData
+  });
+  if (res.ok) {
+    const data = await res.json()
+    console.log(data)
+    dispatch(editStory(data))
+    return data
+  }
+}
+
 export const fetchDeleteStory = (id) => async (dispatch) => {
   const response = await csrfFetch(`/api/stories/${id}`, {
     method: "DELETE"
@@ -69,9 +95,13 @@ export default function reducer(state = initialState, action) {
       newState = Object.assign({}, state);
       newState[action.payload.id] = action.payload;
       return newState;
+    case EDIT_STORY:
+      newState = Object.assign({}, state);
+      newState[action.payload.id] = action.payload;
+      return newState;
     case DELETE_STORY:
       newState = Object.assign({}, state);
-      delete newState[action.payload.id]
+      delete newState[action.payload.id];
       return newState;
     default:
       return state;

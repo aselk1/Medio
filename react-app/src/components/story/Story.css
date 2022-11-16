@@ -1,10 +1,15 @@
-.center {
+.centerCol {
     align-items: center;
+}
+
+.centerRow {
+    justify-content: center;
 }
 
 .flexCol {
     display: flex;
-    flex-direction: column
+    flex-direction: column;
+    position: relative;
 }
 
 .flexRow {
@@ -28,10 +33,46 @@
     width: 700px;
 }
 
+.width1000 {
+    width: 1000px;
+}
+
 .fontSize42 {
     font-size: 42px;
 }
 
 .fontSize21 {
     font-size: 21px;
+}
+
+
+.comments-icon {
+    margin-top: 90%
+}
+
+.comments-sidebar {
+    height: 100%;
+    width: 33%;
+    position: fixed;
+    padding-left: 5%;
+    margin-left: 10%;
+    border-left: 1px solid black;
+    z-index: 50;
+    padding-top: 25%;
+}
+
+
+.textarea-comments {
+    margin-right: 500px;
+}
+
+.profileImage {
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.titlePadding {
+    padding-top: 20px;
+    padding-bottom: 20px;
 }

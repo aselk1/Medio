@@ -5,13 +5,17 @@ import stories from './stories'
 import storyDetails from './storyDetails'
 import commentReducer from './comment'
 import follower from './follower'
+import { likeStoryReducer } from './likeStory';
+import { likeCommentReducer } from './likeComment';
 
 const rootReducer = combineReducers({
   session,
   stories,
   storyDetails,
   comment: commentReducer,
-  follower
+  follower,
+  likeStory: likeStoryReducer,
+  likeComment: likeCommentReducer,
 });
 
 

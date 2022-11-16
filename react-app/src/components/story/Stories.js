@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { getLikeStory } from "../../store/likeStory";
 import * as storyActions from "../../store/stories";
 import * as storyDetailsActions from '../../store/storyDetails'
 import './Story.css'
+
 
 const Stories = () => {
     const user = useSelector((state) => state.session.user);
@@ -17,6 +19,7 @@ const Stories = () => {
     const storyDetails = async (story, e) => {
       e.preventDefault();
       await dispatch(storyDetailsActions.fetchStoryDetails(story.id))
+      await dispatch(getLikeStory(story.id))
       history.push(`/stories/${story.id}`);
     };
 
