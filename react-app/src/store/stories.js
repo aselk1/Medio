@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const POST_STORY = "stories/POST_STORY";
 const GET_STORIES = "stories/GET_STORIES";
+const DELETE_STORY = "stories/DELETE_STORY"
 
 const postStory = (story) => ({
   type: POST_STORY,
@@ -13,17 +14,21 @@ const getStories = (stories) => ({
   payload: stories,
 });
 
+const deleteStory = (id) => ({
+  type: DELETE_STORY,
+  payload: id
+});
+
 export const fetchAllStories = () => async (dispatch) => {
   const response = await fetch("/api/stories");
   if (response.ok) {
     const stories = await response.json();
-    dispatch(getStories(stories.data));
+    dispatch(getStories(stories));
     return response;
   }
 };
 
 export const fetchPostStory = (story) => async (dispatch) => {
-  console.log("working");
   const { title, body } = story;
   const formData = new FormData();
   formData.append("title", title);
@@ -42,6 +47,16 @@ export const fetchPostStory = (story) => async (dispatch) => {
   }
 };
 
+export const fetchDeleteStory = (id) => async (dispatch) => {
+  const response = await csrfFetch(`/api/stories/${id}`, {
+    method: "DELETE"
+  })
+  if (response.ok) {
+    dispatch(deleteStory(id))
+    return response
+  }
+}
+
 const initialState = {};
 
 export default function reducer(state = initialState, action) {
@@ -53,6 +68,10 @@ export default function reducer(state = initialState, action) {
     case POST_STORY:
       newState = Object.assign({}, state);
       newState[action.payload.id] = action.payload;
+      return newState;
+    case DELETE_STORY:
+      newState = Object.assign({}, state);
+      delete newState[action.payload.id]
       return newState;
     default:
       return state;
