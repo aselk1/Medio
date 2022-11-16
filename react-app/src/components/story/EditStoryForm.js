@@ -2,36 +2,40 @@ import React, { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as storyActions from "../../store/stories";
+import * as storyDetailsActions from "../../store/storyDetails";
 
 const StoryForm = () => {
+  const story = useSelector((state) => state.storyDetails);
   const [errors, setErrors] = useState([]);
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  const [title, setTitle] = useState(story.title);
+  const [body, setBody] = useState(story.body);
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  useEffect(() => {
-    dispatch(storyActions.fetchAllStories());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(storyActions.fetchAllStories());
+  // }, [dispatch]);
 
 
-  const postStory = async (e) => {
+  const editStory = async (e) => {
     e.preventDefault();
     setErrors([]);
-    const story = { title, body };
-    await dispatch(storyActions.fetchPostStory(story)).catch(async (res) => {
+    const editStory = { title, body };
+    let data = await dispatch(storyActions.fetchEditStory(story.id, editStory))
+    .catch(async (res) => {
       const data = await res.json();
       if (data && data.errors) {
         setErrors(Object.values(data.errors));
       }
     });
-    history.push("/stories");
+    // await dispatch(storyDetailsActions.editStoryDetails(data))
+    history.push(`/stories/${story.id}`);
   };
 
   return (
-    <div className="center flexCol">
-      <form className="flexCol center" onSubmit={postStory}>
+    <div className="centerCol flexCol">
+      <form className="flexCol centerCol" onSubmit={editStory}>
         <div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
@@ -59,7 +63,7 @@ const StoryForm = () => {
             />
           </h3>
         </div>
-        <button type="submit">Add Story</button>
+        <button type="submit">Edit Story</button>
       </form>
     </div>
   );

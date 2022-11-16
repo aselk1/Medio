@@ -57,7 +57,7 @@ const StoryDetails = () => {
               <h4>{story?.User?.username}</h4>
               {story.User?.id === user?.id && (
                 <div className="flexRow flexEnd">
-                  <button>Edit</button>
+                  <button onClick={() => history.push(`/stories/${story.id}/edit`)}>Edit</button>
                   <button onClick={deleteStory}>Delete</button>
                 </div>
               )}
