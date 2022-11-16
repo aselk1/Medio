@@ -19,17 +19,17 @@ const StoryDetails = () => {
   const likes = useSelector(state=>state.likeStory)
   const likeInfo =likes[id]
   const allLikeUser = likeInfo?.allUser
-  // const [clicked, setClicked] = useState('')
 
-  console.log ("likes store?",likes)
-  console.log ("what am I getting?",likeInfo?.num)
-  console.log ("all like users",allLikeUser)
-    
   useEffect(()=>{
         dispatch(getLikeStory(id))
   },[dispatch]);
 
-  const clicked = allLikeUser?.find(id => id === user.id)
+  if (allLikeUser === undefined){
+    dispatch(getLikeStory(id))
+  }
+
+  let clicked = allLikeUser?.find(id => id === user.id)
+  
   if (clicked) {
       const btn = document.getElementById("likeClickBt")
       btn.style.backgroundColor = "#3895D3"
@@ -37,7 +37,6 @@ const StoryDetails = () => {
 
   const clickLike = (e) =>{
     e.preventDefault();
-        
       allLikeUser?.find(id => id === user.id) ? alert("you already clicked") : dispatch(likeStory(id));
   }
 
