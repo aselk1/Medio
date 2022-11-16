@@ -19,20 +19,26 @@ const StoryDetails = () => {
   const likes = useSelector(state=>state.likeStory)
   const likeInfo =likes[id]
   const allLikeUser = likeInfo?.allUser
+  // const [clicked, setClicked] = useState('')
 
-  console.log ("useParams???",id)
-  console.log ("what am I getting?",user)
+  console.log ("likes store?",likes)
   console.log ("what am I getting?",likeInfo?.num)
-  console.log ("what am I getting?",allLikeUser)
+  console.log ("all like users",allLikeUser)
     
   useEffect(()=>{
         dispatch(getLikeStory(id))
   },[dispatch]);
 
+  const clicked = allLikeUser?.find(id => id === user.id)
+  if (clicked) {
+      const btn = document.getElementById("likeClickBt")
+      btn.style.backgroundColor = "#3895D3"
+    }
+
   const clickLike = (e) =>{
-        e.preventDefault();
+    e.preventDefault();
         
-        allLikeUser?.find(id => id === user.id) ? alert("you already clicked") : dispatch(likeStory(id));
+      allLikeUser?.find(id => id === user.id) ? alert("you already clicked") : dispatch(likeStory(id));
   }
 
   const openMenu = () => {
@@ -67,8 +73,8 @@ const StoryDetails = () => {
       {story.User?.id === user?.id && <div className="flexRow flexEnd">
         <button>Edit</button>
         <button onClick={deleteStory}>Delete</button>
-        <button id="likeBt" onClick={clickLike} >Like</button> {likeInfo?.num}
       </div>}
+        <button id="likeClickBt" onClick={clickLike} >Like</button> {likeInfo?.num}
       <div className="flexCol center">
         <h4>{story?.User?.username}</h4>
         <h2>{story?.title}</h2>
