@@ -1,5 +1,9 @@
 from app.models import db, User, environment, SCHEMA
 
+user1 = User.query.get(1)
+user2 = User.query.get(2)
+user3 = User.query.get(3)
+
 def seed_followers():
     one = User.followers(follower_id=2, followed_id=1)
     two = User.followers(follower_id=3, followed_id=1)
