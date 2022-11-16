@@ -36,6 +36,7 @@ const StoryDetails = () => {
 
   if (clicked) {
     const btn = document.getElementById("likeClickBt");
+    btn === null ? dispatch(getLikeStory(id)) :
     btn.style.backgroundColor = "#3895D3";
   }
 
