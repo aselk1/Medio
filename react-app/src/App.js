@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter, Route, Switch, NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
+import SideBar from './components/SideBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
@@ -13,6 +14,7 @@ import Stories from "./components/story/Stories";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
+  const [showMenu, setShowMenu] = useState(false)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,26 +38,7 @@ function App() {
           <SignUpForm />
         </Route>
         <Route path='/home' exact={true}>
-          <div className='sideBar'>
-              <img className='home-logo' src="https://miro.medium.com/max/1400/1*psYl0y9DUzZWtHzFJLIvTw.png" alt="logo" />
-              <div>
-                <i id="icon2" class="fa-solid fa-house-chimney"></i>
-              </div>
-              <div>
-                <i id="icon3" class="fa-regular fa-file-lines"></i>
-              </div>
-              <div>
-                <i id="icon4" class="fa-regular fa-pen-to-square"></i>
-              </div>
-              <div>
-                <i id="icon5" class="fa-solid fa-ellipsis"></i>
-              </div>
-              <img />
-              <img />
-              <img />
-              <img />
-              <img />
-          </div>
+          <SideBar />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
