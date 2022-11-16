@@ -3,33 +3,39 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getLikeStory } from "../../store/likeStory";
 import * as storyActions from "../../store/stories";
-import * as storyDetailsActions from '../../store/storyDetails'
-import './Story.css'
-
+import * as storyDetailsActions from "../../store/storyDetails";
+import SideBar from "../SideBar";
+import "./Story.css";
 
 const Stories = () => {
-    const user = useSelector((state) => state.session.user);
-    const stories = Object.values(useSelector((state) => state.stories))
-    const dispatch = useDispatch();
-    const history = useHistory()
-    useEffect(() => {
-        dispatch(storyActions.fetchAllStories());
-    }, [dispatch]);
+  const user = useSelector((state) => state.session.user);
+  const stories = Object.values(useSelector((state) => state.stories));
+  const dispatch = useDispatch();
+  const history = useHistory();
+  useEffect(() => {
+    dispatch(storyActions.fetchAllStories());
+  }, [dispatch]);
 
-    const storyDetails = async (story, e) => {
-      e.preventDefault();
-      await dispatch(storyDetailsActions.fetchStoryDetails(story.id))
-      await dispatch(getLikeStory(story.id))
-      history.push(`/stories/${story.id}`);
-    };
+  const storyDetails = async (story, e) => {
+    e.preventDefault();
+    await dispatch(storyDetailsActions.fetchStoryDetails(story.id));
+    await dispatch(getLikeStory(story.id));
+    history.push(`/stories/${story.id}`);
+  };
 
   return (
     <div>
-      <ul>{stories[0] && stories.map((story) => (
-        <li>
-          <h4 onClick={(e) => storyDetails(story, e)}>{story.title}</h4>
-        </li>
-      ))}</ul>
+      <SideBar />
+      <div className="flexCol centerCol">
+        <ul>
+          {stories[0] &&
+            stories.map((story) => (
+              <li>
+                <h4 onClick={(e) => storyDetails(story, e)}>{story.title}</h4>
+              </li>
+            ))}
+        </ul>
+      </div>
     </div>
   );
 };
