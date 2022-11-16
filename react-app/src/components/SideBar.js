@@ -38,10 +38,10 @@ const SideBar = () => {
                 <i onClick={openMenu} id="icon5" class="fa-solid fa-ellipsis"></i>
                 {showMenu && <div class="dropdown">
                 <ul>
-                  <li>Option 1</li>
-                  <li>Option 2</li>
-                  <li>Option 3</li>
-                  <li>Option 4</li>
+                  <li>Home</li>
+                  <li>Profile</li>
+                  <li>Followers</li>
+                  <li><LogoutButton /></li>
                 </ul>
                </div>
                 }
