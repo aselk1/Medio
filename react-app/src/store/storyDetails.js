@@ -2,11 +2,16 @@ import { csrfFetch } from "./csrf";
 
 
 const GET_DETAILS = "storyDetails/GET_DETAILS";
+const DELETE_DETAILS = "storyDetails/DELETE_DETAILS"
 
 
 const getStoryDetails = (story) => ({
   type: GET_DETAILS,
   payload: story,
+});
+
+export const deleteStoryDetails = () => ({
+  type: DELETE_DETAILS
 });
 
 export const fetchStoryDetails = (id) => async (dispatch) => {
@@ -26,6 +31,9 @@ export default function reducer(state = initialState, action) {
     case GET_DETAILS:
       newState = action.payload;
       return newState;
+    case DELETE_DETAILS:
+        newState = {}
+        return newState
     default:
       return state;
   }

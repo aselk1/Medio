@@ -20,7 +20,7 @@ def validation_errors_to_error_messages(validation_errors):
 def get_stories():
     data = Story.query.all()
     print(data)
-    return {'data': [story.to_dict() for story in data]}
+    return {story.to_dict()['id']: story.to_dict() for story in data}
 
 @stories_routes.route('/<int:id>')
 def get_story(id):

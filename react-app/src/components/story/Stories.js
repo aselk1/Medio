@@ -7,8 +7,7 @@ import './Story.css'
 
 const Stories = () => {
     const user = useSelector((state) => state.session.user);
-    const stories = useSelector((state) => state.stories)
-    console.log(stories)
+    const stories = Object.values(useSelector((state) => state.stories))
     const dispatch = useDispatch();
     const history = useHistory()
     useEffect(() => {
