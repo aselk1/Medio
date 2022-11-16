@@ -18,7 +18,6 @@ function App() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user)
   const [loaded, setLoaded] = useState(false);
-  console.log('user', user)
 
   useEffect(() => {
     (async () => {
@@ -32,40 +31,42 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path='/'>
-          {user != null ? <Redirect to='/home' /> : <SplashPage />}
-        </Route>
-        <Route exact path='/home'>
-          {user === null ? <Redirect to='/' /> : <SideBar />}
-        </Route>
-        <Route path="/new-story" exact={true}>
-          <StoryForm />
-        </Route>
-        <Route path="/login" exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm />
-        </Route>
-        <ProtectedRoute path="/users" exact={true}>
-          <UsersList />
-        </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true}>
-          <User />
-        </ProtectedRoute>
-        <Route path="/stories" exact={true}>
-          <Stories />
-        </Route>
-        <Route path='/test'>
-          <FollowFeed />
-        </Route>
-        <Route path="/stories/:storyId">
-          <StoryDetails />
-        </Route>
-      </Switch>
-    </BrowserRouter>
+    <div className='medio-body'>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/'>
+            {user != null ? <Redirect to='/home' /> : <SplashPage />}
+          </Route>
+          <Route exact path='/home'>
+            {user === null ? <Redirect to='/' /> : <SideBar />}
+          </Route>
+          <Route path="/new-story" exact={true}>
+            <StoryForm />
+          </Route>
+          <Route path="/login" exact={true}>
+            <LoginForm />
+          </Route>
+          <Route path="/sign-up" exact={true}>
+            <SignUpForm />
+          </Route>
+          <ProtectedRoute path="/users" exact={true}>
+            <UsersList />
+          </ProtectedRoute>
+          <ProtectedRoute path="/users/:userId" exact={true}>
+            <User />
+          </ProtectedRoute>
+          <Route path="/stories" exact={true}>
+            <Stories />
+          </Route>
+          <Route path='/test'>
+            <FollowFeed />
+          </Route>
+          <Route path="/stories/:storyId">
+            <StoryDetails />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </div>
   );
 }
 
