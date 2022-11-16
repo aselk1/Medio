@@ -5,15 +5,15 @@ from app.models import db, User
 followers_routes = Blueprint("followers", __name__)
 
 # # get all users I am following
-@followers_routes.route("/following/<int:id>")
-@login_required
-def following(id):
-    user = User.query.get(id)
-    following = user.following.all()
-    users = {}
-    for i in range(len(following)):
-        users[i]=user.following[i].to_dict()
-    return users
+# @followers_routes.route("/following/<int:id>")
+# @login_required
+# def following(id):
+#     user = User.query.get(id)
+#     following = user.following.all()
+#     users = {}
+#     for i in range(len(following)):
+#         users[i]=user.following[i].to_dict()
+#     return users
 
 # # get all users who follow me
 # @followers_routes.route("/<int:id>")

@@ -24,7 +24,7 @@ export const fetchAllStories = () => async (dispatch) => {
   if (response.ok) {
     const stories = await response.json();
     dispatch(getStories(stories));
-    return response;
+    return stories;
   }
 };
 
