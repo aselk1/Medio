@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getLikeStory } from "../../store/likeStory";
-import * as storyActions from "../../store/stories";
-import * as storyDetailsActions from "../../store/storyDetails";
-import SideBar from "../SideBar";
-import "./Story.css";
+import { getLikeStory } from "./../store/likeStory";
+import * as storyActions from "./../store/stories";
+import * as storyDetailsActions from "./../store/storyDetails";
+import SideBar from "./SideBar";
+import "./story/Story.css";
 
-const Stories = () => {
+const Home = () => {
   const user = useSelector((state) => state.session.user);
   const stories = Object.values(useSelector((state) => state.stories));
   const dispatch = useDispatch();
@@ -27,7 +27,6 @@ const Stories = () => {
     <div>
       <SideBar />
       <div className="flexCol centerCol">
-        <h3>Your Stories</h3>
         <ul>
           {stories[0] &&
             stories.map((story) => (
@@ -41,4 +40,4 @@ const Stories = () => {
   );
 };
 
-export default Stories;
+export default Home;
