@@ -62,6 +62,7 @@ function App() {
           <FollowFeed />
         </Route>
         <Route path="/stories/:id" exact={true}>
+          <SideBar />
           <StoryDetails />
         </Route>
       </Switch>
