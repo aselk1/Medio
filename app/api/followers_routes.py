@@ -1,23 +1,32 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request
 from flask_login import login_required
 from app.models import db, User
 
 followers_routes = Blueprint("followers", __name__)
 
+# # get all users I am following
+# @followers_routes.route("/following/<int:id>")
+# @login_required
+# def following(id):
+#     user = User.query.get(id)
+#     following = user.following.all()
+#     users = {}
+#     for i in range(len(following)):
+#         users[i]=user.following[i].to_dict()
+#     return users
 
-@followers_routes.route("/<int:id>")
-@login_required
-def follower(id):
-    user = User.query.get(id)
-    my_followers = user.followers.all()
-    following = user.following.all()
-    print(user)
-    print(following)
-    
-    print(my_followers)
-    return user.to_dict()
+# # get all users who follow me
+# @followers_routes.route("/<int:id>")
+# @login_required
+# def followers(id):
+#     user = User.query.get(id)
+#     followers = user.followers.all()
+#     users = {}
+#     for i in range(len(followers)):
+#         users[i] = user.followers[i].to_dict()
+#     return users
 
-
+# I am able to follow other users
 @followers_routes.route("", methods=["POST"])
 @login_required
 def follow():
@@ -28,10 +37,14 @@ def follow():
     user_follower = User.query.get(req_body["follower_id"])
     user_followed.followers.append(user_follower)
     db.session.commit()
+    updated_followers = user_followed.followers.all()
+    users = {}
+    for i in range(len(updated_followers)):
+        users[i]=user_followed.updated_followers[i].to_dict()
     #  not sure what we should return here. Maybe a sucess message or a redirection on the frontend
-    return f"{user_followed.username} is followed by {user_follower.username}"
+    return users
 
-
+#  I am able to unfollow other users
 @followers_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
 def unfollow(id):

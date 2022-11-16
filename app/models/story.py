@@ -10,22 +10,21 @@ class Story(db.Model):
     title = db.Column(db.String)
     body = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    user = db.relationship("User", back_populates="stories")
+    user = db.relationship("User", lazy='joined', back_populates="stories")
     comments = db.relationship("Comment", back_populates="story")
 
     liked_story_user = db.relationship(
-        "User", 
+        "User",
         secondary=like_story,
         lazy='dynamic',
         back_populates = 'liked')
 
-   
+
     def to_dict(self):
         return {
             'id': self.id,
             'title': self.title,
             'body': self.body,
-            'user_id': self.user_id
+            'user_id': self.user_id,
+            'User': self.user.to_dict()
         }
-
- 
