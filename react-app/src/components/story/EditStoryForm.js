@@ -9,27 +9,12 @@ const StoryForm = () => {
   const [body, setBody] = useState("");
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
-  const history = useHistory()
-  // const ref = useRef(null)
-  // let titleDiv = <span>Title</span>;
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(storyActions.fetchAllStories());
   }, [dispatch]);
 
-  // useEffect (() => {
-  //   const handleChange = (e) => {
-  //     if (title === "") {
-  //       titleDiv = <span>Title</span>;
-  //     }
-  //     console.log(title)
-  //     setTitle(e.target.value)
-  //   }
-  //   ref.current.addEventListener('change', handleChange);
-  //   return () => {
-  //     ref.current.removeEventListener("change", handleChange);
-  //   }
-  // },[title])
 
   const postStory = async (e) => {
     e.preventDefault();
@@ -41,7 +26,7 @@ const StoryForm = () => {
         setErrors(Object.values(data.errors));
       }
     });
-    history.push('/stories')
+    history.push("/stories");
   };
 
   return (
@@ -53,19 +38,6 @@ const StoryForm = () => {
           ))}
         </div>
         <div>
-          {/* <label htmlFor="title">Title</label> */}
-          {/* <h3
-            contentEditable
-            className="noResize width700 fontSize42 heightFitContent"
-            id="titleHeader"
-            // name="title"
-            // type="text"
-            // placeholder="Title"
-            // value={title}
-            // onChange={(e) => setTitle(e.target.value)}
-          >
-            {titleDiv}
-          </h3> */}
           <textarea
             className="noResize width700 fontSize42 heightFitContent"
             name="title"
@@ -76,7 +48,6 @@ const StoryForm = () => {
           ></textarea>
         </div>
         <div>
-          {/* <label htmlFor="body">Body</label> */}
           <h3>
             <textarea
               className="noResize width700 fontSize21"
