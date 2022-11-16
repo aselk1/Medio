@@ -1,23 +1,23 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 follows = db.Table(
     "follows",
-    db.Column("follower_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
-    db.Column("followed_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
+    db.Column("follower_id", db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), primary_key=True),
+    db.Column("followed_id", db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), primary_key=True),
 )
 
 like_story = db.Table(
     "like_story",
-    db.Column("user_id", db.Integer, db.ForeignKey("users.id")),
-    db.Column("story_id", db.Integer, db.ForeignKey("stories.id"))
+    db.Column("user_id", db.Integer, db.ForeignKey(add_prefix_for_prod("users.id"))),
+    db.Column("story_id", db.Integer, db.ForeignKey(add_prefix_for_prod("stories.id")))
 )
 
 like_comment = db.Table(
     "like_comment",
-    db.Column("user_id", db.Integer, db.ForeignKey("users.id")),
-    db.Column("comment_id", db.Integer, db.ForeignKey("comments.id"))
+    db.Column("user_id", db.Integer, db.ForeignKey(add_prefix_for_prod("users.id"))),
+    db.Column("comment_id", db.Integer, db.ForeignKey(add_prefix_for_prod("comments.id")))
 )
 
 class User(db.Model, UserMixin):
@@ -75,18 +75,8 @@ class User(db.Model, UserMixin):
         }
 
 
-    followers = db.relationship(
-        "User",
-        secondary=follows,
-        primaryjoin=(follows.c.followed_id == id),
-        secondaryjoin=(follows.c.follower_id == id),
-        backref=db.backref("following", lazy="dynamic"),
-        lazy="dynamic"
-    )
-
     stories = db.relationship("Story", back_populates="user")
 
     # user_id = db.relationship("LikeStory", back_populates="")
 
     comments = db.relationship("Comment", back_populates="user")
-

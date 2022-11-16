@@ -1,19 +1,21 @@
 from flask_sqlalchemy import SQLAlchemy
-from .db import db
+from .db import db, add_prefix_for_prod, environment, SCHEMA
 from app.models.user import like_comment
 
 
 class Comment(db.Model):
     __tablename__ = 'comments'
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    story_id = db.Column(db.Integer, db.ForeignKey("stories.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
+    story_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("stories.id")))
     user = db.relationship("User", back_populates="comments")
     story = db.relationship("Story", back_populates="comments")
 
     liked_comment_user = db.relationship(
-        "User", 
+        "User",
         secondary=like_comment,
         lazy='dynamic',
         back_populates = 'liked_comment')
