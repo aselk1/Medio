@@ -34,7 +34,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path='/'>
-          {user ? <Redirect to='/home' /> : <SplashPage />}
+          {!user ? <Redirect to='/home' /> : <SplashPage />}
         </Route>
         <Route exact path='/home'>
           <SideBar />
