@@ -14,6 +14,7 @@ import SplashPage from './components/SplashPage';
 import FollowFeed from './components/Feed/FollowFeed/FollowFeed';
 import SideBar from './components/SideBar';
 import EditStoryForm from './components/story/EditStoryForm'
+import Home from './components/Home'
 
 function App() {
   const dispatch = useDispatch();
@@ -39,7 +40,7 @@ function App() {
           {user != null ? <Redirect to="/home" /> : <SplashPage />}
         </Route>
         <Route exact path="/home">
-          {user === null ? <Redirect to="/" /> : <SideBar />}
+          {user === null ? <Redirect to="/" /> : <Home />}
         </Route>
         <Route path="/new-story" exact={true}>
           <StoryForm />
