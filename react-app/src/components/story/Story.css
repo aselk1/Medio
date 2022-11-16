@@ -4,7 +4,8 @@
 
 .flexCol {
     display: flex;
-    flex-direction: column
+    flex-direction: column;
+    position: relative;
 }
 
 .flexRow {
@@ -34,4 +35,29 @@
 
 .fontSize21 {
     font-size: 21px;
+}
+
+
+.comments-icon {
+    margin-top: 90%
+}
+
+.comments-sidebar {
+    height: 100%;
+    width: 33%;
+    position: fixed;
+    padding-left: 5%;
+    margin-left: 10%;
+    border-left: 1px solid black;
+    z-index: 50;
+    padding-top: 25%;
+}
+
+.story-details {
+    display: flex;
+    margin-left: 25%;
+}
+
+.textarea-comments {
+    margin-right: 500px;
 }

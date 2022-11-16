@@ -61,6 +61,7 @@ function App() {
           <FollowFeed />
         </Route>
         <Route path="/stories">
+          <SideBar />
           <StoryDetails />
         </Route>
       </Switch>
