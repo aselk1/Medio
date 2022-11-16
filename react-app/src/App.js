@@ -60,7 +60,7 @@ function App() {
         <Route path='/test'>
           <FollowFeed />
         </Route>
-        <Route path="/stories/:storyId">
+        <Route path="/stories/:storyId" exact={true}>
           <StoryDetails />
         </Route>
       </Switch>
