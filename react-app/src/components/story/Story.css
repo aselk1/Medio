@@ -54,6 +54,10 @@
     width: 1000px;
 }
 
+.widthFit {
+    width: fit-content
+}
+
 .fontSize42 {
     font-size: 42px;
 }
@@ -108,5 +112,13 @@
     height: 35px;
     color: white;
     border-radius: 20px;
+    cursor: pointer;
+}
+
+.bottomBorder {
+    border-bottom: solid 2px grey;
+}
+
+.cursorPointer {
     cursor: pointer;
 }
