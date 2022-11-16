@@ -1,5 +1,9 @@
-.center {
+.centerCol {
     align-items: center;
+}
+
+.centerRow {
+    justify-content: center;
 }
 
 .flexCol {
@@ -29,6 +33,10 @@
     width: 700px;
 }
 
+.width1000 {
+    width: 1000px;
+}
+
 .fontSize42 {
     font-size: 42px;
 }
@@ -53,11 +61,18 @@
     padding-top: 25%;
 }
 
-.story-details {
-    display: flex;
-    margin-left: 25%;
-}
 
 .textarea-comments {
     margin-right: 500px;
+}
+
+.profileImage {
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.titlePadding {
+    padding-top: 20px;
+    padding-bottom: 20px;
 }

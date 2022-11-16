@@ -3,6 +3,8 @@ import { csrfFetch } from "./csrf";
 
 const GET_DETAILS = "storyDetails/GET_DETAILS";
 const DELETE_DETAILS = "storyDetails/DELETE_DETAILS"
+const EDIT_DETAILS = "storyDetails/EDIT_DETAILS";
+
 
 
 const getStoryDetails = (story) => ({
@@ -13,6 +15,12 @@ const getStoryDetails = (story) => ({
 export const deleteStoryDetails = () => ({
   type: DELETE_DETAILS
 });
+
+export const editStoryDetails = (story) => ({
+  type: EDIT_DETAILS,
+  payload: story
+});
+
 
 export const fetchStoryDetails = (id) => async (dispatch) => {
   const response = await csrfFetch(`/api/stories/${id}`);

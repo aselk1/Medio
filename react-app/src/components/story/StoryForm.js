@@ -45,8 +45,8 @@ const StoryForm = () => {
   };
 
   return (
-    <div className="center flexCol">
-      <form className="flexCol center" onSubmit={postStory}>
+    <div className="centerCol flexCol">
+      <form className="flexCol centerCol" onSubmit={postStory}>
         <div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
