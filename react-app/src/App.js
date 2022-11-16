@@ -55,7 +55,7 @@ function App() {
         <Route path='/test'>
           <FollowFeed />
         </Route>
-        <Route path="/storyDetails">
+        <Route path="/stories">
           <StoryDetails />
         </Route>
       </Switch>
