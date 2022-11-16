@@ -65,12 +65,11 @@ const initialState = {
 }
 
 export default function followReducer(state = initialState, action) {
-    let newState = {}
     let followers = {}
     let following = {}
     switch (action.type) {
         case LOAD_FOLLOWERS:
-
+            return
         case LOAD_FOLLOWING:
             action.payload.forEach(user => {
                 following[user.id] = user

@@ -7,6 +7,15 @@
     flex-direction: column
 }
 
+.flexRow {
+    display: flex;
+    flex-direction: row
+}
+
+.flexEnd {
+    justify-content: flex-end;
+}
+
 .heightFitContent {
     overflow: visible
 }

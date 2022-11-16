@@ -2,12 +2,14 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
 import stories from './stories'
+import storyDetails from './storyDetails'
 import commentReducer from './comment'
 import follower from './follower'
 
 const rootReducer = combineReducers({
   session,
   stories,
+  storyDetails,
   comment: commentReducer,
   follower
 });

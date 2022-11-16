@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+from sqlalchemy.orm import relationship, sessionmaker, joinedload
 from app.models import Story, db, Comment, User
 from flask_login import login_required, current_user
 from app.forms import StoryForm
@@ -18,8 +19,12 @@ def validation_errors_to_error_messages(validation_errors):
 @stories_routes.route('')
 def get_stories():
     data = Story.query.all()
-    print(data)
-    return {'data': [story.to_dict() for story in data]}
+    return {story.to_dict()['id']: story.to_dict() for story in data}
+
+@stories_routes.route('/<int:id>')
+def get_story(id):
+    data = Story.query.get(id)
+    return data.to_dict()
 
 
 @stories_routes.route('', methods=['POST'])
