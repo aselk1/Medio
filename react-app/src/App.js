@@ -1140,10 +1140,10 @@ function App() {
         <Route path="/new-story">
           <StoryForm />
         </Route>
-        <Route path="/stories">
+        <Route path="/stories" exact={true}>
           <Stories />
         </Route>
-        <Route path="/storyDetails">
+        <Route path="/stories">
           <StoryDetails />
         </Route>
       </Switch>

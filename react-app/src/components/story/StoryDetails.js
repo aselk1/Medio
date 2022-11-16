@@ -21,6 +21,7 @@ const StoryDetails = () => {
   useEffect(() => {
     dispatch(storyDetailsActions.fetchStoryDetails(storyId));
   }, [dispatch]);
+
   return (
     <div>
       {story.User?.id === user?.id && <div className="flexRow flexEnd">

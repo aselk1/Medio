@@ -17,7 +17,7 @@ const Stories = () => {
     const storyDetails = async (story, e) => {
       e.preventDefault();
       await dispatch(storyDetailsActions.fetchStoryDetails(story.id))
-      history.push(`/storyDetails/${story.id}`);
+      history.push(`/stories/${story.id}`);
     };
 
   return (
