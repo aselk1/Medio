@@ -27,7 +27,7 @@ const Home = () => {
     <div>
       <SideBar />
       <div className="flexCol centerCol">
-        <ul>
+        <ul className="noBullets">
           {stories[0] &&
             stories.map((story) => (
               <li>
