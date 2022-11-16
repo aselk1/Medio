@@ -113,10 +113,23 @@ const StoryDetails = () => {
         <div className="comments">
           {showMenu && (
             <div class="comments-sidebar">
-              <h2>{user?.username}</h2>
+              <div className="comments-headline">
+                <img
+                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                alt="Profile"
+                className="profileImage"
+              ></img><h2>{user?.username}</h2>
+              </div>
               <textarea className="textarea-comments"></textarea>
               {comments?.map((comment) => (
-                <div>{comment.body}</div>
+                <div>
+                  <img
+                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                    alt="Profile"
+                    className="profileImage"
+                  ></img>
+                  {comment.body}
+                </div>
               ))}
             </div>
           )}
