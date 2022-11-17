@@ -63,21 +63,24 @@ const StoryDetails = () => {
   };
 
   const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
+    // if (showMenu) return;
+    if (!showMenu) setShowMenu(true);
+    if (showMenu) setShowMenu(false);
+
     console.log("opening");
   };
 
-  useEffect(() => {
-    const closeMenu = () => {
-      if (!showMenu) return;
-      setShowMenu(false);
-      console.log("closing");
-    };
+  // useEffect(() => {
+  //   if (!showMenu) return;
 
-    document.addEventListener("click", closeMenu);
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+  //   const closeMenu = () => {
+  //     setShowMenu(false);
+  //     console.log("closing");
+  //   };
+
+  //   document.addEventListener("click", closeMenu);
+  //   // return () => document.removeEventListener("click", closeMenu);
+  // }, [showMenu]);
 
   useEffect(() => {
     dispatch(getComments(storyId));
