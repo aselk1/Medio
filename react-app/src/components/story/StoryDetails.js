@@ -41,7 +41,7 @@ const StoryDetails = () => {
   if (allLikeUser === undefined) {
     dispatch(getLikeStory(id));
   }
-  
+
   const btn = document.getElementById("likeClickBt");
   btn === null ? dispatch(getLikeStory(id)) :
   btn.style.backgroundColor = "gray"
@@ -54,7 +54,7 @@ const StoryDetails = () => {
 //   }
 // },[isUpdate])
    useEffect(() => {
-    dispatch(getLikeStory(id)) 
+    dispatch(getLikeStory(id))
 
     },[dispatch, isUpdate]);
 
@@ -62,10 +62,10 @@ const StoryDetails = () => {
     btn === null ? dispatch(getLikeStory(id)) :
     btn.style.backgroundColor = "#3895D3";
   }
-  
+
   const clickLike = (e) => {
     e.preventDefault();
-    if (!user)  alert("please login") 
+    if (!user)  alert("please login")
     if (allLikeUser?.find((id) => id === user?.id)) {
       btn === null ? dispatch(getLikeStory(id)) :
       btn.style.backgroundColor = "gray"
@@ -79,7 +79,7 @@ const StoryDetails = () => {
     dispatch(getLikeStory(id))
     setIsUpdate(true)
   };
- 
+
   const openMenu = () => {
     // if (showMenu) return;
     if (!showMenu) setShowMenu(true);
@@ -88,16 +88,17 @@ const StoryDetails = () => {
     console.log("opening");
   };
 
-  useEffect(() => {
-    if (!showMenu) return;
-    const closeMenu = () => {
-      setShowMenu(false);
-      console.log("closing");
-    };
+  // useEffect(() => {
+  //   if (!showMenu) return;
 
-    document.addEventListener("click", closeMenu);
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+  //   const closeMenu = () => {
+  //     setShowMenu(false);
+  //     console.log("closing");
+  //   };
+
+  //   document.addEventListener("click", closeMenu);
+  //   return () => document.removeEventListener("click", closeMenu);
+  // }, [showMenu]);
 
   useEffect(() => {
     dispatch(getComments(storyId));
