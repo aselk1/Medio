@@ -3,14 +3,28 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as storyActions from "../../store/stories";
 import SideBar from "../SideBar";
+import RichEditor from "../editor/RichEditor";
+import { Editor, EditorState, getDefaultKeyBinding, RichUtils, convertToRaw } from "draft-js";
+import RichEditor2 from "../editor/RichEditor2";
 
 const StoryForm = () => {
   const [errors, setErrors] = useState([]);
   const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
+  const [editorState, setEditorState] = useState(() =>
+  EditorState.createEmpty()
+  );
+  const [body, setBody] = useState(
+    JSON.stringify(convertToRaw(editorState.getCurrentContent()))
+  );
+
+  useEffect(() => {
+    setBody(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
+  }, [editorState]);
+
+
   // const ref = useRef(null)
   // let titleDiv = <span>Title</span>;
 
@@ -78,18 +92,21 @@ const StoryForm = () => {
               onChange={(e) => setTitle(e.target.value)}
             ></textarea>
           </div>
-          <div>
+          <div className="width700">
             {/* <label htmlFor="body">Body</label> */}
-            <h3>
-              <textarea
-                className="noResize width700 fontSize21"
-                name="body"
-                type="text"
-                placeholder="Body"
-                value={body}
-                onChange={(e) => setBody(e.target.value)}
-              />
-            </h3>
+            {/* <RichEditor
+            editorState={editorState}
+            setEditorState={setEditorState}
+            /> */}
+            <RichEditor2 editorState={editorState} setEditorState={setEditorState}/>
+            {/* <textarea
+              className="noResize width700 fontSize21"
+              name="body"
+              type="text"
+              placeholder="Body"
+              value={body}
+              onChange={(e) => setBody(e.target.value)}
+            /> */}
           </div>
           <button type="submit">Add Story</button>
         </form>
