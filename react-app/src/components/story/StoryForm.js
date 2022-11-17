@@ -74,6 +74,7 @@ const StoryForm = () => {
               placeholder="Title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              required={true}
             ></textarea>
           </div>
           <div className="width700">

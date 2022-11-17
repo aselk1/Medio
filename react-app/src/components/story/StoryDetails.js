@@ -9,12 +9,18 @@ import { getLikeStory, likeStory } from "../../store/likeStory";
 import { getComments } from "../../store/comment";
 import RichEditor2 from "../editor/RichEditor2";
 import { Editor, EditorState, convertFromRaw } from "draft-js";
+import CommentForm from "./CommentForm";
 
 const StoryDetails = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const user = useSelector((state) => state.session.user);
   const story = useSelector((state) => state.storyDetails);
+  const history = useHistory();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    (async () => {
+      const data = await dispatch(storyDetailsActions.fetchStoryDetails(storyId));
+    })();
+  }, [dispatch]);
+  const user = useSelector((state) => state.session.user);
   const body = useSelector((state) => [state.storyDetails.body]);
   const commentsObj = useSelector((state) => state.comment.allComments);
   const comments = Object.values(commentsObj);
@@ -22,9 +28,7 @@ const StoryDetails = () => {
 
   const [showMenu, setShowMenu] = useState(false);
 
-  useEffect(() => {
-    dispatch(storyDetailsActions.fetchStoryDetails(storyId));
-  }, [dispatch]);
+
 
   // if (story.body) {
   //   setBody("this")
@@ -59,24 +63,27 @@ const StoryDetails = () => {
   };
 
   const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
+    // if (showMenu) return;
+    if (!showMenu) setShowMenu(true);
+    if (showMenu) setShowMenu(false);
+
     console.log("opening");
   };
 
-  useEffect(() => {
-    const closeMenu = () => {
-      if (!showMenu) return;
-      setShowMenu(false);
-      console.log("closing");
-    };
+  // useEffect(() => {
+  //   if (!showMenu) return;
 
-    document.addEventListener("click", closeMenu);
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+  //   const closeMenu = () => {
+  //     setShowMenu(false);
+  //     console.log("closing");
+  //   };
+
+  //   document.addEventListener("click", closeMenu);
+  //   // return () => document.removeEventListener("click", closeMenu);
+  // }, [showMenu]);
 
   useEffect(() => {
-    dispatch(getComments(story.id));
+    dispatch(getComments(storyId));
   }, [dispatch]);
 
   const deleteStory = async () => {
@@ -88,6 +95,7 @@ const StoryDetails = () => {
 
   return (
     <div>
+      {<div>
       <SideBar />
       <div className="flexCol centerCol">
         <div className="width700">
@@ -138,7 +146,7 @@ const StoryDetails = () => {
                 className="profileImage"
               ></img><h2>{user?.username}</h2>
               </div>
-              <textarea className="textarea-comments"></textarea>
+              <div className="textarea-comments"><CommentForm /></div>
               {comments?.map((comment) => (
                 <div>
                   <img
@@ -156,6 +164,7 @@ const StoryDetails = () => {
           <i class="fa-regular fa-comment"></i>
         </div>
       </div>
+        </div>}
     </div>
   );
 };

@@ -15,10 +15,12 @@ import FollowFeed from './components/Feed/FollowFeed/FollowFeed';
 import SideBar from './components/SideBar';
 import EditStoryForm from './components/story/EditStoryForm'
 import Home from './components/Home'
+import * as storyDetailActions from './store/storyDetails'
 
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user)
+  const story = useSelector(state => state.StoryDetails)
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -63,8 +65,7 @@ function App() {
           <Route path="/test">
             <FollowFeed />
           </Route>
-          <Route path="/stories/:storyid" exact={true}>
-            <SideBar />
+          <Route path="/stories/:id" exact={true}>
             <StoryDetails />
           </Route>
           <Route path="/stories/:storyId/edit">

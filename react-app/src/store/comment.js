@@ -28,9 +28,9 @@ export const remove = (commentId) => ({
 
 
 
-export const getComments = () => async dispatch => {
+export const getComments = (storyId) => async dispatch => {
 
-  const response = await csrfFetch(`/api/comments`);
+  const response = await csrfFetch(`/api/stories/${storyId}/comments`);
 
   if (response.ok) {
     const list = await response.json();
@@ -57,8 +57,8 @@ export const getCommentsByUser = (userId) => async dispatch => {
   }
 };
 
-export const createComment = (payload) => async dispatch => {
-  const response = await csrfFetch(`/api/comments`, {
+export const createComment = (storyId, payload) => async dispatch => {
+  const response = await csrfFetch(`/api/stories/${storyId}/comments`, {
     method: 'POST',
     body: JSON.stringify(payload)
   })
