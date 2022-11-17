@@ -113,6 +113,7 @@
     font-size: 14px;
     font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .started-active {
