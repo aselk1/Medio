@@ -147,14 +147,16 @@ def post_like(id):
 @login_required
 def delete_like(id):
     story = Story.query.get(id)
-    user = User.query.get(current_user.id)
+    like_story_user = User.query.get(current_user.id)
     all_liked_user =  story.liked_story_user.all()
 
-    for user in all_liked_user:
-        if user.id == current_user.id:
-            story.liked_story_user.remove(user)
-            db.session.commit()
-        else:
-            return "You havn't click the like"
+    users = [ user.id for user in all_liked_user]
+    
+    if like_story_user.id in users:
+        story.liked_story_user.remove(like_story_user)
+    else:
+        return "You havn't click the like"
+
+    db.session.commit()
 
     return "unlike"

@@ -5,7 +5,7 @@ import SideBar from "../SideBar";
 import * as storyDetailsActions from "../../store/storyDetails";
 import * as storyActions from "../../store/stories";
 import "./Story.css";
-import { getLikeStory, likeStory } from "../../store/likeStory";
+import { getLikeStory, likeStory, deleteLikeStory } from "../../store/likeStory";
 import { getComments } from "../../store/comment";
 import RichEditor2 from "../editor/RichEditor2";
 import { Editor, EditorState, convertFromRaw } from "draft-js";
@@ -28,8 +28,6 @@ const StoryDetails = () => {
 
   const [showMenu, setShowMenu] = useState(false);
 
-
-
   // if (story.body) {
   //   setBody("this")
   // }
@@ -38,30 +36,50 @@ const StoryDetails = () => {
   const likes = useSelector((state) => state.likeStory);
   const likeInfo = likes[id];
   const allLikeUser = likeInfo?.allUser;
-
-  useEffect(() => {
-    dispatch(getLikeStory(id));
-  }, [dispatch]);
+  const [isUpdate, setIsUpdate] = useState(false);
 
   if (allLikeUser === undefined) {
     dispatch(getLikeStory(id));
   }
+  
+  const btn = document.getElementById("likeClickBt");
+  btn === null ? dispatch(getLikeStory(id)) :
+  btn.style.backgroundColor = "gray"
+// useEffect(()=>{
+//   if (allLikeUser?.find((id) => id === user.id)){
+//     console.log("all like users inside",allLikeUser)
+//     btn === null ? dispatch(getLikeStory(id)) :
+//     btn.style.backgroundColor = "#3895D3";
+//     console.log("this is working")
+//   }
+// },[isUpdate])
+   useEffect(() => {
+    dispatch(getLikeStory(id)) 
 
-  let clicked = allLikeUser?.find((id) => id === user.id);
+    },[dispatch, isUpdate]);
 
-  if (clicked) {
-    const btn = document.getElementById("likeClickBt");
+  if (allLikeUser?.find((id) => id === user?.id)){
     btn === null ? dispatch(getLikeStory(id)) :
     btn.style.backgroundColor = "#3895D3";
   }
-
+  
   const clickLike = (e) => {
     e.preventDefault();
-    allLikeUser?.find((id) => id === user.id)
-      ? alert("you already clicked")
-      : dispatch(likeStory(id));
+    if (!user)  alert("please login") 
+    if (allLikeUser?.find((id) => id === user?.id)) {
+      btn === null ? dispatch(getLikeStory(id)) :
+      btn.style.backgroundColor = "gray"
+      dispatch(deleteLikeStory(id))
+      dispatch(getLikeStory(id))
+    } else {
+      dispatch(likeStory(id))
+      btn === null ? dispatch(getLikeStory(id)) :
+      btn.style.backgroundColor = "#3895D3";
+    }
+    dispatch(getLikeStory(id))
+    setIsUpdate(true)
   };
-
+ 
   const openMenu = () => {
     // if (showMenu) return;
     if (!showMenu) setShowMenu(true);
@@ -70,17 +88,16 @@ const StoryDetails = () => {
     console.log("opening");
   };
 
-  // useEffect(() => {
-  //   if (!showMenu) return;
+  useEffect(() => {
+    if (!showMenu) return;
+    const closeMenu = () => {
+      setShowMenu(false);
+      console.log("closing");
+    };
 
-  //   const closeMenu = () => {
-  //     setShowMenu(false);
-  //     console.log("closing");
-  //   };
-
-  //   document.addEventListener("click", closeMenu);
-  //   // return () => document.removeEventListener("click", closeMenu);
-  // }, [showMenu]);
+    document.addEventListener("click", closeMenu);
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
 
   useEffect(() => {
     dispatch(getComments(storyId));
