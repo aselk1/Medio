@@ -15,10 +15,12 @@ import FollowFeed from './components/Feed/FollowFeed/FollowFeed';
 import SideBar from './components/SideBar';
 import EditStoryForm from './components/story/EditStoryForm'
 import Home from './components/Home'
+import * as storyDetailActions from './store/storyDetails'
 
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user)
+  const story = useSelector(state => state.StoryDetails)
   const [loaded, setLoaded] = useState(false);
   console.log('user', user)
 
@@ -57,14 +59,13 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
-        <Route path="/stories" exact={true}>
+        <Route exact path="/stories">
           <Stories />
         </Route>
         <Route path="/test">
           <FollowFeed />
         </Route>
-        <Route path="/stories/:id" exact={true}>
-          <SideBar />
+        <Route exact path="/stories/:storyId">
           <StoryDetails />
         </Route>
         <Route path="/stories/:storyId/edit">

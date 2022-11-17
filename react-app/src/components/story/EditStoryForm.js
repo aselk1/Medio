@@ -78,6 +78,7 @@ const EditStoryForm = () => {
                 placeholder="Title"
                 value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}
+                required={true}
               ></textarea>
             )}
           </div>
@@ -93,13 +94,12 @@ const EditStoryForm = () => {
             />
           </h3> */}
             <div className="width700">
-
-                  <RichEditor2
-                    editorState={editorState}
-                    readOnly={false}
-                    setEditorState={setEditorState}
-                  />
-                 {/* body.map((el) => {
+              <RichEditor2
+                editorState={editorState}
+                readOnly={false}
+                setEditorState={setEditorState}
+              />
+              {/* body.map((el) => {
                   const contentState = convertFromRaw(JSON.parse(el));
                   const editorState =
                     EditorState.createWithContent(contentState);

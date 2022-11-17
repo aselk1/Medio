@@ -11,10 +11,15 @@ import RichEditor2 from "../editor/RichEditor2";
 import { Editor, EditorState, convertFromRaw } from "draft-js";
 
 const StoryDetails = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const user = useSelector((state) => state.session.user);
   const story = useSelector((state) => state.storyDetails);
+  const history = useHistory();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    (async () => {
+      const data = await dispatch(storyDetailsActions.fetchStoryDetails(storyId));
+    })();
+  }, [dispatch]);
+  const user = useSelector((state) => state.session.user);
   const body = useSelector((state) => [state.storyDetails.body]);
   const commentsObj = useSelector((state) => state.comment.allComments);
   const comments = Object.values(commentsObj);
@@ -22,9 +27,7 @@ const StoryDetails = () => {
 
   const [showMenu, setShowMenu] = useState(false);
 
-  useEffect(() => {
-    dispatch(storyDetailsActions.fetchStoryDetails(storyId));
-  }, [dispatch]);
+
 
   // if (story.body) {
   //   setBody("this")
@@ -88,6 +91,7 @@ const StoryDetails = () => {
 
   return (
     <div>
+      {<div>
       <SideBar />
       <div className="flexCol centerCol">
         <div className="width700">
@@ -143,6 +147,7 @@ const StoryDetails = () => {
           <i class="fa-regular fa-comment"></i>
         </div>
       </div>
+        </div>}
     </div>
   );
 };
