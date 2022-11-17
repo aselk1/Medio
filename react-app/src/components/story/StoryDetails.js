@@ -28,8 +28,6 @@ const StoryDetails = () => {
 
   const [showMenu, setShowMenu] = useState(false);
 
-
-
   // if (story.body) {
   //   setBody("this")
   // }
@@ -60,17 +58,15 @@ const StoryDetails = () => {
 
     },[dispatch, isUpdate]);
 
-  if (allLikeUser?.find((id) => id === user.id)){
+  if (allLikeUser?.find((id) => id === user?.id)){
     btn === null ? dispatch(getLikeStory(id)) :
     btn.style.backgroundColor = "#3895D3";
-    console.log("after btcolor gray")
-    console.log("this is working")
   }
   
   const clickLike = (e) => {
     e.preventDefault();
-
-    if (allLikeUser?.find((id) => id === user.id)) {
+    if (!user)  alert("please login") 
+    if (allLikeUser?.find((id) => id === user?.id)) {
       btn === null ? dispatch(getLikeStory(id)) :
       btn.style.backgroundColor = "gray"
       dispatch(deleteLikeStory(id))
@@ -91,8 +87,8 @@ const StoryDetails = () => {
   };
 
   useEffect(() => {
+    if (!showMenu) return;
     const closeMenu = () => {
-      if (!showMenu) return;
       setShowMenu(false);
       console.log("closing");
     };
