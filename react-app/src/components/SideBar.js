@@ -39,16 +39,18 @@ const SideBar = () => {
         <NavLink to='/new-story' exact={true} activeClassName='active'><i id="icon4" class="fa-regular fa-pen-to-square"></i></NavLink>
       </div>
       <div className='dropdown-container'>
-        <i onClick={openMenu} id="icon5" class="fa-solid fa-ellipsis"></i>
+        <i onClick={openMenu} id="icon5" class="fa-solid fa-circle-user fa-3x"></i>
+        {/* fa-solid fa-ellipsis */}
+        {/* <i class="fa-solid fa-circle-user"></i> */}
         {showMenu && <div class="dropdown">
           <ul className='dropdown-text'>
-            <div>{user.username}</div>
-            <div>{user.email}</div>
-            <hr />
             <div>Home</div>
             <div>Profile</div>
             <div>Followers</div>
             <div className='logout'><LogoutButton /></div>
+            <hr />
+            <div>{user.username}</div>
+            <div>{user.email}</div>
           </ul>
         </div>
         }
