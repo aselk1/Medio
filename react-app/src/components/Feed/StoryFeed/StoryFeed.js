@@ -14,7 +14,7 @@ export default function StoryFeed() {
     let authorArr = []
 
     if (isLoaded) {
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 6; i++) {
             trendingArr.push({ 'body': stories[i].body, 'title': stories[i].title, 'id': stories[i].id, 'user_id': stories[i].user_id })
             authorArr.push({ 'username': stories[i].User.username, 'email': stories[i].User.email, 'id': stories[i].User.id })
         }

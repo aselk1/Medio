@@ -6,58 +6,58 @@ export const REMOVE_COMMENT = "comments/REMOVE_COMMENTS";
 export const ADD_COMMENT = "comments/ADD_COMMENTS";
 
 export const load = (comments) => ({
-    type: LOAD_COMMENT,
-    comments
-  });
+  type: LOAD_COMMENT,
+  comments
+});
 
 
-  export const add = (comment) => ({
-    type: ADD_COMMENT,
-    comment
-  });
+export const add = (comment) => ({
+  type: ADD_COMMENT,
+  comment
+});
 
-  export const edit = (comment) => ({
-    type: UPDATE_COMMENT,
-    comment
-  });
+export const edit = (comment) => ({
+  type: UPDATE_COMMENT,
+  comment
+});
 
-  export const remove = (commentId) => ({
-    type: REMOVE_COMMENT,
-    commentId
-  })
+export const remove = (commentId) => ({
+  type: REMOVE_COMMENT,
+  commentId
+})
 
 
 
-  export const getComments = () => async dispatch => {
+export const getComments = () => async dispatch => {
 
-    const response = await csrfFetch(`/api/comments`);
+  const response = await csrfFetch(`/api/comments`);
 
-    if (response.ok) {
-      const list = await response.json();
-      dispatch(load(list));
-    }
-  };
+  if (response.ok) {
+    const list = await response.json();
+    dispatch(load(list));
+  }
+};
 
-  export const getCommentDetails = (commentId) => async dispatch => {
+export const getCommentDetails = (commentId) => async dispatch => {
 
-    const response = await csrfFetch(`/api/comments/${commentId}`);
+  const response = await csrfFetch(`/api/comments/${commentId}`);
 
-    if (response.ok) {
-      const list = await response.json();
-      dispatch(add(list));
-    }
-  };
+  if (response.ok) {
+    const list = await response.json();
+    dispatch(add(list));
+  }
+};
 
-  export const getCommentsByUser = (userId) => async dispatch => {
-    const response = await csrfFetch(`/api/artists/${userId}/comments`);
+export const getCommentsByUser = (userId) => async dispatch => {
+  const response = await csrfFetch(`/api/artists/${userId}/comments`);
 
-    if (response.ok) {
-      const list = await response.json();
-      dispatch(load(list));
-    }
-  };
+  if (response.ok) {
+    const list = await response.json();
+    dispatch(load(list));
+  }
+};
 
-  export const createComment = (payload) => async dispatch => {
+export const createComment = (payload) => async dispatch => {
   const response = await csrfFetch(`/api/comments`, {
     method: 'POST',
     body: JSON.stringify(payload)
@@ -93,31 +93,30 @@ export const deleteComment = (id) => async dispatch => {
     dispatch(remove(id));
   }
 }
-const initialState = {allComments: {}, singleComment: {}};
+const initialState = { allComments: {}, singleComment: {} };
 
 const commentReducer = (state = initialState, action) => {
-  let newState = {...state}
-    switch (action.type) {
-      case LOAD_COMMENT:
-        newState = {...state, allComments: {}}
-        action.comments.comments.forEach(comment => newState.allComments[comment.id] = comment)
-        return newState;
-      case UPDATE_COMMENT:
-            newState.singleComment = action.comment
-        return newState
-      case ADD_COMMENT:
-        newState.allComments[action.comment.id] = action.comment
-        newState.singleComment = action.comment
-          return newState;
-      case REMOVE_COMMENT:
-        newState = {...state, allComments: {...state.allComments}, singleComment: {...state.singleComment}}
-        delete newState.allComments[action.commentId]
-        newState.singleComment = {}
-        return newState
-      default:
-        console.log('this is the current state:', state)
-        return state;
-    }
+  let newState = { ...state }
+  switch (action.type) {
+    case LOAD_COMMENT:
+      newState = { ...state, allComments: {} }
+      action.comments.comments.forEach(comment => newState.allComments[comment.id] = comment)
+      return newState;
+    case UPDATE_COMMENT:
+      newState.singleComment = action.comment
+      return newState
+    case ADD_COMMENT:
+      newState.allComments[action.comment.id] = action.comment
+      newState.singleComment = action.comment
+      return newState;
+    case REMOVE_COMMENT:
+      newState = { ...state, allComments: { ...state.allComments }, singleComment: { ...state.singleComment } }
+      delete newState.allComments[action.commentId]
+      newState.singleComment = {}
+      return newState
+    default:
+      return state;
   }
+}
 
-  export default commentReducer;
+export default commentReducer;
