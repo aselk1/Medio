@@ -202,3 +202,64 @@
     display: block;
     padding-bottom: 8px;
 }
+
+.story-author-feed-holder {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.story-author-feed-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-left: 8px;
+}
+
+.feed-inner-container {
+    height: 16px;
+    display: block;
+}
+
+.feed-author-name {
+    padding-right: 2px;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    max-height: 16px;
+    line-height: 16px;
+    font-size: 13px;
+    font-weight: 500;
+    overflow: hidden;
+    margin: 0;
+    color: rgba(41, 41, 41, 1)
+}
+
+.story-page-link {
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+.story-body-preview {
+    display: block;
+    padding-top: 4px;
+    color: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    font-family: inherit;
+    border: inherit;
+    font-size: inherit;
+}
+
+.story-feed-body {
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    line-height: 20px;
+    max-height: 40px;
+    font-size: 16px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: rgba(117, 117, 117, 1)
+}
