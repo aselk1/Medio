@@ -5,7 +5,7 @@ import SideBar from "../SideBar";
 import * as storyDetailsActions from "../../store/storyDetails";
 import * as storyActions from "../../store/stories";
 import "./Story.css";
-import { getLikeStory, likeStory } from "../../store/likeStory";
+import { getLikeStory, likeStory, deleteLikeStory } from "../../store/likeStory";
 import { getComments } from "../../store/comment";
 
 const StoryDetails = () => {
@@ -23,30 +23,60 @@ const StoryDetails = () => {
   const likes = useSelector((state) => state.likeStory);
   const likeInfo = likes[id];
   const allLikeUser = likeInfo?.allUser;
-
-  useEffect(() => {
-    dispatch(getLikeStory(id));
-  }, [dispatch]);
+  const [isUpdate, setIsUpdate] = useState(false);
 
   if (allLikeUser === undefined) {
     dispatch(getLikeStory(id));
   }
+  
+  const btn = document.getElementById("likeClickBt");
+  btn === null ? dispatch(getLikeStory(id)) :
+  btn.style.backgroundColor = "gray"
+// useEffect(()=>{
+//   if (allLikeUser?.find((id) => id === user.id)){
+//     console.log("all like users inside",allLikeUser)
+//     btn === null ? dispatch(getLikeStory(id)) :
+//     btn.style.backgroundColor = "#3895D3";
+//     console.log("this is working")
+//   }
+// },[isUpdate])
+   useEffect(() => {
+    dispatch(getLikeStory(id)) 
 
-  let clicked = allLikeUser?.find((id) => id === user.id);
+    },[dispatch, isUpdate]);
 
-  if (clicked) {
-    const btn = document.getElementById("likeClickBt");
+  console.log("all like users",allLikeUser)
+
+
+
+  if (allLikeUser?.find((id) => id === user.id)){
     btn === null ? dispatch(getLikeStory(id)) :
     btn.style.backgroundColor = "#3895D3";
+    // if (btColor === "gray" )  btn.style.backgroundColor = "gray"
+    console.log("after btcolor gray")
+    console.log("this is working")
   }
-
+  
   const clickLike = (e) => {
     e.preventDefault();
-    allLikeUser?.find((id) => id === user.id)
-      ? alert("you already clicked")
-      : dispatch(likeStory(id));
-  };
 
+    if (allLikeUser.find((id) => id === user.id)) {
+      btn === null ? dispatch(getLikeStory(id)) :
+      btn.style.backgroundColor = "gray"
+      dispatch(deleteLikeStory(id))
+      dispatch(getLikeStory(id))
+      // btColor = colorArr[1]
+      console.log("color gray")
+    } else {
+      dispatch(likeStory(id))
+      btn === null ? dispatch(getLikeStory(id)) :
+        btn.style.backgroundColor = "#3895D3";
+        console.log("color blue")
+    }
+    dispatch(getLikeStory(id))
+    setIsUpdate(true)
+  };
+ 
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);

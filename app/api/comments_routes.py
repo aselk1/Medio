@@ -31,6 +31,21 @@ def remove_comment():
 
 # ====================likes comments====================================
 
+#get like story
+@comments_routes.route('/<int:id>/likes')
+def get_like(id):
+    comment = Comment.query.get(id)
+    num = comment.liked_comment_user.count()
+    all_liked_user =  comment.liked_comment_user.all()
+    num_like = {
+        'comment_id':comment.id,
+        'story_id':comment.story_id,
+        'num':num,
+        'allUser':[(user.id) for user in all_liked_user]
+    }
+    
+    return num_like
+    
 #post like comment
 @comments_routes.route('/<int:id>/likes', methods=['POST'])
 @login_required
@@ -56,6 +71,7 @@ def post_like(id):
 
     num_like = {
         'comment_id':comment.id,
+        'story_id': comment.story_id,
         'num':num
     }
       
