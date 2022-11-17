@@ -166,13 +166,20 @@ const StoryDetails = () => {
               </div>
               <div className="textarea-comments"><CommentForm /></div>
               {comments?.map((comment) => (
-                <div>
+                <div className="comment-box">
+                  <div className="item-header">
                   <img
                     src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
                     alt="Profile"
                     className="profileImage"
                   ></img>
+                  <h5>{user.username}</h5>
+                  </div>
+                  <br />
+                  <div className="comment-body">
                   {comment.body}
+                  </div>
+                  <hr className="divider-comments"/>
                 </div>
               ))}
             </div>
