@@ -1,0 +1,23 @@
+.user-page-container {
+    display: block;
+    background-color: rgba(255, 255, 255, 1)
+}
+
+.user-page-holder {
+    display: block;
+    max-width: 1504px;
+    margin: auto;
+}
+
+.user-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.sidebar-container {
+    border-right: 1px solid rgba(230, 230, 230, 1);
+    flex-shrink: 1;
+    min-height: 100vh;
+    width: 80px;
+}
