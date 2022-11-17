@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import "./Navigation.css";
 import "./NavBar.css";
 import LoginFormModal from "./LoginFormModal.js";
+import SignupFormModal from "./SignupFormModal.js";
 
 const NavBar = () => {
   const [navBar, setNavBar] = useState(false);
@@ -57,7 +58,7 @@ const NavBar = () => {
                       <LoginFormModal />
               <div className="get-started">
                 <span>
-                  <NavLink
+                  {/* <NavLink
                     className="get-started-text"
                     to="/sign-up"
                     exact={true}
@@ -72,7 +73,8 @@ const NavBar = () => {
                     >
                       Get Started
                     </button>
-                  </NavLink>
+                  </NavLink> */}
+                  <SignupFormModal startedButton={startedButton}/>
                 </span>
               </div>
             </div>
