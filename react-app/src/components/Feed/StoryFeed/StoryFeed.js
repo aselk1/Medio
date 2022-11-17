@@ -9,14 +9,14 @@ export default function StoryFeed() {
     const dispatch = useDispatch()
     const stories = Object.values(useSelector(state => state.stories))
     const [isLoaded, setIsLoaded] = useState(false)
-    // console.log('stories', stories[0].User)
-    let storiesCopy = []
+
     let trendingArr = []
+    let authorArr = []
 
     if (isLoaded) {
         for (let i = 0; i < 3; i++) {
-            storiesCopy.push(stories[i])
             trendingArr.push({ 'body': stories[i].body, 'title': stories[i].title, 'id': stories[i].id, 'user_id': stories[i].user_id })
+            authorArr.push({ 'username': stories[i].User.username, 'email': stories[i].User.email, 'id': stories[i].User.id })
         }
     }
 
@@ -44,18 +44,23 @@ export default function StoryFeed() {
                                             <div className='trending-story-holder'>
                                                 <div className='trending-inner-story'>
                                                     <div className='trending-story'>
-                                                        <span>01</span>
+                                                        <span>0{trendingArr.indexOf(story) + 1}</span>
                                                     </div>
-                                                    <div className='story-preview'>
+                                                    <div className='trending-preview'>
                                                         <div className='details'>
-                                                            <div className='story-author'>
+                                                            <div className='story-author-container'>
                                                                 <div className='author-name'>
-                                                                    link goes here
-                                                                    <h4>{story.body}</h4>
+                                                                    {/* turn username into link. link goes here */}
+                                                                    <h4 className='author'>{authorArr[trendingArr.indexOf(story)].username}</h4>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div className='details'></div>
+                                                        <div className='details'>
+                                                            {/* turn body into link. link goes here */}
+                                                            <div>
+                                                                <h2 className='trending-title'>{story.title}</h2>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -68,7 +73,21 @@ export default function StoryFeed() {
                 </div>
             </div>
             <div className='story-body'>
-                <StoryCard stories={stories} />
+                <div className='story-body-container'>
+                    <div className='story-body-holder'>
+                        <div className='story-body-grid'>
+                            <section className='story-feed'>
+                                <div className='story-feed-holder'>
+                                    <div>
+                                        <div className='all-story-feed'>
+                                            <StoryCard stories={stories} />
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

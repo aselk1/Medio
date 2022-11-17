@@ -16,13 +16,17 @@ export default function StoryCard({ stories }) {
         <>
             {stories.map(story => (
                 <div className="story-card">
-                    <div onClick={(e) => storyPage(story, e)}>
-                        <div className="story-author">
-                            Author: {story.User.username}
-                        </div>
-                        <div className='story-preview'>
-                            <h2>Title: {story.title}</h2>
-                            <h3>Body: {story.body}</h3>
+                    <div className='story-feed-item' onClick={(e) => storyPage(story, e)}>
+                        <div className='story-feed-item-holder'>
+                            <div className='story-card-preview'>
+                                <div className="story-author">
+                                    {story.User.username}
+                                </div>
+                                <div className='story-preview'>
+                                    <h2>Title: {story.title}</h2>
+                                    <h3>Body: {story.body}</h3>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
