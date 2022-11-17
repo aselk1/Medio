@@ -19,7 +19,6 @@ const StoryDetails = () => {
   const commentsObj = useSelector((state) => state.comment.allComments);
   const comments = Object.values(commentsObj);
   const storyId = Number(useLocation().pathname.split("/")[2]);
-  console.log(body)
 
   const [showMenu, setShowMenu] = useState(false);
 

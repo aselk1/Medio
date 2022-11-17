@@ -3,12 +3,6 @@ import { Editor } from "react-draft-wysiwyg";
 import { EditorState } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 const RichEditor2 = ({editorState, setEditorState, readOnly}) => {
-//   const [editorState, setEditorState] = useState(() =>
-//     EditorState.createEmpty()
-//   );
-//   useEffect(() => {
-//     console.log(editorState);
-//   }, [editorState]);
   return (
     <div>
       <div

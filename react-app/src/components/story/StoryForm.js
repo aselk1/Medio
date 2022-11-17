@@ -25,26 +25,10 @@ const StoryForm = () => {
   }, [editorState]);
 
 
-  // const ref = useRef(null)
-  // let titleDiv = <span>Title</span>;
-
   useEffect(() => {
     dispatch(storyActions.fetchAllStories());
   }, [dispatch]);
 
-  // useEffect (() => {
-  //   const handleChange = (e) => {
-  //     if (title === "") {
-  //       titleDiv = <span>Title</span>;
-  //     }
-  //     console.log(title)
-  //     setTitle(e.target.value)
-  //   }
-  //   ref.current.addEventListener('change', handleChange);
-  //   return () => {
-  //     ref.current.removeEventListener("change", handleChange);
-  //   }
-  // },[title])
 
   const postStory = async (e) => {
     e.preventDefault();
