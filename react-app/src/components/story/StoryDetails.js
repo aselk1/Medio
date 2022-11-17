@@ -71,7 +71,7 @@ const StoryDetails = () => {
   const clickLike = (e) => {
     e.preventDefault();
 
-    if (allLikeUser.find((id) => id === user.id)) {
+    if (allLikeUser?.find((id) => id === user.id)) {
       btn === null ? dispatch(getLikeStory(id)) :
       btn.style.backgroundColor = "gray"
       dispatch(deleteLikeStory(id))

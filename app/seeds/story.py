@@ -3,20 +3,20 @@ from app.models import db,environment, SCHEMA, Story
 
 # Adds a demo user, you can add other users here if you want
 def seed_stories():
-    story1 = Story(title='test1', body='good', user_id=1)
-    story2 = Story(title='test2', body='nice', user_id=2)
-    story3 = Story(title='test3', body='great', user_id=3)
-    story4 = Story(title='test4', body='wonderful', user_id=4)
-    story5 = Story(title='test5', body='amazing', user_id=5)
-    story6 = Story(title='test6', body='astonishing', user_id=6)
+    # story1 = Story(title='test1', body='good', user_id=1)
+    # story2 = Story(title='test2', body='nice', user_id=2)
+    # story3 = Story(title='test3', body='great', user_id=3)
+    # story4 = Story(title='test4', body='wonderful', user_id=4)
+    # story5 = Story(title='test5', body='amazing', user_id=5)
+    # story6 = Story(title='test6', body='astonishing', user_id=6)
    
 
-    db.session.add(story1)
-    db.session.add(story2)
-    db.session.add(story3)
-    db.session.add(story4)
-    db.session.add(story5)
-    db.session.add(story6)
+    # db.session.add(story1)
+    # db.session.add(story2)
+    # db.session.add(story3)
+    # db.session.add(story4)
+    # db.session.add(story5)
+    # db.session.add(story6)
     db.session.commit()
 
 

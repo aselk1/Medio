@@ -63,7 +63,7 @@ function App() {
           <Route path="/test">
             <FollowFeed />
           </Route>
-          <Route path="/stories/:storyid" exact={true}>
+          <Route path="/stories/:id" exact={true}>
             <SideBar />
             <StoryDetails />
           </Route>
