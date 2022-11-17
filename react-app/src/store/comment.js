@@ -60,6 +60,9 @@ export const getCommentsByUser = (userId) => async dispatch => {
 export const createComment = (storyId, payload) => async dispatch => {
   const response = await csrfFetch(`/api/stories/${storyId}/comments`, {
     method: 'POST',
+    header: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify(payload)
   })
 

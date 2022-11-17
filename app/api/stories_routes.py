@@ -3,6 +3,7 @@ from sqlalchemy.orm import relationship, sessionmaker, joinedload
 from app.models import Story, db, Comment, User
 from flask_login import login_required, current_user
 from app.forms import StoryForm
+from app.forms import CommentForm
 
 stories_routes = Blueprint('stories', __name__)
 
@@ -80,17 +81,20 @@ def get_comments():
 
 @stories_routes.route('/<int:id>/comments', methods=['POST'])
 @login_required
-def post_comment():
+def post_comment(id):
     """
     Posts a comment to a story
     """
-    data = request.json()
-    comment = Comment(body=data['Body'],
-                      user_id=data['user_id'],
-                      story_id=data['story_id'])
-    db.session.add(comment)
-    db.session.commit()
-    return comment.to_dict()
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        comment = Comment(body=form.data['body'],
+                      user_id=current_user.id,
+                      story_id=id)
+        db.session.add(comment)
+        db.session.commit()
+        return comment.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 
@@ -107,7 +111,7 @@ def get_like(id):
         'num':num,
         'allUser':[(user.id) for user in all_liked_user]
     }
-    
+
     return num_like
 
 #post like story

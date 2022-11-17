@@ -19,3 +19,11 @@ class Comment(db.Model):
         secondary=like_comment,
         lazy='dynamic',
         back_populates = 'liked_comment')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'body': self.body,
+            'user_id': self.user_id,
+            'story_id': self.story_id
+        }

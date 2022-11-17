@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { Dispatch } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { createComment } from "../../store/comment";
 
 function CommentForm() {
   const [body, setBody] = useState("");
   const userId = useSelector((state) => state.session.user.id);
-  const { storyId } = useParams()
+  const storyId = Number(useLocation().pathname.split("/")[2]);
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const dispatch = useDispatch()
@@ -54,14 +54,14 @@ function CommentForm() {
       ))}
     </ul>
     <label>
-      <input
+      <textarea
         type="text"
         value={body}
         onChange={(e) => setBody(e.target.value)}
         required
       />
     </label>
-    <button type="submit">Submit</button>
+    <button type="submit">Respond</button>
   </form>
 );
 }
