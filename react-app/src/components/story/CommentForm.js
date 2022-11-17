@@ -37,8 +37,8 @@ function CommentForm() {
       storyId
     };
 
+
     await dispatch(createComment(storyId, commentForm))
-    .then(history.push('/home'))
 
     // Reset the form state.
     setBody("");
