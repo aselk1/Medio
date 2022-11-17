@@ -32,5 +32,5 @@ def undo_stories():
         db.session.execute(f"TRUNCATE table {SCHEMA}.stories RESTART IDENTITY CASCADE;")
     else:
         db.session.execute("DELETE FROM stories")
-        
+
     db.session.commit()
