@@ -31,6 +31,21 @@ def remove_comment():
 
 # ====================likes comments====================================
 
+#get like story
+@comments_routes.route('/<int:id>/likes')
+def get_like(id):
+    comment = Comment.query.get(id)
+    num = comment.liked_comment_user.count()
+    all_liked_user =  comment.liked_comment_user.all()
+    num_like = {
+        'comment_id':comment.id,
+        'story_id':comment.story_id,
+        'num':num,
+        'allUser':[(user.id) for user in all_liked_user]
+    }
+    
+    return num_like
+    
 #post like comment
 @comments_routes.route('/<int:id>/likes', methods=['POST'])
 @login_required
@@ -41,21 +56,21 @@ def post_like(id):
     
     if not all_liked_user:
         comment.liked_comment_user.append(like_comment_user)
-        db.session.commit()
     else:
         for user in all_liked_user:
             if user.id == current_user.id:
                 return "You already left a comment on this story"
             else:
                 comment.liked_comment_user.append(like_comment_user)
-                db.session.commit()
+                
 
     # the number of like for the comment
     num = comment.liked_comment_user.count()
     print("the number of like comment",num)
-
+    db.session.commit()
     num_like = {
         'comment_id':comment.id,
+        'story_id': comment.story_id,
         'num':num
     }
       
@@ -66,14 +81,16 @@ def post_like(id):
 @login_required
 def delete_like(id):
     comment = Comment.query.get(id)
-    user = User.query.get(current_user.id)
+    like_comment_user = User.query.get(current_user.id)
     all_liked_user =  comment.liked_comment_user.all()
 
-    for user in all_liked_user:
-        if user.id == current_user.id:
-            comment.liked_comment_user.remove(user)
-            db.session.commit()
-        else:
-            return "You haven't click the like"
+    users = [ user.id for user in all_liked_user]
+    print("users ??????",users)
+    if like_comment_user.id in users:
+        comment.liked_comment_user.remove(like_comment_user)
+    else:
+        return "You haven't click the like"
+
+    db.session.commit()
 
     return "unlike"

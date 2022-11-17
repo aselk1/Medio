@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useHistory, NavLink } from 'react-router-dom'
 import * as storyDetailActions from '../../../store/storyDetails'
 
 export default function StoryCard({ stories }) {
@@ -10,23 +10,37 @@ export default function StoryCard({ stories }) {
     const storyPage = async (story, e) => {
         e.preventDefault()
         dispatch(storyDetailActions.fetchStoryDetails(story.id))
-            .then(() => history.push(`/storyDetails/${story.id}`))
+            .then(() => history.push(`/stories/${story.id}`))
     }
     return (
         <>
             {stories.map(story => (
                 <div className="story-card">
-                    <div onClick={(e) => storyPage(story, e)}>
-                        <div className="story-author">
-                            Author: {story.User.username}
-                        </div>
-                        <div className='story-preview'>
-                            <h2>Title: {story.title}</h2>
-                            <h3>Body: {story.body}</h3>
+                    <div className='story-feed-item' onClick={(e) => storyPage(story, e)}>
+                        <div className='story-feed-item-holder'>
+                            <div className='story-card-preview'>
+                                <div className="story-author">
+                                    <div className='story-author-feed-holder'>
+                                        {/* add link on author name */}
+                                        <div className='story-author-feed-container'>
+                                            <div className='feed-inner-container'>
+                                                <h4 className='feed-author-name'>{story.User.username}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <NavLink className='story-page-link' to={`/stories/${story.id}`}>
+                                    <h2>{story.title}</h2>
+                                    <div className='story-body-preview'>
+                                        <h3 className='story-feed-body'>{story.body}</h3>
+                                    </div>
+                                </NavLink>
+                            </div>
                         </div>
                     </div>
                 </div>
-            ))}
+            ))
+            }
         </>
     )
 }

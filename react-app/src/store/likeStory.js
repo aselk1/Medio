@@ -14,9 +14,9 @@ const addOne = numLike => ({
     numLike
 });
 
-const deleteLike = storyId => ({
+const deleteLike = story_id => ({
     type: DELETE,
-    storyId
+    story_id
 });
 
 export const getLikeStory =spotId =>async dispatch =>{
@@ -63,7 +63,7 @@ export const likeStoryReducer = (state = {}, action) => {
             newState[action.numLike.story_id] = action.numLike;
             return newState;
         case DELETE:
-            delete newState[action.numLike.story_id]
+            delete newState[action.story_id]
             return newState;
         default:
             return state;
