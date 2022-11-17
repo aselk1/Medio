@@ -56,14 +56,9 @@ const StoryDetails = () => {
 
     },[dispatch, isUpdate]);
 
-  console.log("all like users",allLikeUser)
-
-
-
   if (allLikeUser?.find((id) => id === user.id)){
     btn === null ? dispatch(getLikeStory(id)) :
     btn.style.backgroundColor = "#3895D3";
-    // if (btColor === "gray" )  btn.style.backgroundColor = "gray"
     console.log("after btcolor gray")
     console.log("this is working")
   }
@@ -76,13 +71,10 @@ const StoryDetails = () => {
       btn.style.backgroundColor = "gray"
       dispatch(deleteLikeStory(id))
       dispatch(getLikeStory(id))
-      // btColor = colorArr[1]
-      console.log("color gray")
     } else {
       dispatch(likeStory(id))
       btn === null ? dispatch(getLikeStory(id)) :
-        btn.style.backgroundColor = "#3895D3";
-        console.log("color blue")
+      btn.style.backgroundColor = "#3895D3";
     }
     dispatch(getLikeStory(id))
     setIsUpdate(true)
