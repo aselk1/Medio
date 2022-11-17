@@ -8,6 +8,17 @@ import "./Story.css";
 import { getLikeStory, likeStory } from "../../store/likeStory";
 import { getComments } from "../../store/comment";
 
+
+
+
+
+
+
+
+
+
+import CommentForm from "./CommentForm";
+
 const StoryDetails = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -120,7 +131,7 @@ const StoryDetails = () => {
                 className="profileImage"
               ></img><h2>{user?.username}</h2>
               </div>
-              <textarea className="textarea-comments"></textarea>
+              <div className="textarea-comments"><CommentForm /></div>
               {comments?.map((comment) => (
                 <div>
                   <img
