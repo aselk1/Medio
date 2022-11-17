@@ -82,14 +82,16 @@ def post_like(id):
 @login_required
 def delete_like(id):
     comment = Comment.query.get(id)
-    user = User.query.get(current_user.id)
+    like_comment_user = User.query.get(current_user.id)
     all_liked_user =  comment.liked_comment_user.all()
 
-    for user in all_liked_user:
-        if user.id == current_user.id:
-            comment.liked_comment_user.remove(user)
-            db.session.commit()
-        else:
-            return "You haven't click the like"
+    users = [ user.id for user in all_liked_user]
+    print("users ??????",users)
+    if like_comment_user.id in users:
+        comment.liked_comment_user.remove(like_comment_user)
+    else:
+        return "You haven't click the like"
+
+    db.session.commit()
 
     return "unlike"
