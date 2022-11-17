@@ -10,7 +10,7 @@ export default function StoryCard({ stories }) {
     const storyPage = async (story, e) => {
         e.preventDefault()
         dispatch(storyDetailActions.fetchStoryDetails(story.id))
-            .then(() => history.push(`/storyDetails/${story.id}`))
+            .then(() => history.push(`/stories/${story.id}`))
     }
     return (
         <>
