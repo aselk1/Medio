@@ -44,44 +44,53 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className="width700">
-    <form onSubmit={onSignUp} className="flexCol">
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
+    <div className="width500">
+      <form onSubmit={onSignUp} className="flexCol centerCol">
+        <div>
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
         <input
           type="text"
           name="username"
           placeholder="User Name"
+          className="width200 signUpMargin"
           onChange={updateUsername}
           value={username}
+          required={true}
         ></input>
         <input
           type="text"
           name="email"
           placeholder="Email"
+          className="width200 signUpMargin"
           onChange={updateEmail}
           value={email}
+          required={true}
         ></input>
         <input
           type="password"
           name="password"
           placeholder="Password"
+          className="width200 signUpMargin"
           onChange={updatePassword}
           value={password}
+          required={true}
         ></input>
         <input
           type="password"
           name="repeat_password"
           placeholder="Repeat Password"
+          className="width200 signUpMargin"
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
         ></input>
-      <button type="submit">Sign Up</button>
-    </form>
+        <button type="submit" className="signUpButton signUpMargin">
+          Sign Up
+        </button>
+      </form>
     </div>
   );
 };
