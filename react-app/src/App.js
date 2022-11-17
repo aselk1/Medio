@@ -33,54 +33,14 @@ function App() {
   }
 
   return (
-<<<<<<< HEAD
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/">
-          {user != null ? <Redirect to="/home" /> : <SplashPage />}
-        </Route>
-        <Route exact path="/home">
-          {user === null ? <Redirect to="/" /> : <Home />}
-        </Route>
-        <Route path="/new-story" exact={true}>
-          <StoryForm />
-        </Route>
-        <Route path="/login" exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm />
-        </Route>
-        <ProtectedRoute path="/users" exact={true}>
-          <UsersList />
-        </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true}>
-          <User />
-        </ProtectedRoute>
-        <Route path="/stories" exact={true}>
-          <Stories />
-        </Route>
-        <Route path="/test">
-          <FollowFeed />
-        </Route>
-        <Route path="/stories/:id" exact={true}>
-          <SideBar />
-          <StoryDetails />
-        </Route>
-        <Route path="/stories/:storyId/edit">
-          <EditStoryForm />
-        </Route>
-      </Switch>
-    </BrowserRouter>
-=======
     <div className='medio-body'>
       <BrowserRouter>
         <Switch>
-          <Route exact path='/'>
-            {user != null ? <Redirect to='/home' /> : <SplashPage />}
+          <Route exact path="/">
+            {user != null ? <Redirect to="/home" /> : <SplashPage />}
           </Route>
-          <Route exact path='/home'>
-            {user === null ? <Redirect to='/' /> : <SideBar />}
+          <Route exact path="/home">
+            {user === null ? <Redirect to="/" /> : <Home />}
           </Route>
           <Route path="/new-story" exact={true}>
             <StoryForm />
@@ -100,16 +60,19 @@ function App() {
           <Route path="/stories" exact={true}>
             <Stories />
           </Route>
-          <Route path='/test'>
+          <Route path="/test">
             <FollowFeed />
           </Route>
-          <Route path="/stories/:storyId">
+          <Route path="/stories/:storyid" exact={true}>
+            <SideBar />
             <StoryDetails />
+          </Route>
+          <Route path="/stories/:storyId/edit">
+            <EditStoryForm />
           </Route>
         </Switch>
       </BrowserRouter>
     </div>
->>>>>>> Erin
   );
 }
 
