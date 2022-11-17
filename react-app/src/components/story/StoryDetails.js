@@ -116,7 +116,7 @@ const StoryDetails = () => {
               {likeInfo?.num}
             </div>
             <h2 className="titlePadding">{story?.title}</h2>
-            <div className="posts">
+            <div>
               {body[0] &&
                 body.map((el) => {
                   const contentState = convertFromRaw(JSON.parse(el));
@@ -127,7 +127,6 @@ const StoryDetails = () => {
                   );
                 })}
             </div>
-            <div></div>
           </div>
         </div>
         <div className="comments">
