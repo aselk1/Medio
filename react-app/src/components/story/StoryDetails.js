@@ -88,7 +88,6 @@ const StoryDetails = () => {
     console.log("opening");
   };
 
-<<<<<<< HEAD
   useEffect(() => {
     if (!showMenu) return;
     const closeMenu = () => {
@@ -99,19 +98,6 @@ const StoryDetails = () => {
     document.addEventListener("click", closeMenu);
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
-=======
-  // useEffect(() => {
-  //   if (!showMenu) return;
-
-  //   const closeMenu = () => {
-  //     setShowMenu(false);
-  //     console.log("closing");
-  //   };
-
-  //   document.addEventListener("click", closeMenu);
-  //   // return () => document.removeEventListener("click", closeMenu);
-  // }, [showMenu]);
->>>>>>> working
 
   useEffect(() => {
     dispatch(getComments(storyId));
