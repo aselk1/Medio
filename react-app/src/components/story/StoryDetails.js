@@ -81,11 +81,14 @@ const StoryDetails = () => {
   };
  
   const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
+    // if (showMenu) return;
+    if (!showMenu) setShowMenu(true);
+    if (showMenu) setShowMenu(false);
+
     console.log("opening");
   };
 
+<<<<<<< HEAD
   useEffect(() => {
     if (!showMenu) return;
     const closeMenu = () => {
@@ -96,6 +99,19 @@ const StoryDetails = () => {
     document.addEventListener("click", closeMenu);
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
+=======
+  // useEffect(() => {
+  //   if (!showMenu) return;
+
+  //   const closeMenu = () => {
+  //     setShowMenu(false);
+  //     console.log("closing");
+  //   };
+
+  //   document.addEventListener("click", closeMenu);
+  //   // return () => document.removeEventListener("click", closeMenu);
+  // }, [showMenu]);
+>>>>>>> working
 
   useEffect(() => {
     dispatch(getComments(storyId));
