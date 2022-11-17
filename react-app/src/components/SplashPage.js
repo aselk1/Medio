@@ -8,6 +8,7 @@ export default function SplashPage() {
         <>
             <div className='main-splash-page'>
                 <NavBar />
+                <div className='nav-main-spacer'></div>
                 <div className="splash">
                     <div className="header">
                         <h2 className="title">Stay&nbsp;curious.</h2>

@@ -7,12 +7,15 @@ import "./NavBar.css"
 const NavBar = () => {
 
   const [navBar, setNavBar] = useState(false)
+  const [startedButton, setStartedButton] = useState(false)
 
   const changeBackground = () => {
-    if (window.scrollY >= 300) {
+    if (window.scrollY >= 500) {
       setNavBar(true)
+      setStartedButton(true)
     } else {
       setNavBar(false)
+      setStartedButton(false)
     }
   }
 
@@ -47,8 +50,8 @@ const NavBar = () => {
               </span>
               <div className='get-started'>
                 <span>
-                  <NavLink id='get-started-text' to='/sign-up' exact={true} activeClassName='active'>
-                    <button id='get__started'>
+                  <NavLink className='get-started-text' to='/sign-up' exact={true} activeClassName='active'>
+                    <button className={startedButton ? 'get-started-button started-active' : 'get-started-button'}>
                       Get Started
                     </button>
                   </NavLink>
