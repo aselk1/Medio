@@ -121,3 +121,14 @@
 .cursorPointer {
     cursor: pointer;
 }
+
+ul {
+    padding-inline-start: 0px;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+}
+
+h4 {
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+}
