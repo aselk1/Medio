@@ -35,30 +35,72 @@ const SideBar = () => {
               <NavLink to='/home' exact={true} activeClassName='active'><img className='home-logo' src="https://miro.medium.com/max/1400/1*psYl0y9DUzZWtHzFJLIvTw.png" alt="logo" /></NavLink>
             </div>
             <div className='user-buttons'>
-              <div className=''>
-                <NavLink to='/home' exact={true} activeClassName='active'><i id="icon2" class="fa-solid fa-house-chimney"></i></NavLink>
+              <div className='icon user-buttons'>
+                <NavLink to='/home' exact={true} className='user-button-link'>
+                  <div className='button-container'>
+                    <div className='button-holder'>
+                      <div className='inner-button-container'>
+                        <div>
+                          <div className='button-icon'>
+                            <i id="icon2" class="fa-solid fa-house-chimney fa-lg"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </NavLink>
               </div>
-              <div>
-                <NavLink to='/stories' exact={true} activeClassName='active'><i id="icon3" class="fa-regular fa-file-lines"></i></NavLink>
+              <div className='icon user-buttons'>
+                <NavLink to='/stories' exact={true} className='user-button-link'>
+                  <div className='button-container'>
+                    <div className='button-holder'>
+                      <div className='inner-button-container'>
+                        <div>
+                          <div className='button-icon'>
+                            <i id="icon3" class="fa-regular fa-file-lines fa-lg"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </NavLink>
               </div>
-              <div>
-                <NavLink to='/new-story' exact={true} activeClassName='active'><i id="icon4" class="fa-regular fa-pen-to-square"></i></NavLink>
+              <div className='icon user-buttons'>
+                <NavLink to='/new-story' exact={true} className='user-button-link'>
+                  <div className='button-container'>
+                    <div className='button-holder'>
+                      <div className='inner-button-container'>
+                        <div>
+                          <div className='button-icon'>
+                            <i id="icon4" class="fa-regular fa-pen-to-square fa-lg"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </NavLink>
               </div>
             </div>
-            <div className='dropdown-container'>
-              <i onClick={openMenu} id="icon5" class="fa-solid fa-circle-user fa-3x"></i>
-              {showMenu && <div class="dropdown">
-                <ul className='dropdown-text'>
-                  <div>Home</div>
-                  <div>Profile</div>
-                  <div>Followers</div>
-                  <div className='logout'><LogoutButton /></div>
-                  <hr />
-                  <div>{user.username}</div>
-                  <div>{user.email}</div>
-                </ul>
+            <div className='user-menu'>
+              <div>
+                <div className='user-buttons'>
+                  <div className='dropdown-container'>
+                    <i onClick={openMenu} id="icon5" class="fa-solid fa-circle-user fa-2xl"></i>
+                    {showMenu && <div class="dropdown">
+                      <ul className='dropdown-text'>
+                        <div>Home</div>
+                        <div>Profile</div>
+                        <div>Followers</div>
+                        <div className='logout'><LogoutButton /></div>
+                        <hr />
+                        <div>{user.username}</div>
+                        <div>{user.email}</div>
+                      </ul>
+                    </div>
+                    }
+                  </div>
+                </div>
               </div>
-              }
             </div>
           </div>
         </div>

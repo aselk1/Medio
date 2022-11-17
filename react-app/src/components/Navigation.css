@@ -124,6 +124,8 @@ body {
     padding: 3px;
 }
 
+
+/*  sidebar CSS */
 .sideBar {
     height: 100%;
     /* width: 70px;
@@ -165,7 +167,51 @@ body {
     display: block;
 }
 
-#icon2 {
+.icon {
+    padding-bottom: 35px;
+}
+
+.user-button-link {
+    margin: 0;
+    padding: 0;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    font-family: inherit;
+    border: inherit;
+    font-size: inherit;
+    color: inherit;
+    fill: inherit;
+    text-decoration: none;
+}
+
+.button-container {
+    position: relative;
+    display: flex;
+}
+
+.button-holder {
+    display: flex;
+    color: rgba(41, 41, 41, 1);
+    fill: rgba(41, 41, 41, 1);
+    padding-left: 28px;
+}
+
+.inner-button-container {
+    margin-right: 28px;
+    display: block;
+}
+
+.button-icon {
+    display: inline-block;
+}
+
+.user-menu {
+    padding-bottom: 16px;
+    display: block;
+}
+
+
+/* #icon2 {
     width: 35px;
     margin-top: 175px;
     font-size: 20px;
@@ -197,7 +243,7 @@ body {
     background-color: white;
     border-style: none;
     cursor: pointer;
-}
+} */
 
 .dropdown-container {
     position: relative;
@@ -225,6 +271,8 @@ body {
     margin-top: 15%;
 }
 
+
+/*  splash page M's CSS */
 #m5 {
     animation-name: myAnimation;
     animation-delay: 1.7s;

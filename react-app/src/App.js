@@ -15,7 +15,6 @@ import FollowFeed from './components/Feed/FollowFeed/FollowFeed';
 import SideBar from './components/SideBar';
 import EditStoryForm from './components/story/EditStoryForm'
 import Home from './components/Home'
-import * as storyDetailActions from './store/storyDetails'
 
 function App() {
   const dispatch = useDispatch();
