@@ -1,0 +1,91 @@
+.navigation-container {
+    transition: background-color 300ms linear;
+    right: 0;
+    left: 0;
+    top: 0;
+    position: fixed;
+    border-bottom: solid 1px rgba(41, 41, 41, 1);
+    width: 100%;
+    background-color: #FFC017;
+    z-index: 10;
+}
+
+.nav-bar-container {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-active {
+    background-color: rgb(255, 255, 255);
+}
+
+.nav {
+    min-width: 0;
+    max-width: 1192px;
+}
+
+.bar {
+    margin: 0 64px;
+    width: 100%;
+}
+
+.navigation-items {
+    display: flex;
+    flex-direction: row;
+    height: 75px;
+    padding: 25px 0;
+}
+
+.medio-logo {
+    display: block;
+}
+
+.logo {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    height: 45px;
+}
+
+.spacer {
+    flex: 1 0 auto;
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.nav-modal-container {
+    display: inline-block;
+}
+
+.nav-modal {
+    display: block;
+    margin-right: 25px;
+}
+
+.modal-login {
+    color: rgba(41, 41, 41, 1);
+    line-height: 20px;
+    font-size: 14px;
+    margin: 0;
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: inherit;
+}
+
+.navigation-text {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    font-family: inherit;
+}
+
+.navigation-text:visited {
+    text-decoration: none;
+    color: rgba(41, 41, 41, 1);
+}

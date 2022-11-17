@@ -26,51 +26,6 @@ body {
     color: rgba(8, 8, 8, 1);
 }
 
-.navigation {
-    display: flex;
-    list-style: none;
-    justify-content: flex-end;
-    gap: 25px;
-    /* background-color: #FFC017; */
-    margin-top: 1%;
-}
-
-
-.logo {
-    width: 230px;
-    height: 50px;
-    padding-top: 0;
-    top: 0;
-    margin-bottom: 1%;
-    margin-left: 7%;
-}
-
-
-.navigation-container {
-    transition: background-color 300ms linear;
-    right: 0;
-    left: 0;
-    top: 0;
-    position: fixed;
-    border-bottom: solid 1px rgba(41, 41, 41, 1);
-    width: 100%;
-    height: 76px;
-    background-color: #FFC017;
-    z-index: 10;
-}
-
-.active {
-    background-color: rgb(255, 255, 255);
-}
-
-.navigation-text {
-    text-decoration: none;
-    color: #333333;
-    font-size: 14px;
-    margin-top: 3%;
-    padding-bottom: 25px;
-}
-
 .header {
     padding-left: 100px;
     /* background-color: #FFC017; */
@@ -108,18 +63,18 @@ body {
     text-decoration: none;
 }
 
-#get__started {
+/* #get__started {
     background-color: rgb(18, 18, 18);
     border-style: none;
     width: 100px;
     height: 40px;
     border-radius: 25px;
-}
+} */
 
-#get-started-text {
+/* #get-started-text {
     text-decoration: none;
     color: white;
-}
+} */
 
 #m5 {
     animation-name: myAnimation;
