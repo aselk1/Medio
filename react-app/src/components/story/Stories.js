@@ -10,6 +10,9 @@ import "./Story.css";
 const Stories = () => {
   const user = useSelector((state) => state.session.user);
   const stories = Object.values(useSelector((state) => state.stories));
+  const userStories = stories.filter((story) => {
+    return story.User.id === user.id;
+  });
   const dispatch = useDispatch();
   const history = useHistory();
   useEffect(() => {
@@ -26,15 +29,21 @@ const Stories = () => {
   return (
     <div>
       <SideBar />
-      <div className="flexCol centerCol">
-        <ul>
-          {stories[0] &&
-            stories.map((story) => (
-              <li>
-                <h4 onClick={(e) => storyDetails(story, e)}>{story.title}</h4>
-              </li>
-            ))}
-        </ul>
+      <div className="flexCol pagePadding">
+        <div className="width700">
+          <div className="flexRow centerCol spread bottomBorder titlePadding">
+            <h3 className="fontSize42">Your Stories</h3>
+            <button className="writeStory" onClick={() => history.push('/new-story')}>Write a Story</button>
+          </div>
+          <ul className="noBullets">
+            {userStories[0] &&
+              userStories.map((story) => (
+                <li className="bottomBorder titlePadding">
+                  <h4 className="widthFit cursorPointer" onClick={(e) => storyDetails(story, e)}>{story.title}</h4>
+                </li>
+              ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

@@ -54,10 +54,10 @@ export const fetchPostStory = (story) => async (dispatch) => {
 };
 
 export const fetchEditStory = (id, story) => async (dispatch) => {
-  const { title, body } = story;
+  const { newTitle, newBody } = story;
   const formData = new FormData();
-  formData.append("title", title);
-  formData.append("body", body);
+  formData.append("title", newTitle);
+  formData.append("body", newBody);
   const res = await csrfFetch(`/api/stories/${id}`, {
     method: "PUT",
     headers: {
@@ -67,7 +67,6 @@ export const fetchEditStory = (id, story) => async (dispatch) => {
   });
   if (res.ok) {
     const data = await res.json()
-    console.log(data)
     dispatch(editStory(data))
     return data
   }

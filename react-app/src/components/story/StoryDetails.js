@@ -7,6 +7,8 @@ import * as storyActions from "../../store/stories";
 import "./Story.css";
 import { getLikeStory, likeStory } from "../../store/likeStory";
 import { getComments } from "../../store/comment";
+import RichEditor2 from "../editor/RichEditor2";
+import { Editor, EditorState, convertFromRaw } from "draft-js";
 
 
 
@@ -24,11 +26,20 @@ const StoryDetails = () => {
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
   const story = useSelector((state) => state.storyDetails);
+  const body = useSelector((state) => [state.storyDetails.body]);
   const commentsObj = useSelector((state) => state.comment.allComments);
   const comments = Object.values(commentsObj);
   const storyId = Number(useLocation().pathname.split("/")[2]);
 
   const [showMenu, setShowMenu] = useState(false);
+
+  useEffect(() => {
+    dispatch(storyDetailsActions.fetchStoryDetails(storyId));
+  }, [dispatch]);
+
+  // if (story.body) {
+  //   setBody("this")
+  // }
 
   const { id } = useParams();
   const likes = useSelector((state) => state.likeStory);
@@ -85,9 +96,6 @@ const StoryDetails = () => {
     history.push("/stories");
   };
 
-  useEffect(() => {
-    dispatch(storyDetailsActions.fetchStoryDetails(storyId));
-  }, [dispatch]);
 
   return (
     <div>
@@ -118,7 +126,17 @@ const StoryDetails = () => {
               {likeInfo?.num}
             </div>
             <h2 className="titlePadding">{story?.title}</h2>
-            <p>{story?.body}</p>
+            <div>
+              {body[0] &&
+                body.map((el) => {
+                  const contentState = convertFromRaw(JSON.parse(el));
+                  const editorState =
+                    EditorState.createWithContent(contentState);
+                  return (
+                      <RichEditor2 editorState={editorState} readOnly={true} />
+                  );
+                })}
+            </div>
           </div>
         </div>
         <div className="comments">
