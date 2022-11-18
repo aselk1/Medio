@@ -12,6 +12,8 @@ import RichEditor2 from "../editor/RichEditor2";
 import { Editor, EditorState, convertFromRaw } from "draft-js";
 import CommentForm from "./CommentForm";
 import CommentEditForm from "./CommentEditForm";
+import LikeStory from "../likeButton/LikeStory";
+import LikeComment from "../likeButton/LikeComment";
 
 const StoryDetails = () => {
   const story = useSelector((state) => state.storyDetails);
@@ -54,18 +56,6 @@ const StoryDetails = () => {
     await dispatch(storyDetailsActions.fetchStoryDetails(storyId));
   };
 
-  if (allLikeUser === undefined) {
-    dispatch(getLikeStory(id));
-  }
-
-  let clicked = allLikeUser?.find((id) => id === user.id);
-
-  if (clicked) {
-    const btn = document.getElementById("likeClickBt");
-    btn === null
-      ? dispatch(getLikeStory(id))
-      : (btn.style.backgroundColor = "#3895D3");
-  }
 
   const clickLike = (e) => {
     e.preventDefault();
@@ -182,19 +172,16 @@ const StoryDetails = () => {
                             </section>
                           </div>
                         </div>
-                      </article >
-                    </div >
-                  </div >
-                </div >
-                <div className="user-interactions">
+                      </article>
+                    </div>
+                  </div>
+                </div>
+                {user && <div className="user-interactions">
                   <div className="user-interactions-wrapper">
                     <div className="like-items">
-                      <div>
-                        <div id="likeClickBt" onClick={clickLike}>
-                          <i class="fa-regular fa-thumbs-up"></i>
-                        </div>
+                      <div className="likeStory">
+                        <LikeStory />
                       </div>
-                      <div> {likeInfo?.num}</div>
                     </div>
                     <hr className="like-divider" />
                     <div className="comments">
@@ -211,42 +198,46 @@ const StoryDetails = () => {
                           <div className="textarea-comments">
                             <CommentForm />
                           </div>
-                          {
-                            story.Comments?.map((comment) => (
-                              <div>
-                                <div className="item-header">
-                                  <img
-                                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                                    alt="Profile"
-                                    className="profileImage"
-                                  ></img>
-                                  <div>{comment.User.username}</div>
+                          {story.Comments?.map((comment) => (
+                            <div>
+                              <div className="item-header">
+                                <img
+                                  src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                                  alt="Profile"
+                                  className="profileImage"
+                                ></img>
+                                <div>{comment.User.username}</div>
+                              </div>
+                              <div className="comment-body">{comment.body}</div>
+                              {/* <div className="likeComment">
+                                <div>
+                                  <LikeComment comment={comment} />
                                 </div>
-                                <div className="comment-body">{comment.body}</div>
-                                {comment?.user_id === user?.id && (
-                                  <div className="comment-buttons">
-                                    <div
-                                      className="detailButton1"
-                                      onClick={() => handleDelete(comment.id)}
-                                    >
-                                      <i class="fa-solid fa-trash"></i>
-                                    </div>
-                                    <div
-                                      id={comment.id}
-                                      value={comment.id}
-                                      className="detailButton2"
-                                      onClick={() => {
-                                        if (editId === comment.id) {
-                                          setEditId(-1);
-                                          setEditId("");
-                                          return;
-                                        }
-                                        setEditId(comment.id);
-                                        setCommentBody(comment.body);
-                                      }}
-                                    >
-                                      <i class="fa-solid fa-pen"></i>
-                                    </div>
+                              </div> */}
+
+                              {comment?.user_id === user?.id && (
+                                <div className="comment-buttons">
+                                  <div
+                                    className="detailButton1"
+                                    onClick={() => handleDelete(comment.id)}
+                                  >
+                                    <i class="fa-solid fa-trash"></i>
+                                  </div>
+                                  <div
+                                    id={comment.id}
+                                    value={comment.id}
+                                    className="detailButton2"
+                                    onClick={() => {
+                                      if (editId === comment.id) {
+                                        setEditId(-1);
+                                        setEditId("");
+                                        return;
+                                      }
+                                      setEditId(comment.id);
+                                      setCommentBody(comment.body);
+                                    }}
+                                  >
+                                    <i class="fa-solid fa-pen"></i>
                                   </div>
                                 )}
                                 <div className="editform">
@@ -272,10 +263,10 @@ const StoryDetails = () => {
                       </div>
                       <div>{story?.Comments?.length}</div>
                     </div>
-                  </div >
-                </div >
-              </div >
-            </main >
+                  </div>
+                  </div>}
+                </div>
+            </main>
             <div className="user-info-sidebar">
               <div className="user-sidebar">
                 <div className="user-info-sidebar-container">
