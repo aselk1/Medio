@@ -48,7 +48,6 @@ const StoryDetails = () => {
   }, [dispatch]);
 
   const handleDelete = async (commentId) => {
-    console.log(commentId);
     await dispatch(deleteComment(commentId));
     await dispatch(storyDetailsActions.fetchStoryDetails(storyId));
   };
