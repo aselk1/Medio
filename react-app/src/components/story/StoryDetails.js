@@ -100,10 +100,6 @@ const StoryDetails = () => {
     dispatch(getComments(storyId));
   }, [dispatch]);
 
-  useEffect(() => {
-
-  }, [dispatch]);
-
   const deleteStory = async () => {
     await dispatch(storyActions.fetchDeleteStory(storyId));
     await dispatch(storyDetailsActions.deleteStoryDetails());
@@ -177,15 +173,16 @@ const StoryDetails = () => {
                 <div className="user-interactions-wrapper">
                   <div className="like-items">
                     <div>
-                      <button id="likeClickBt" onClick={clickLike}>
-                        Like
-                      </button>
+                      <div id="likeClickBt" onClick={clickLike}>
+                      <i class="fa-regular fa-thumbs-up"></i>
+                      </div>
                     </div>
                     <div>
                       {" "}
                       {likeInfo?.num}
                     </div>
                   </div>
+                  <hr className="like-divider"/>
                   <div className="comments">
                     {showMenu && (
                       <div className="comments-sidebar">
@@ -215,8 +212,8 @@ const StoryDetails = () => {
                             </div>
                             { comment?.user_id === user?.id && (
                               <div className="comment-buttons">
-                              <button className="detailButton1" onClick={() => handleDelete(comment.id)}>Delete</button>
-                              <button id={comment.id} value={comment.id} className="detailButton2"
+                              <div className="detailButton1" onClick={() => handleDelete(comment.id)}><i class="fa-solid fa-trash"></i></div>
+                              <div id={comment.id} value={comment.id} className="detailButton2"
                               onClick={() => {
                                 if (editId === comment.id) {
                                   setEditId(-1);
@@ -226,8 +223,8 @@ const StoryDetails = () => {
                                 setEditId(comment.id);
                                 setCommentBody(comment.body);
                               }}
-                              >Edit
-                              </button>
+                              ><i class="fa-solid fa-pen"></i>
+                              </div>
                               </div>
                             )}
                             <div className="editform">
@@ -242,7 +239,8 @@ const StoryDetails = () => {
                     )}
                   </div >
   <div onClick={openMenu} className="comment-icon">
-    <i className="fa-regular fa-comment"></i>
+    <div><i className="fa-regular fa-comment"></i></div>
+    <div>{story?.Comments?.length}</div>
   </div>
                 </div >
               </div >
