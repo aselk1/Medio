@@ -70,15 +70,16 @@ def delete_story(id):
         return story.to_dict()
     return {'errors': ['Unauthorized']}
 
-@stories_routes.route('/<int:id>/comments')
-@login_required
-def get_comments(id):
-    """
-    Query for all comments for a story and returns them in a list of dictionaries
-    """
-    story = Story.query.get(id)
-    print(story.comments)
-    return {story.comments}
+# @stories_routes.route('/<int:id>/comments')
+# @login_required
+# def get_comments(id):
+#     """
+#     Query for all comments for a story and returns them in a list of dictionaries
+#     """
+#     story = Story.query.get(id)
+#     comments = Comment.query.get(story.id)
+#     print(comments)
+#     return comments.to_dict()
 
 
 @stories_routes.route('/<int:id>/comments', methods=['POST'])
