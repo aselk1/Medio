@@ -31,6 +31,18 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
+  const signInDemo = async (e) => {
+    // e.preventDefault()
+    // setErrors([]);
+    e.preventDefault();
+    const data = await dispatch(login("demo@aa.io", "password")).then(
+      history.push("/home")
+    );
+    if (data) {
+      setErrors(data);
+    }
+  };
+
   // if (user) {
   //   return <Redirect to="/" />;
   // }
@@ -44,9 +56,12 @@ const LoginForm = () => {
       </div>
       <div>
         <div>
-          <label className="loginEmail" htmlFor="email">Email</label>
+          <label className="loginEmail" htmlFor="email">
+            Email
+          </label>
         </div>
-        <input className="loginEmailInput"
+        <input
+          className="loginEmailInput"
           name="email"
           type="text"
           placeholder="Email"
@@ -56,7 +71,9 @@ const LoginForm = () => {
       </div>
       <div>
         <div>
-          <label className="loginPassword" htmlFor="password">Password</label>
+          <label className="loginPassword" htmlFor="password">
+            Password
+          </label>
         </div>
         <input
           className="loginPasswordInput"
@@ -68,7 +85,12 @@ const LoginForm = () => {
         />
       </div>
       <div>
-        <button className="loginBt" type="submit">Login</button>
+        <button className="loginBt" type="submit">
+          Login
+        </button>
+        <button onClick={signInDemo}>
+          Demo User
+        </button>
       </div>
     </form>
   );
