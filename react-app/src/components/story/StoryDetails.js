@@ -34,10 +34,6 @@ const StoryDetails = () => {
   const [commentBody, setCommentBody] = useState("");
   const [editId, setEditId] = useState(-1);
 
-  const removeComment = () => {
-    dispatch(deleteComment(id)).then(() => history.push("/home"));
-  };
-
   // if (story.body) {
   //   setBody("this")
   // }
@@ -98,9 +94,8 @@ const StoryDetails = () => {
   // }, [showMenu]);
 
   const deleteStory = async () => {
-    await dispatch(storyActions.fetchDeleteStory(storyId));
     await dispatch(storyDetailsActions.deleteStoryDetails());
-    history.push("/stories");
+    await dispatch(storyActions.fetchDeleteStory(storyId));
   };
 
   return (

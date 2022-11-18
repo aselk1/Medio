@@ -46,8 +46,9 @@ def remove_comment(id):
     if current_user.id == comment.user_id:
         db.session.delete(comment)
         db.session.commit()
+        print(comment)
         return comment.to_dict()
-    # return {'errors': ['Unauthorized']}
+    return {'errors': ['Unauthorized']}
 
 # ====================likes comments====================================
 
