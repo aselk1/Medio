@@ -270,7 +270,7 @@ const StoryDetails = () => {
                 </h2>
               </NavLink>
               <div className="follow-button-holder">
-                <button className="follow-button">Follow</button>
+                {user && <button className="follow-button">Follow</button>}
                 {/* <button className="unfollow-button">Unfollow</button> */}
               </div>
             </div>
