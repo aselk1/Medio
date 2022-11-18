@@ -1,0 +1,32 @@
+.loginForm {
+    width: 300px;
+    height: 200px;
+    padding: 30px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+​
+.loginEmail, .loginPassword, .loginBt {
+    font-size:20px;
+}
+​
+.loginEmailInput, .loginPasswordInput{
+    width:300px;
+    height:30px;
+}
+​
+.loginPasswordInput {
+    margin-bottom: 10px;
+}
+​
+.loginBt{
+    /* background-color: rgb(223, 171, 68); */
+    background-color: black;
+    border-radius: 25px;
+    border: 0px solid;
+    height: 38px;
+    width: 120px;
+    color:white;
+}
