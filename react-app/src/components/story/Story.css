@@ -92,6 +92,18 @@
     justify-content: space-between;
 }
 
+.story-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.story-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .story-main {
     margin-bottom: 0;
     flex: 1 1 auto;
@@ -173,15 +185,35 @@
     display: block;
     margin-right: 16px;
 }
+#root > div > div.story-page-container > div > div > main > div > div.user-interactions > div {
+    display: flex;
+    gap: 10px;
+}
 
-.comments-icon {
-    margin-top: 90%;
+#root > div > div.story-page-container > div > div > main > div > div.user-interactions > div:hover {
+    cursor: pointer;
+}
+
+#root > div > div.story-page-container > div > div > main > div > div.user-interactions > div > div.comment-icon {
+    display: flex;
+    gap: 10px;
 }
 
 .comments-icon:hover {
     cursor: pointer;
 }
 
+.like-items {
+    display: flex;
+    gap: 10px;
+}
+
+.like-divider {
+    width: 10px;
+    rotate: 90deg;
+    color: rgb(199, 198, 198);
+    opacity: .6;
+}
 .comments-sidebar {
     height: 100%;
     top: 0;
@@ -202,6 +234,7 @@
 .comments-headline {
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 
@@ -292,6 +325,24 @@
 .comment-buttons {
     margin-left: 70%;
     margin-top: 20%;
+    display: flex;
+    gap: 10px;
+}
+
+.detailButton1 {
+    color: rgb(202, 6, 6)
+}
+
+.detailButton1:hover {
+    cursor: pointer;
+}
+
+.detailButton2 {
+    color: rgb(0, 99, 0)
+}
+
+.detailButton2:hover {
+    cursor: pointer;
 }
 
 
@@ -345,6 +396,7 @@
     padding: 0 32px;
     box-sizing: border-box;
     background-color: rgba(255, 255, 255, 1);
+    z-index: 50;
 }
 
 .user-sidebar {
