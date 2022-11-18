@@ -198,11 +198,11 @@ const StoryDetails = () => {
                                 <div>{comment.User.username}</div>
                               </div>
                               <div className="comment-body">{comment.body}</div>
-                              <div className="likeComment">
+                              {/* <div className="likeComment">
                                 <div>
                                   <LikeComment comment={comment} />
                                 </div>
-                              </div>
+                              </div> */}
 
                               {comment?.user_id === user?.id && (
                                 <div className="comment-buttons">
