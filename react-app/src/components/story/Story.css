@@ -254,20 +254,47 @@
 
 .divider-comments {
     margin-top: 50px;
+    margin-right: 10%;
     margin-bottom: 10px;
-    border-color: rgb(232, 232, 232);
-    opacity: .6;
+    border-color: rgb(246, 245, 245);
+    opacity: .5;
+}
+
+.comment-post-divider {
+    width: 100%;
 }
 
 .item-header {
     display: flex;
     margin-top: 5%;
+    align-items: center;
+    gap: 15px;
 }
 
+.comment-edit-form {
+    z-index: 300;
+    background-color: black;
+    z-index: 300;
+    margin-right: 25%;
+}
+
+#edit-form-text {
+    z-index: 300;
+    margin-right: 25%;
+    margin-right: 500px;
+}
 
 .comment-body {
-    margin-left: 2%
+    margin-left: 2%;
+    margin-top: 5%
 }
+
+.comment-buttons {
+    margin-left: 70%;
+    margin-top: 20%;
+}
+
+
 
 .titlePadding {
     padding-top: 20px;

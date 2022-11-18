@@ -58,6 +58,8 @@ function CommentEditForm({comment, setCommentBody, commentBody}) {
     </ul>
     <label>
       <textarea
+      className="edit-text"
+      id="edit-form-text"
         type="text"
         value={commentBody}
         onChange={(e) => setCommentBody(e.target.value)}
