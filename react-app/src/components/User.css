@@ -84,7 +84,7 @@
 
 .for-you-action-clicked,
 .following-action-clicked {
-    margin-right: 32px;
+    margin-right: 50px;
     min-width: max-content;
     padding-bottom: 16px;
     display: block;

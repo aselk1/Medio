@@ -1,5 +1,6 @@
 .centerCol {
     margin-bottom: 40px;
+    padding-top: 10px;
 }
 
 .centerRow {
@@ -17,10 +18,6 @@
 .pagePadding {
     padding-left: 150px;
     padding-top: 50px;
-}
-
-.flexCol {
-    display: block;
 }
 
 .flexRow {
@@ -64,6 +61,14 @@
 
 .fontSize42 {
     font-size: 42px;
+    max-height: 52px;
+    line-height: 52px;
+    letter-spacing: 0px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: rgba(41, 41, 41, 1);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .fontSize21 {
@@ -94,12 +99,39 @@
     display: block;
 }
 
-.story-main-top {
+.story-main-container {
+    justify-content: center;
+    display: flex;
+}
+
+.your-story-body {
+    max-width: 692px;
+    margin: 0 32px;
+    min-width: 0;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.write-button-container {
+    display: flex;
+}
+
+.body-holder,
+.story-main-top,
+.header-wrapper,
+.story-holder,
+.flexRo {
     display: block;
 }
 
-.story-holder {
-    display: block;
+.flexCol {
+    display: flex;
+    flex-direction: column;
 }
 
 .story-width {
@@ -129,6 +161,12 @@
 
 .story-user-holder {
     display: flex;
+}
+
+.your-story-header {
+    margin-top: 52px;
+    margin-bottom: 28px;
+    display: block;
 }
 
 .user-image-wrapper {
@@ -241,7 +279,7 @@
     color: rgba(41, 41, 41, 1);
     font-weight: 700;
     margin: 0;
-    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: " Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .user-interactions {
@@ -351,6 +389,10 @@
 .sb-spacer {
     margin-top: 16px;
     display: block;
+}
+
+.write-story-body {
+    min-height: 100%;
 }
 
 .profile-author-name {
