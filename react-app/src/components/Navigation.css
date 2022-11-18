@@ -210,40 +210,56 @@ body {
     display: block;
 }
 
+.horizontal-line-container {
+    width: 24px;
+    margin: 0px 0px 35px 28px;
+    display: block;
+}
 
-/* #icon2 {
-    width: 35px;
+.horizontal-line {
+    background-color: rgba(230, 230, 230, 1);
+    height: 1px;
+    border: 0;
+    margin: 0;
+}
+
+
+#icon2 {
+    vertical-align: middle;
+    /* width: 35px;
     margin-top: 175px;
     font-size: 20px;
     text-decoration: none;
-    color: black;
-    vertical-align: middle;
+    color: black; */
 }
 
 #icon3 {
-    width: 30px;
+    vertical-align: middle;
+    /* width: 30px;
     font-size: 20px;
     text-decoration: none;
     color: black;
-    margin-top: 25px;
+    margin-top: 25px; */
 }
 
 #icon4 {
-    width: 30px;
+    vertical-align: middle;
+    /* width: 30px;
     font-size: 20px;
     text-decoration: none;
     color: black;
-    margin-top: 25px;
+    margin-top: 25px; */
 }
 
 #icon5 {
-    width: 30px;
+    vertical-align: middle;
+    /* width: 30px;
     font-size: 20px;
     margin-top: 300px;
     background-color: white;
     border-style: none;
-    cursor: pointer;
-} */
+    cursor: pointer; */
+}
 
 .dropdown-container {
     position: relative;

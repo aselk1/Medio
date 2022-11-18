@@ -65,6 +65,9 @@ const SideBar = () => {
                   </div>
                 </NavLink>
               </div>
+              <div className='horizontal-line-container'>
+                <hr className='horizontal-line' />
+              </div>
               <div className='icon user-buttons'>
                 <NavLink to='/new-story' exact={true} className='user-button-link'>
                   <div className='button-container'>
