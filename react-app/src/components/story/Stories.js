@@ -38,7 +38,7 @@ const Stories = ({ user }) => {
           <SideBar />
           <main className="story-main">
             <div className="story-main-container">
-              <div className="your-story-body">
+              <div className="your-story-body bottomBorder">
                 <div className="body-holder">
                   <div className="your-story-header">
                     <div className="centerCol flexRo">
@@ -61,7 +61,7 @@ const Stories = ({ user }) => {
                     {userStories &&
                       userStories[0] &&
                       userStories.map((story) => (
-                        <li className="bottomBorder titlePadding">
+                        <li className="topBorder titlePadding">
                           <h4
                             className="widthFit cursorPointer"
                             onClick={(e) => storyDetails(story, e)}
