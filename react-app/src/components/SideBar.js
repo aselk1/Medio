@@ -34,7 +34,7 @@ const SideBar = () => {
             <div className='medio-home-link'>
               <NavLink to='/home' exact={true} activeClassName='active'><img className='home-logo' src="https://miro.medium.com/max/1400/1*psYl0y9DUzZWtHzFJLIvTw.png" alt="logo" /></NavLink>
             </div>
-            <div className='user-buttons'>
+            {user && <div className='user-buttons'>
               <div className='icon user-buttons'>
                 <NavLink to='/home' exact={true} className='user-button-link'>
                   <div className='button-container'>
@@ -83,8 +83,8 @@ const SideBar = () => {
                   </div>
                 </NavLink>
               </div>
-            </div>
-            <div className='user-menu'>
+            </div>}
+            {user && <div className='user-menu'>
               <div>
                 <div className='user-buttons'>
                   <button onClick={openMenu} className='user-profile-button'>
@@ -103,7 +103,7 @@ const SideBar = () => {
                                         <ul>
                                           <li>
                                             <div>
-                                              <p><LogoutButton /></p>
+                                              <LogoutButton />
                                             </div>
                                           </li>
                                         </ul>
@@ -132,7 +132,7 @@ const SideBar = () => {
                   </button>
                 </div>
               </div>
-            </div>
+            </div>}
           </div>
         </div>
       </nav>
