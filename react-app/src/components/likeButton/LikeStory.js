@@ -59,7 +59,7 @@ const LikeStory = () => {
       btn === null ? dispatch(getLikeStory(id)) :
       btn.style.backgroundColor = "#F5F5F5"
       dispatch(deleteLikeStory(id))
-      // dispatch(getLikeStory(id))
+      dispatch(getLikeStory(id))
     } else {
       dispatch(likeStory(id))
       btn === null ? dispatch(getLikeStory(id)) :
