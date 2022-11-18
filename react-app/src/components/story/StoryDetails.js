@@ -28,18 +28,14 @@ const StoryDetails = () => {
   const storyId = Number(useLocation().pathname.split("/")[2]);
 
   const [showMenu, setShowMenu] = useState(false);
-<<<<<<< HEAD
   const [showEdit, setShowEdit] = useState(false);
   const [commentBody, setCommentBody] = useState("");
   const [editId, setEditId] = useState(-1);
-=======
-  const [showEdit, setShowEdit] = useState(false)
 
   const removeComment = () => {
     dispatch(deleteComment(id))
       .then(() => history.push('/home'))
   };
->>>>>>> ab37017 (fixing css styling)
 
   // if (story.body) {
   //   setBody("this")
@@ -209,28 +205,31 @@ const StoryDetails = () => {
                               className="profileImage"
                             ></img>
 <<<<<<< HEAD
-                            <div>
-                              {comment.body}
-                            </div>
-                            {comment?.user_id === user?.id && (
-                              <div>
-                                <button className="detailButton1" onClick={() => handleDelete(comment.id)}>Delete</button>
-                                <button id={comment.id} value={comment.id} className="detailButton2"
-                                  onClick={() => {
-                                    if (editId === comment.id) {
-                                      setEditId(-1);
-                                      setEditId("");
-                                      return;
-                                    }
-                                    setEditId(comment.id);
-                                    setCommentBody(comment.body);
-                                  }}
-                                >Edit
-                                </button>
-                              </div>
-                            )}
-                            {editId === comment.id && (
-                              <CommentEditForm comment={comment} setCommentBody={setCommentBody} commentBody={commentBody} />
+  <div>
+    {comment.body}
+  </div>
+  {
+    comment?.user_id === user?.id && (
+      <div>
+        <button className="detailButton1" onClick={() => handleDelete(comment.id)}>Delete</button>
+        <button id={comment.id} value={comment.id} className="detailButton2"
+          onClick={() => {
+            if (editId === comment.id) {
+              setEditId(-1);
+              setEditId("");
+              return;
+            }
+            setEditId(comment.id);
+            setCommentBody(comment.body);
+          }}
+        >Edit
+        </button>
+      </div>
+    )
+  }
+  {
+    editId === comment.id && (
+      <CommentEditForm comment={comment} setCommentBody={setCommentBody} commentBody={commentBody} />
 =======
                             {comment.body}
                             <button className="detailButton1" onClick={() => dispatch(deleteComment(comment.id))}>Delete</button>
@@ -238,50 +237,51 @@ const StoryDetails = () => {
                             {showEdit && (
                               <CommentEditForm />
 >>>>>>> ab37017 (fixing css styling)
-                            )}
-                          </div>
+    )
+  }
+                          </div >
                         ))}
-                      </div>
+                      </div >
                     )}
-                  </div>
-                  <div onClick={openMenu} className="comment-icon">
-                    <i className="fa-regular fa-comment"></i>
-                  </div>
+                  </div >
+  <div onClick={openMenu} className="comment-icon">
+    <i className="fa-regular fa-comment"></i>
+  </div>
+                </div >
+              </div >
+            </div >
+          </main >
+  <div className="user-info-sidebar">
+    <div className="user-sidebar">
+      <div className="user-info-sidebar-container">
+        <div className="user-info-sidebar-holder">
+          <div className="user-info-sidebar-wrapper">
+            <div className="user-sidebar-items">
+              <NavLink to={`/users/${story.user_id}`} className='profile-link'>
+                <div className="profile-picture">
+                  <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                    alt="Profile"
+                    className="profile-image"
+                  ></img>
+                  <div className="under-image"></div>
                 </div>
-              </div>
-            </div>
-          </main>
-          <div className="user-info-sidebar">
-            <div className="user-sidebar">
-              <div className="user-info-sidebar-container">
-                <div className="user-info-sidebar-holder">
-                  <div className="user-info-sidebar-wrapper">
-                    <div className="user-sidebar-items">
-                      <NavLink to={`/users/${story.user_id}`} className='profile-link'>
-                        <div className="profile-picture">
-                          <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                            alt="Profile"
-                            className="profile-image"
-                          ></img>
-                          <div className="under-image"></div>
-                        </div>
-                      </NavLink>
-                      <div className="sb-spacer"></div>
-                      <NavLink to={`/users/${story.user_id}`} className='profile-link'>
-                        <h2 className="profile-author-name">
-                          <span className="user">{story?.User?.username}</span>
-                        </h2>
-                      </NavLink>
-                      <div className="follow-button-holder">
-                        <button className="follow-button">Follow</button>
-                        {/* <button className="unfollow-button">Unfollow</button> */}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              </NavLink>
+              <div className="sb-spacer"></div>
+              <NavLink to={`/users/${story.user_id}`} className='profile-link'>
+                <h2 className="profile-author-name">
+                  <span className="user">{story?.User?.username}</span>
+                </h2>
+              </NavLink>
+              <div className="follow-button-holder">
+                <button className="follow-button">Follow</button>
+                {/* <button className="unfollow-button">Unfollow</button> */}
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
         </div >
       </div >}
     </div >
