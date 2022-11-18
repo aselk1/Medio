@@ -204,7 +204,6 @@ const StoryDetails = () => {
                               alt="Profile"
                               className="profileImage"
                             ></img>
-<<<<<<< HEAD
   <div>
     {comment.body}
   </div>
@@ -230,13 +229,6 @@ const StoryDetails = () => {
   {
     editId === comment.id && (
       <CommentEditForm comment={comment} setCommentBody={setCommentBody} commentBody={commentBody} />
-=======
-                            {comment.body}
-                            <button className="detailButton1" onClick={() => dispatch(deleteComment(comment.id))}>Delete</button>
-                            <button className="detailButton2" onClick={() => setShowEdit(!showEdit)}>Edit</button>
-                            {showEdit && (
-                              <CommentEditForm />
->>>>>>> ab37017 (fixing css styling)
     )
   }
                           </div >
