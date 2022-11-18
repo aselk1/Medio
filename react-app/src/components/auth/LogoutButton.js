@@ -9,10 +9,10 @@ const LogoutButton = () => {
 
   const onLogout = async (e) => {
     await dispatch(logout())
-    .then(history.push('/'))
+      .then(history.push('/'))
   };
 
-  return <button onClick={onLogout}>Logout</button>;
+  return <div className='log-out' onClick={onLogout}>Logout</div>;
 };
 
 export default LogoutButton;

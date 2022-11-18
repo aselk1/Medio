@@ -94,78 +94,82 @@ const StoryDetails = () => {
 
 
   return (
-    <div>
-      {<div>
-        <SideBar />
-        <main className="story-main">
-          <div className="flexCol centerCol">
-            <div className="width700">
-              <div className="">
-                <div className="flexRow centerRow centerCol">
-                  <img
-                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                    alt="Profile"
-                    className="profileImage"
-                  ></img>
-                  <h4>{story?.User?.username}</h4>
-                  {story.User?.id === user?.id && (
-                    <div className="flexRow flexEnd">
-                      <button
-                        onClick={() => history.push(`/stories/${story.id}/edit`)}
-                      >
-                        Edit
-                      </button>
-                      <button onClick={deleteStory}>Delete</button>
-                    </div>
-                  )}
-                  <button id="likeClickBt" onClick={clickLike}>
-                    Like
-                  </button>{" "}
-                  {likeInfo?.num}
-                </div>
-                <h2 className="titlePadding">{story?.title}</h2>
-                <div>
-                  {body[0] &&
-                    body.map((el) => {
-                      const contentState = convertFromRaw(JSON.parse(el));
-                      const editorState =
-                        EditorState.createWithContent(contentState);
-                      return (
-                        <RichEditor2 editorState={editorState} readOnly={true} />
-                      );
-                    })}
-                </div>
-              </div>
-            </div>
-            <div className="comments">
-              {showMenu && (
-                <div class="comments-sidebar">
-                  <div className="comments-headline">
-                    <img
-                      src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                      alt="Profile"
-                      className="profileImage"
-                    ></img><h2>{user?.username}</h2>
-                  </div>
-                  <div className="textarea-comments"><CommentForm /></div>
-                  {story.Comments?.map((comment) => (
-                    <div>
+    <div className="story-page-container">
+      {<div className="story-page-holder">
+        <div className="story-page">
+          <SideBar />
+          <main className="story-main">
+            <div className="story-holder">
+              <div className="flexCol centerCol">
+                <div className="width700">
+                  <div className="story-width">
+                    <div className="flexRow centerRow centerCol">
                       <img
                         src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
                         alt="Profile"
                         className="profileImage"
                       ></img>
-                      {comment.body}
+                      <h4>{story?.User?.username}</h4>
+                      {story.User?.id === user?.id && (
+                        <div className="flexRow flexEnd">
+                          <button
+                            onClick={() => history.push(`/stories/${story.id}/edit`)}
+                          >
+                            Edit
+                          </button>
+                          <button onClick={deleteStory}>Delete</button>
+                        </div>
+                      )}
+                      <button id="likeClickBt" onClick={clickLike}>
+                        Like
+                      </button>{" "}
+                      {likeInfo?.num}
                     </div>
-                  ))}
+                    <h2 className="titlePadding">{story?.title}</h2>
+                    <div>
+                      {body[0] &&
+                        body.map((el) => {
+                          const contentState = convertFromRaw(JSON.parse(el));
+                          const editorState =
+                            EditorState.createWithContent(contentState);
+                          return (
+                            <RichEditor2 editorState={editorState} readOnly={true} />
+                          );
+                        })}
+                    </div>
+                  </div>
                 </div>
-              )}
+              </div>
+              <div className="comments">
+                {showMenu && (
+                  <div className="comments-sidebar">
+                    <div className="comments-headline">
+                      <img
+                        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                        alt="Profile"
+                        className="profileImage"
+                      ></img><h2>{user?.username}</h2>
+                    </div>
+                    <div className="textarea-comments"><CommentForm /></div>
+                    {story.Comments?.map((comment) => (
+                      <div>
+                        <img
+                          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                          alt="Profile"
+                          className="profileImage"
+                        ></img>
+                        {comment.body}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div onClick={openMenu} className="comment-icon">
+                <i className="fa-regular fa-comment"></i>
+              </div>
             </div>
-            <div onClick={openMenu} className="comment-icon">
-              <i class="fa-regular fa-comment"></i>
-            </div>
-          </div>
-        </main>
+          </main>
+        </div>
       </div>}
     </div>
   );

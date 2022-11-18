@@ -1,5 +1,5 @@
 .centerCol {
-    align-items: center;
+    margin-bottom: 40px;
 }
 
 .centerRow {
@@ -20,9 +20,7 @@
 }
 
 .flexCol {
-    display: flex;
-    flex-direction: column;
-    position: relative;
+    display: block;
 }
 
 .flexRow {
@@ -43,7 +41,9 @@
 }
 
 .width700 {
-    width: 700px;
+    display: flex;
+    justify-content: center;
+    /* width: 700px; */
 }
 
 .width500 {
@@ -70,11 +70,39 @@
     font-size: 21px;
 }
 
+.story-page-container {
+    display: block;
+    background-color: rgba(255, 255, 255, 1)
+}
+
+.story-page-holder {
+    display: block;
+    max-width: 1504px;
+    margin: auto;
+}
+
+.story-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .story-main {
     margin-bottom: 0;
     flex: 1 1 auto;
     min-width: 0;
     display: block;
+}
+
+.story-holder {
+    display: block;
+}
+
+.story-width {
+    max-width: 692px;
+    margin: 0 32px;
+    min-width: 0;
+    width: 100%;
 }
 
 .comments-icon {

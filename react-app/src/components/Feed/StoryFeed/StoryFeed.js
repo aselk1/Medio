@@ -32,7 +32,7 @@ export default function StoryFeed() {
                     <div className='trending-inner-container'>
                         <div className='trending-holder'>
                             <div className='trending-title'>
-                                <div><i class="fa-solid fa-chart-line fa-lg" style={{ marginRight: '10px' }}></i></div>
+                                <div><i className="fa-solid fa-chart-line fa-lg" style={{ marginRight: '10px' }}></i></div>
                                 <div className='title-holder'>
                                     {stories.length >= 6 ? <p className='title-line'>Trending on Medium</p> : <p className='title-line'>Looks like we have no top stories to share. Write one for the world to see!</p>}
                                 </div>
