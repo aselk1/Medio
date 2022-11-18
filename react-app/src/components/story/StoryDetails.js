@@ -87,7 +87,7 @@ const StoryDetails = () => {
       dispatch(followActions.follow(user.id, story.user_id))
         .then(() => setFollowing(true))
     } else {
-      dispatch(followActions.unfollow())
+      dispatch(followActions.unfollow(user.id, story.user_id))
         .then(() => setFollowing(false))
     }
   }
@@ -152,199 +152,176 @@ const StoryDetails = () => {
                                   </div>
                                 </div>
                               </div>
-<<<<<<< HEAD
-                            </div >
-                          </header >
-  <section>
-    <div className="story-page-body">
-      <div>
-        <h1 className="title-padding">{story?.title}</h1>
-=======
                             </header>
-      <section>
-        <div className="story-page-body">
-          <div>
-            <h1 className="title-padding">
-              {story?.title}
-            </h1>
-          </div>
-          <div>
-            {body[0] &&
-              body.map((el) => {
-                const contentState = convertFromRaw(
-                  JSON.parse(el)
-                );
-                const editorState =
-                  EditorState.createWithContent(
-                    contentState
-                  );
-                return (
-                  <RichEditor2
-                    editorState={editorState}
-                    readOnly={true}
-                  />
-                );
-              })}
-          </div>
->>>>>>> working
-        </div>
-      </section>
-    </div>
-  </div>
+                            <section>
+                              <div className="story-page-body">
+                                <div>
+                                  <h1 className="title-padding">
+                                    {story?.title}
+                                  </h1>
+                                </div>
+                                <div>
+                                  {body[0] &&
+                                    body.map((el) => {
+                                      const contentState = convertFromRaw(
+                                        JSON.parse(el)
+                                      );
+                                      const editorState =
+                                        EditorState.createWithContent(
+                                          contentState
+                                        );
+                                      return (
+                                        <RichEditor2
+                                          editorState={editorState}
+                                          readOnly={true}
+                                        />
+                                      );
+                                    })}
+                                </div>
+                              </div>
+                            </section>
+                          </div>
+                        </div>
                       </article >
                     </div >
                   </div >
                 </div >
-  <div className="user-interactions">
-    <div className="user-interactions-wrapper">
-      <div className="like-items">
-        <div>
-          <div id="likeClickBt" onClick={clickLike}>
-            <i class="fa-regular fa-thumbs-up"></i>
-          </div>
-        </div>
-        <div> {likeInfo?.num}</div>
-      </div>
-      <hr className="like-divider" />
-      <div className="comments">
-        {showMenu && (
-          <div className="comments-sidebar">
-            <div className="comments-headline">
-              <img
-                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                alt="Profile"
-                className="profileImage"
-              ></img>
-<<<<<<< HEAD
-{ comment.body }
-                            <button className="detailButton1" onClick={() => dispatch(deleteComment(comment.id))}>Delete</button>
-                            <button className="detailButton2" onClick={() => setShowEdit(!showEdit)}>Edit</button>
-{
-  showEdit && (
-    <CommentEditForm />
-  )
-}
-=======
+                <div className="user-interactions">
+                  <div className="user-interactions-wrapper">
+                    <div className="like-items">
+                      <div>
+                        <div id="likeClickBt" onClick={clickLike}>
+                          <i class="fa-regular fa-thumbs-up"></i>
+                        </div>
+                      </div>
+                      <div> {likeInfo?.num}</div>
+                    </div>
+                    <hr className="like-divider" />
+                    <div className="comments">
+                      {showMenu && (
+                        <div className="comments-sidebar">
+                          <div className="comments-headline">
+                            <img
+                              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                              alt="Profile"
+                              className="profileImage"
+                            ></img>
                             <h2>{user?.username}</h2>
->>>>>>> working
                           </div >
-  <div className="textarea-comments">
-    <CommentForm />
-  </div>
-{
-  story.Comments?.map((comment) => (
-    <div>
-      <div className="item-header">
-        <img
-          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-          alt="Profile"
-          className="profileImage"
-        ></img>
-        <div>{comment.User.username}</div>
-      </div>
-      <div className="comment-body">{comment.body}</div>
-      {comment?.user_id === user?.id && (
-        <div className="comment-buttons">
-          <div
-            className="detailButton1"
-            onClick={() => handleDelete(comment.id)}
-          >
-            <i class="fa-solid fa-trash"></i>
-          </div>
-          <div
-            id={comment.id}
-            value={comment.id}
-            className="detailButton2"
-            onClick={() => {
-              if (editId === comment.id) {
-                setEditId(-1);
-                setEditId("");
-                return;
-              }
-              setEditId(comment.id);
-              setCommentBody(comment.body);
-            }}
-          >
-            <i class="fa-solid fa-pen"></i>
-          </div>
-        </div>
-      )}
-      <div className="editform">
-        {editId === comment.id && (
-          <CommentEditForm
-            className="comment-edit-form"
-            comment={comment}
-            setCommentBody={setCommentBody}
-            commentBody={commentBody}
-          />
-        )}
-      </div>
-      <hr className="divider-comments" />
-    </div>
-  ))
-}
+                          <div className="textarea-comments">
+                            <CommentForm />
+                          </div>
+                          {
+                            story.Comments?.map((comment) => (
+                              <div>
+                                <div className="item-header">
+                                  <img
+                                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                                    alt="Profile"
+                                    className="profileImage"
+                                  ></img>
+                                  <div>{comment.User.username}</div>
+                                </div>
+                                <div className="comment-body">{comment.body}</div>
+                                {comment?.user_id === user?.id && (
+                                  <div className="comment-buttons">
+                                    <div
+                                      className="detailButton1"
+                                      onClick={() => handleDelete(comment.id)}
+                                    >
+                                      <i class="fa-solid fa-trash"></i>
+                                    </div>
+                                    <div
+                                      id={comment.id}
+                                      value={comment.id}
+                                      className="detailButton2"
+                                      onClick={() => {
+                                        if (editId === comment.id) {
+                                          setEditId(-1);
+                                          setEditId("");
+                                          return;
+                                        }
+                                        setEditId(comment.id);
+                                        setCommentBody(comment.body);
+                                      }}
+                                    >
+                                      <i class="fa-solid fa-pen"></i>
+                                    </div>
+                                  </div>
+                                )}
+                                <div className="editform">
+                                  {editId === comment.id && (
+                                    <CommentEditForm
+                                      className="comment-edit-form"
+                                      comment={comment}
+                                      setCommentBody={setCommentBody}
+                                      commentBody={commentBody}
+                                    />
+                                  )}
+                                </div>
+                                <hr className="divider-comments" />
+                              </div>
+                            ))
+                          }
                         </div >
                       )}
                     </div >
-  <div onClick={openMenu} className="comment-icon">
-    <div>
-      <i className="fa-regular fa-comment"></i>
-    </div>
-    <div>{story?.Comments?.length}</div>
-  </div>
+                    <div onClick={openMenu} className="comment-icon">
+                      <div>
+                        <i className="fa-regular fa-comment"></i>
+                      </div>
+                      <div>{story?.Comments?.length}</div>
+                    </div>
                   </div >
                 </div >
               </div >
             </main >
-  <div className="user-info-sidebar">
-    <div className="user-sidebar">
-      <div className="user-info-sidebar-container">
-        <div className="user-info-sidebar-holder">
-          <div className="user-info-sidebar-wrapper">
-            <div className="user-sidebar-items">
-              <NavLink
-                to={`/users/${story.user_id}`}
-                className="profile-link"
-              >
-                <div className="profile-picture">
-                  <img
-                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                    alt="Profile"
-                    className="profile-image"
-                  ></img>
-                  <div className="under-image"></div>
-                </div>
-              </NavLink>
-              <div className="sb-spacer"></div>
-              <NavLink
-                to={`/users/${story.user_id}`}
-                className="profile-link"
-              >
-                <h2 className="profile-author-name">
-                  <span className="user">
-                    {story?.User?.username}
-                  </span>
-                </h2>
-              </NavLink>
-              <div className="follow-button-holder">
-                {user && (
-                  <button className="follow-button">Follow</button>
-                )}
-                {/* <button className="unfollow-button">Unfollow</button> */}
-              </div>
-<<<<<<< HEAD
-                      </NavLink >
-                      <div className="sb-spacer"></div>
-                      <NavLink to={`/users/${story.user_id}`} className='profile-link'>
-                        <h2 className="profile-author-name">
-                          <span className="user">{story?.User?.username}</span>
-                        </h2>
-                      </NavLink>
-                      <div className="follow-button-holder">
-                        <button className={following ? "following-user-button" : "follow-user-button"} onClick={handleClick}>{following ? 'Following' : 'Follow'}</button>
-=======
->>>>>>> working
-                      </div>
+            <div className="user-info-sidebar">
+              <div className="user-sidebar">
+                <div className="user-info-sidebar-container">
+                  <div className="user-info-sidebar-holder">
+                    <div className="user-info-sidebar-wrapper">
+                      <div className="user-sidebar-items">
+                        <NavLink
+                          to={`/users/${story.user_id}`}
+                          className="profile-link"
+                        >
+                          <div className="profile-picture">
+                            <img
+                              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                              alt="Profile"
+                              className="profile-image"
+                            ></img>
+                            <div className="under-image"></div>
+                          </div>
+                        </NavLink>
+                        <div className="sb-spacer"></div>
+                        <NavLink
+                          to={`/users/${story.user_id}`}
+                          className="profile-link"
+                        >
+                          <h2 className="profile-author-name">
+                            <span className="user">
+                              {story?.User?.username}
+                            </span>
+                          </h2>
+                        </NavLink>
+                        <NavLink>
+                          <div className="follow-button-holder">
+                            {user && (
+                              <button className="follow-button">Follow</button>)}
+                          </div>
+                        </NavLink >
+                        <div className="sb-spacer"></div>
+                        <NavLink to={`/users/${story.user_id}`} className='profile-link'>
+                          <h2 className="profile-author-name">
+                            <span className="user">{story?.User?.username}</span>
+                          </h2>
+                        </NavLink>
+                        <div className="follow-button-holder">
+                          <button className={following ? "following-user-button" : "follow-user-button"} onClick={handleClick}>{following ? 'Following' : 'Follow'}</button>
+                        </div>
+                      </div >
                     </div >
                   </div >
                 </div >
@@ -353,8 +330,7 @@ const StoryDetails = () => {
           </div >
         </div >
       }
-    </div >
-  );
-};
-
+    </div>
+  )
+}
 export default StoryDetails;
