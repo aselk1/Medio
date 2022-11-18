@@ -28,8 +28,6 @@ const StoryDetails = () => {
 
   const [showMenu, setShowMenu] = useState(false);
 
-
-
   // if (story.body) {
   //   setBody("this")
   // }
@@ -116,7 +114,6 @@ const StoryDetails = () => {
                                       alt="Profile"
                                       className="profileImage"
                                     ></img>
-                                    {/* <h4>{story?.User?.username}</h4> */}
                                     {story.User?.id === user?.id && (
                                       <div className="flexRow flexEnd">
                                         <button
@@ -218,7 +215,7 @@ const StoryDetails = () => {
                       <div className="sb-spacer"></div>
                       <NavLink to={`/users/${story.user_id}`} className='profile-link'>
                         <h2 className="profile-author-name">
-                          <span className="user">{story.User.username}</span>
+                          <span className="user">{story?.User?.username}</span>
                         </h2>
                       </NavLink>
                       <div className="follow-button-holder">
