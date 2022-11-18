@@ -11,6 +11,8 @@ import RichEditor2 from "../editor/RichEditor2";
 import { Editor, EditorState, convertFromRaw } from "draft-js";
 import CommentForm from "./CommentForm";
 import CommentEditForm from "./CommentEditForm";
+import LikeStory from "../likeButton/LikeStory";
+import LikeComment from "../likeButton/LikeComment";
 
 const StoryDetails = () => {
   const story = useSelector((state) => state.storyDetails);
@@ -52,18 +54,6 @@ const StoryDetails = () => {
     await dispatch(storyDetailsActions.fetchStoryDetails(storyId));
   };
 
-  if (allLikeUser === undefined) {
-    dispatch(getLikeStory(id));
-  }
-
-  let clicked = allLikeUser?.find((id) => id === user.id);
-
-  if (clicked) {
-    const btn = document.getElementById("likeClickBt");
-    btn === null
-      ? dispatch(getLikeStory(id))
-      : (btn.style.backgroundColor = "#3895D3");
-  }
 
   const clickLike = (e) => {
     e.preventDefault();
@@ -178,12 +168,9 @@ const StoryDetails = () => {
                 {user && <div className="user-interactions">
                   <div className="user-interactions-wrapper">
                     <div className="like-items">
-                      <div>
-                        <div id="likeClickBt" onClick={clickLike}>
-                          <i class="fa-regular fa-thumbs-up"></i>
-                        </div>
+                      <div className="likeStory">
+                        <LikeStory />
                       </div>
-                      <div> {likeInfo?.num}</div>
                     </div>
                     <hr className="like-divider" />
                     <div className="comments">
@@ -211,6 +198,12 @@ const StoryDetails = () => {
                                 <div>{comment.User.username}</div>
                               </div>
                               <div className="comment-body">{comment.body}</div>
+                              {/* <div className="likeComment">
+                                <div>
+                                  <LikeComment comment={comment} />
+                                </div>
+                              </div> */}
+
                               {comment?.user_id === user?.id && (
                                 <div className="comment-buttons">
                                   <div
