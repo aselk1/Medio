@@ -194,13 +194,19 @@ const StoryDetails = () => {
                         <div className="textarea-comments"><CommentForm /></div>
                         {story.Comments?.map((comment) => (
                           <div>
+                            <div>
                             <img
                               src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
                               alt="Profile"
                               className="profileImage"
                             ></img>
                             <div>
-                            {comment.body}
+                              {comment.User.username}
+                            </div>
+                            </div>
+                            <div>
+                              {comment.body}
+
                             </div>
                             { comment?.user_id === user?.id && (
                               <div>
