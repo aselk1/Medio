@@ -59,18 +59,6 @@ const StoryDetails = () => {
     await dispatch(storyDetailsActions.fetchStoryDetails(storyId));
   };
 
-  if (allLikeUser === undefined) {
-    dispatch(getLikeStory(id));
-  }
-
-  let clicked = allLikeUser?.find((id) => id === user.id);
-
-  if (clicked) {
-    const btn = document.getElementById("likeClickBt");
-    btn === null
-      ? dispatch(getLikeStory(id))
-      : (btn.style.backgroundColor = "#3895D3");
-  }
 
   const clickLike = (e) => {
     e.preventDefault();
@@ -216,11 +204,11 @@ const StoryDetails = () => {
                                 <div>{comment.User.username}</div>
                               </div>
                               <div className="comment-body">{comment.body}</div>
-                              {/* <div className="likeComment">
+                              <div className="likeComment">
                                 <div>
                                   <LikeComment comment={comment} />
                                 </div>
-                              </div> */}
+                              </div>
 
                               {comment?.user_id === user?.id && (
                                 <div className="comment-buttons">
