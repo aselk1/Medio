@@ -50,7 +50,6 @@ const StoryDetails = () => {
   }, [dispatch]);
 
   const handleDelete = async (commentId) => {
-    console.log(commentId);
     await dispatch(deleteComment(commentId));
     await dispatch(storyDetailsActions.fetchStoryDetails(storyId));
   };
@@ -166,7 +165,7 @@ const StoryDetails = () => {
                     </div>
                   </div>
                 </div>
-                <div className="user-interactions">
+                {user && <div className="user-interactions">
                   <div className="user-interactions-wrapper">
                     <div className="like-items">
                       <div className="likeStory">
@@ -254,7 +253,7 @@ const StoryDetails = () => {
                       <div>{story?.Comments?.length}</div>
                     </div>
                   </div>
-                </div>
+                </div>}
               </div>
             </main>
             <div className="user-info-sidebar">
