@@ -1,5 +1,6 @@
 .centerCol {
     margin-bottom: 40px;
+    padding-top: 10px;
 }
 
 .centerRow {
@@ -130,6 +131,7 @@
 
 .flexCol {
     display: flex;
+    flex-direction: column;
 }
 
 .story-width {

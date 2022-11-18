@@ -44,18 +44,20 @@ const StoryForm = () => {
   };
 
   return (
-    <div>
-      <SideBar />
-      <div className="centerCol flexCol">
-        <form className="flexCol centerCol" onSubmit={postStory}>
-          <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-          </div>
-          <div>
-            {/* <label htmlFor="title">Title</label> */}
-            {/* <h3
+    <div className="story-page-container">
+      <div className="story-page-holder">
+        <div className="story-page">
+          <SideBar />
+          <div className="centerCol flexCol">
+            <form className="flexCol centerCol" onSubmit={postStory}>
+              <div>
+                {errors.map((error, ind) => (
+                  <div key={ind}>{error}</div>
+                ))}
+              </div>
+              <div>
+                {/* <label htmlFor="title">Title</label> */}
+                {/* <h3
             contentEditable
             className="noResize width700 fontSize42 heightFitContent"
             id="titleHeader"
@@ -67,24 +69,24 @@ const StoryForm = () => {
           >
             {titleDiv}
           </h3> */}
-            <textarea
-              className="noResize width700 fontSize42 heightFitContent"
-              name="title"
-              type="text"
-              placeholder="Title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required={true}
-            ></textarea>
-          </div>
-          <div className="width700">
-            {/* <label htmlFor="body">Body</label> */}
-            {/* <RichEditor
+                <textarea
+                  className="noResize width700 fontSize42 heightFitContent"
+                  name="title"
+                  type="text"
+                  placeholder="Title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  required={true}
+                ></textarea>
+              </div>
+              <div className="width700">
+                {/* <label htmlFor="body">Body</label> */}
+                {/* <RichEditor
             editorState={editorState}
             setEditorState={setEditorState}
             /> */}
-            <RichEditor2 editorState={editorState} setEditorState={setEditorState} />
-            {/* <textarea
+                <RichEditor2 editorState={editorState} setEditorState={setEditorState} />
+                {/* <textarea
               className="noResize width700 fontSize21"
               name="body"
               type="text"
@@ -92,9 +94,11 @@ const StoryForm = () => {
               value={body}
               onChange={(e) => setBody(e.target.value)}
             /> */}
+              </div>
+              <button type="submit">Add Story</button>
+            </form>
           </div>
-          <button type="submit">Add Story</button>
-        </form>
+        </div>
       </div>
     </div>
   );
