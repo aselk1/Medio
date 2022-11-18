@@ -124,8 +124,12 @@
 .story-main-top,
 .header-wrapper,
 .story-holder,
-.flexCol {
+.flexRo {
     display: block;
+}
+
+.flexCol {
+    display: flex;
 }
 
 .story-width {

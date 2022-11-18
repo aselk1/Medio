@@ -41,7 +41,7 @@ const Stories = ({ user }) => {
               <div className="your-story-body">
                 <div className="body-holder">
                   <div className="your-story-header">
-                    <div className="centerCol flexCol">
+                    <div className="centerCol flexRo">
                       <div className="spread container">
                         <div className="header-wrapper">
                           <h1 className="fontSize42">Your Stories</h1>
