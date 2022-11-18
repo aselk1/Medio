@@ -1,3 +1,4 @@
+/* user page whole CSS */
 .user-page-container {
     display: block;
     background-color: rgba(255, 255, 255, 1)
@@ -27,6 +28,7 @@
     display: block;
 }
 
+/* user feed CSS */
 .user-action-header {
     top: 0;
     z-index: 499;
@@ -119,4 +121,49 @@
     margin: 0;
     background: transparent;
     overflow: visible;
+}
+
+.user-feed-body {
+    padding: 50px;
+    display: block;
+}
+
+.right-sidebar {
+    min-height: 100vh;
+    border-left: 1px solid rgba(230, 230, 230, 1);
+    padding: 0 32px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+@media screen and (min-width: 1080px) {
+    .right-sidebar {
+        display: block;
+        width: 394px;
+    }
+
+    .sidebar-container {
+        width: 80px;
+        min-height: 100vh;
+        flex-shrink: 1;
+        border-right: 1px solid rgba(230, 230, 230, 1);
+    }
+}
+
+@media screen and (max-width: 1240px) {
+    .right-sidebar {
+        width: 280px;
+    }
+}
+
+@media screen and (min-width: 900px) and (max-width: 1080px) {
+    .sidebar-container {
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .sidebar-container {
+        width: auto;
+    }
 }

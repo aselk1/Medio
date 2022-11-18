@@ -47,7 +47,7 @@ function User() {
               <div className='user-action-header'>
                 <div className='action-header-wrapper'>
                   <div className='action-header'>
-                    <div className='action-bar-top'></div>
+                    <div className='action-bar-top' />
                     <div className='action-bar-wrapper'>
                       <div className='action-bar'>
                         <div className='action-items'>
@@ -77,6 +77,7 @@ function User() {
               </div>
             </div>
           </main>
+          <div className='right-sidebar'></div>
         </div>
       </div>
     </div>

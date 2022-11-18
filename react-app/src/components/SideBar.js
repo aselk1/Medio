@@ -93,17 +93,37 @@ const SideBar = () => {
                         <div style={{ position: 'relative' }}>
                           <div className='user-icon-wrapper'>
                             <i id="icon5" className="fa-solid fa-circle-user fa-2xl"></i>
-                            {showMenu && <div class="dropdown">
-                              <ul className='dropdown-text'>
-                                <div>Home</div>
-                                <div>Profile</div>
-                                <div>Followers</div>
-                                <div className='logout'><LogoutButton /></div>
-                                <hr />
-                                <div>{user.username}</div>
-                                <div>{user.email}</div>
-                              </ul>
-                            </div>
+                            {showMenu &&
+                              <div className='dropdown'>
+                                <div className='main-menu-holder'>
+                                  <div className='main-menu-inner'>
+                                    <span />
+                                    <div className='main-menu-wrapper'>
+                                      <ul>
+                                        <ul>
+                                          <li>
+                                            <div>
+                                              <p><LogoutButton /></p>
+                                            </div>
+                                          </li>
+                                        </ul>
+                                        <hr />
+                                        <ul>
+                                          <li>
+                                            <div>
+                                              <p>{user.username}</p>
+                                              <p>{user.email}</p>
+                                            </div>
+                                            <NavLink to={`/users/${user.id}`}>
+                                              <div>View Profile</div>
+                                            </NavLink>
+                                          </li>
+                                        </ul>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             }
                           </div>
                         </div>
