@@ -175,7 +175,7 @@ const StoryDetails = () => {
                     </div>
                   </div>
                 </div>
-                <div className="user-interactions">
+                {user && <div className="user-interactions">
                   <div className="user-interactions-wrapper">
                     <div className="like-items">
                       <div>
@@ -260,7 +260,7 @@ const StoryDetails = () => {
                       <div>{story?.Comments?.length}</div>
                     </div>
                   </div>
-                </div>
+                </div>}
               </div>
             </main>
             <div className="user-info-sidebar">
