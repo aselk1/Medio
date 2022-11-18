@@ -13,7 +13,7 @@ export default function StoryFeed() {
     let trendingArr = []
     let authorArr = []
 
-    if (isLoaded) {
+    if (isLoaded && stories.length >= 6) {
         for (let i = 0; i < 6; i++) {
             trendingArr.push({ 'body': stories[i].body, 'title': stories[i].title, 'id': stories[i].id, 'user_id': stories[i].user_id })
             authorArr.push({ 'username': stories[i].User.username, 'email': stories[i].User.email, 'id': stories[i].User.id })
@@ -32,19 +32,19 @@ export default function StoryFeed() {
                     <div className='trending-inner-container'>
                         <div className='trending-holder'>
                             <div className='trending-title'>
-                                <div>[icon]</div>
+                                <div><i class="fa-solid fa-chart-line fa-lg" style={{ marginRight: '10px' }}></i></div>
                                 <div className='title-holder'>
-                                    <p className='title-line'>Trending on Medium</p>
+                                    {stories.length >= 6 ? <p className='title-line'>Trending on Medium</p> : <p className='title-line'>Looks like we have no top stories to share. Write one for the world to see!</p>}
                                 </div>
                             </div>
                             <div className='trending-stories-holder'>
                                 <div className='trending-stories'>
-                                    {trendingArr.map(story => (
+                                    {stories[0] && trendingArr.map(story => (
                                         <div className='trending-story-container'>
                                             <div className='trending-story-holder'>
                                                 <div className='trending-inner-story'>
                                                     <div className='trending-story'>
-                                                        <span>0{trendingArr.indexOf(story) + 1}</span>
+                                                        <span className='story-numbers'>0{trendingArr.indexOf(story) + 1}</span>
                                                     </div>
                                                     <div className='trending-preview'>
                                                         <div className='details'>

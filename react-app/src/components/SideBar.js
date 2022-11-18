@@ -42,7 +42,7 @@ const SideBar = () => {
                       <div className='inner-button-container'>
                         <div>
                           <div className='button-icon'>
-                            <i id="icon2" class="fa-solid fa-house-chimney fa-lg"></i>
+                            <i id="icon2" className="fa-solid fa-house-chimney fa-lg"></i>
                           </div>
                         </div>
                       </div>
@@ -57,7 +57,7 @@ const SideBar = () => {
                       <div className='inner-button-container'>
                         <div>
                           <div className='button-icon'>
-                            <i id="icon3" class="fa-regular fa-file-lines fa-lg"></i>
+                            <i id="icon3" className="fa-regular fa-file-lines fa-lg"></i>
                           </div>
                         </div>
                       </div>
@@ -75,7 +75,7 @@ const SideBar = () => {
                       <div className='inner-button-container'>
                         <div>
                           <div className='button-icon'>
-                            <i id="icon4" class="fa-regular fa-pen-to-square fa-lg"></i>
+                            <i id="icon4" className="fa-regular fa-pen-to-square fa-lg"></i>
                           </div>
                         </div>
                       </div>
@@ -87,21 +87,29 @@ const SideBar = () => {
             <div className='user-menu'>
               <div>
                 <div className='user-buttons'>
-                  <div className='dropdown-container'>
-                    <i onClick={openMenu} id="icon5" class="fa-solid fa-circle-user fa-2xl"></i>
-                    {showMenu && <div class="dropdown">
-                      <ul className='dropdown-text'>
-                        <div>Home</div>
-                        <div>Profile</div>
-                        <div>Followers</div>
-                        <div className='logout'><LogoutButton /></div>
-                        <hr />
-                        <div>{user.username}</div>
-                        <div>{user.email}</div>
-                      </ul>
+                  <button onClick={openMenu} className='user-profile-button'>
+                    <div className='dropdown-container'>
+                      <div className='user-icon-holder'>
+                        <div style={{ position: 'relative' }}>
+                          <div className='user-icon-wrapper'>
+                            <i id="icon5" className="fa-solid fa-circle-user fa-2xl"></i>
+                            {showMenu && <div class="dropdown">
+                              <ul className='dropdown-text'>
+                                <div>Home</div>
+                                <div>Profile</div>
+                                <div>Followers</div>
+                                <div className='logout'><LogoutButton /></div>
+                                <hr />
+                                <div>{user.username}</div>
+                                <div>{user.email}</div>
+                              </ul>
+                            </div>
+                            }
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    }
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>

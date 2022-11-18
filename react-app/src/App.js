@@ -12,16 +12,13 @@ import Stories from "./components/story/Stories";
 import StoryDetails from "./components/story/StoryDetails";
 import SplashPage from "./components/SplashPage";
 import FollowFeed from "./components/Feed/FollowFeed/FollowFeed";
-import SideBar from "./components/SideBar";
 import EditStoryForm from "./components/story/EditStoryForm";
 import Home from "./components/Home";
-import * as storyDetailActions from "./store/storyDetails";
 import { ModalProvider } from "./context/Modal";
 
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
-  const story = useSelector((state) => state.StoryDetails);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -46,9 +43,9 @@ function App() {
             <Route exact path="/home">
               {user === null ? <Redirect to="/" /> : <Home />}
             </Route>
-            <Route path="/new-story" exact={true}>
+            <ProtectedRoute path="/new-story" exact={true}>
               <StoryForm />
-            </Route>
+            </ProtectedRoute>
             <Route path="/login" exact={true}>
               <LoginForm />
             </Route>
@@ -64,7 +61,7 @@ function App() {
             <Route path="/stories" exact={true}>
               <Stories user={user} />
             </Route>
-            <Route path="/test">
+            <Route path="/users/:userId/following-feed">
               <FollowFeed />
             </Route>
             <Route path="/stories/:id" exact={true}>

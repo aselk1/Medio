@@ -67,8 +67,8 @@
 }
 
 .trending-story-container {
-    max-width: 33.333333%;
-    flex-basis: 33.333333%;
+    max-width: 30%;
+    flex-basis: 30%;
     padding-right: 16px;
     padding-left: 16px;
     flex-grow: 0;
@@ -95,6 +95,15 @@
     top: -10px;
     margin-right: 16px;
     position: relative;
+}
+
+.story-numbers {
+    font-size: 30px;
+    font-weight: 700;
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: rgba(230, 230, 230, 1);
+    letter-spacing: 0;
+    line-height: 36px;
 }
 
 .trending-preview {

@@ -126,6 +126,14 @@ body {
 
 
 /*  sidebar CSS */
+.sidebar-container {
+    border-right: 1px solid rgba(230, 230, 230, 1);
+    flex-shrink: 1;
+    min-height: 100vh;
+    width: 80px;
+    /* position: fixed; */
+}
+
 .sideBar {
     height: 100%;
     /* width: 70px;
@@ -253,17 +261,40 @@ body {
 
 #icon5 {
     vertical-align: middle;
-    /* width: 30px;
-    font-size: 20px;
+    width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    /* font-size: 20px;
     margin-top: 300px;
     background-color: white;
     border-style: none;
     cursor: pointer; */
 }
 
+.user-profile-button {
+    color: black;
+    background: transparent;
+    border: none;
+    padding: 0;
+    width: 100%;
+    margin: 0;
+    overflow: visible;
+}
+
 .dropdown-container {
+    display: flex;
+    align-items: center;
+}
+
+.user-icon-holder {
+    margin: 8px 24px;
     position: relative;
-    display: inline-block;
+    display: block;
+}
+
+.user-icon-wrapper {
+    display: block;
+    position: relative;
 }
 
 .dropdown {
