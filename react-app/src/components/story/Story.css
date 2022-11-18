@@ -70,6 +70,12 @@
     font-size: 21px;
 }
 
+.story-main {
+    margin-bottom: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+    display: block;
+}
 
 .comments-icon {
     margin-top: 90%;
@@ -112,14 +118,14 @@
     box-shadow: 0 4px 12px 2px rgba(0, 0, 0, 0.14);
 }
 
-#form1 > label > textarea[type=text] {
+#form1>label>textarea[type=text] {
     border: none;
     width: 350px;
     height: 100px;
     resize: none;
 }
 
-#form1 > button {
+#form1>button {
     margin-left: 75%;
     border-radius: 33px;
     width: 70px;
@@ -129,7 +135,7 @@
     color: white;
 }
 
-#form1 > button:hover {
+#form1>button:hover {
     background-color: green;
     cursor: pointer;
 }

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
+import * as storyActions from "./store/stories"
 import User from "./components/User";
 import { authenticate } from "./store/session";
 import StoryForm from "./components/story/StoryForm";
@@ -23,7 +23,8 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      await dispatch(authenticate());
+      await dispatch(authenticate())
+        .then(() => dispatch(storyActions.fetchAllStories()))
       setLoaded(true);
     })();
   }, [dispatch]);
