@@ -7,14 +7,19 @@ import * as storyDetailsActions from "../../store/storyDetails";
 import SideBar from "../SideBar";
 import "./Story.css";
 
-const Stories = () => {
-  const user = useSelector((state) => state.session.user);
-  const stories = Object.values(useSelector((state) => state.stories));
-  const userStories = stories.filter((story) => {
-    return story.User.id === user.id;
-  });
-  const dispatch = useDispatch();
+const Stories = ({user}) => {
+  // const user = useSelector((state) => state.session.user);
   const history = useHistory();
+  const stories = Object.values(useSelector((state) => state.stories));
+  let userStories;
+  if (!user) {
+    history.push('/')
+  } else {
+    userStories = stories.filter((story) => {
+      return story.User.id === user.id;
+    });
+  }
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(storyActions.fetchAllStories());
   }, [dispatch]);
@@ -36,7 +41,7 @@ const Stories = () => {
             <button className="writeStory" onClick={() => history.push('/new-story')}>Write a Story</button>
           </div>
           <ul className="noBullets">
-            {userStories[0] &&
+            {userStories && userStories[0] &&
               userStories.map((story) => (
                 <li className="bottomBorder titlePadding">
                   <h4 className="widthFit cursorPointer" onClick={(e) => storyDetails(story, e)}>{story.title}</h4>

@@ -147,7 +147,7 @@ const StoryDetails = () => {
               ></img><h2>{user?.username}</h2>
               </div>
               <div className="textarea-comments"><CommentForm /></div>
-              {story?.Comments?.map((comment) => (
+              {story.Comments?.map((comment) => (
                 <div>
                   <img
                     src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"

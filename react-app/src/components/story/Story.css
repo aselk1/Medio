@@ -50,6 +50,10 @@
     width: 500px;
 }
 
+.width200 {
+    width: 200px;
+}
+
 .width1000 {
     width: 1000px;
 }
@@ -88,6 +92,8 @@
     border: 1px solid rgba(0, 0, 0, 0.04);
     box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14);
     z-index: 50;
+    overflow-y: scroll;
+    padding-left: 2%;
 }
 
 .comments-headline {
@@ -100,6 +106,7 @@
     width: 350px;
     height: 150px;
     z-index: 150;
+    margin-bottom: 25px;
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.04);
     box-shadow: 0 4px 12px 2px rgba(0, 0, 0, 0.14);
@@ -132,6 +139,29 @@
     height: 40px;
     border-radius: 50%;
     margin-right: 20px;
+}
+
+.comment-box {
+    height: 150px;
+    overflow-wrap: break-word;
+    margin-right: 8%;
+}
+
+.divider-comments {
+    margin-top: 50px;
+    margin-bottom: 10px;
+    border-color: rgb(232, 232, 232);
+    opacity: .6;
+}
+
+.item-header {
+    display: flex;
+    margin-top: 5%;
+}
+
+
+.comment-body {
+    margin-left: 2%
 }
 
 .titlePadding {
@@ -173,4 +203,28 @@ ul {
 h4 {
     margin-block-start: 0px;
     margin-block-end: 0px;
+}
+
+
+.signIn {
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    color: black;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.signUpMargin {
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.signUpButton {
+    border-color: black;
+    background-color: black;
+    color: white;
+    width: 150px;
+    height: 30px;
+    border-radius: 20px;
+    cursor: pointer;
 }
