@@ -1,28 +1,29 @@
 import { useState, useEffect } from "react";
 import { Dispatch } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
-import { createComment } from "../../store/comment";
+import { useHistory, useLocation, useParams } from "react-router-dom";
+import { editComment } from "../../store/comment";
 import * as storyDetailsActions from "../../store/storyDetails"
 
-function CommentForm() {
-  const [body, setBody] = useState("");
+function CommentEditForm({comment, setCommentBody, commentBody}) {
+
   const userId = useSelector((state) => state.session.user.id);
   const storyId = Number(useLocation().pathname.split("/")[2]);
   const [validationErrors, setValidationErrors] = useState([]);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const dispatch = useDispatch()
   const history = useHistory()
+  const { id } = useParams()
 
   useEffect(() => {
-    if (!body) {
+    if (!commentBody) {
       setValidationErrors([]);
       return;
     }
     console.log("uE running");
     const errors = [];
-    if (!body.length) errors.push("Please enter your comment");
-  }, [body]);
+    if (!commentBody.length) errors.push("Please enter your comment");
+  }, [commentBody]);
 
   const onSubmit = async (e) => {
     // Prevent the default form behavior so the page doesn't reload.
@@ -33,17 +34,17 @@ function CommentForm() {
 
     // Create a new object for the song form information.
     const commentForm = {
-      body,
+      body: commentBody,
       userId,
       storyId
     };
 
 
-    await dispatch(createComment(storyId, commentForm))
-    .then(await dispatch(storyDetailsActions.fetchStoryDetails(storyId)))
+    await dispatch(editComment(comment.id, commentForm))
+    .then(history.push("/home"))
 
     // Reset the form state.
-    setBody("");
+    setCommentBody("");
     setValidationErrors([]);
     setHasSubmitted(false);
   };
@@ -58,8 +59,8 @@ function CommentForm() {
     <label>
       <textarea
         type="text"
-        value={body}
-        onChange={(e) => setBody(e.target.value)}
+        value={commentBody}
+        onChange={(e) => setCommentBody(e.target.value)}
         required
       />
     </label>
@@ -68,4 +69,4 @@ function CommentForm() {
 );
 }
 
-export default CommentForm;
+export default CommentEditForm;

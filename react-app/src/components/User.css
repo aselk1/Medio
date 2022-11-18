@@ -1,0 +1,169 @@
+/* user page whole CSS */
+.user-page-container {
+    display: block;
+    background-color: rgba(255, 255, 255, 1)
+}
+
+.user-page-holder {
+    display: block;
+    max-width: 1504px;
+    margin: auto;
+}
+
+.user-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.main-user-page {
+    display: block;
+    margin-bottom: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.main-user-top {
+    padding-top: 26px;
+    display: block;
+}
+
+/* user feed CSS */
+.user-action-header {
+    top: 0;
+    z-index: 499;
+    position: sticky;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.action-header-wrapper {
+    justify-content: center;
+    display: flex;
+}
+
+.action-header {
+    max-width: 692px;
+    margin: 0 32px;
+    min-width: 0;
+    width: 100%;
+}
+
+.action-bar-top {
+    display: block;
+    height: 16px;
+}
+
+.action-bar-wrapper {
+    display: block;
+    height: 39px;
+    box-shadow: rgb(230 230 230) 0px -1px 0px inset;
+    position: relative;
+    overflow: hidden;
+}
+
+.action-bar {
+    display: flex;
+    align-items: center;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    padding: 2px 0px;
+}
+
+.action-items {
+    display: flex;
+}
+
+.following-action,
+.for-you-action {
+    margin-right: 50px;
+    border-bottom: 1px solid rgba(230, 230, 230, 1);
+    min-width: max-content;
+    padding-bottom: 16px;
+    display: block;
+}
+
+.for-you-action-clicked,
+.following-action-clicked {
+    margin-right: 50px;
+    min-width: max-content;
+    padding-bottom: 16px;
+    display: block;
+    border-bottom: 1px solid rgba(41, 41, 41, 1);
+}
+
+.for-you-link,
+.following-link {
+    padding: 0px;
+    cursor: pointer;
+    border: none;
+    color: inherit;
+    text-decoration: none;
+}
+
+.for-you-link-container,
+.following-container {
+    color: rgba(41, 41, 41, 1);
+    line-height: 20px;
+    font-size: 14px;
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    margin: 0;
+}
+
+.for-you-button,
+.following-button {
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    margin: 0;
+    background: transparent;
+    overflow: visible;
+}
+
+.user-feed-body {
+    padding: 50px;
+    display: block;
+}
+
+.right-sidebar {
+    min-height: 100vh;
+    border-left: 1px solid rgba(230, 230, 230, 1);
+    padding: 0 32px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+@media screen and (min-width: 1080px) {
+    .right-sidebar {
+        display: block;
+        width: 394px;
+    }
+
+    .sidebar-container {
+        width: 80px;
+        min-height: 100vh;
+        flex-shrink: 1;
+        border-right: 1px solid rgba(230, 230, 230, 1);
+    }
+}
+
+@media screen and (max-width: 1240px) {
+    .right-sidebar {
+        width: 280px;
+    }
+}
+
+@media screen and (min-width: 900px) and (max-width: 1080px) {
+    .sidebar-container {
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .sidebar-container {
+        width: auto;
+    }
+}

@@ -7,7 +7,7 @@ import * as storyDetailsActions from "../../store/storyDetails";
 import SideBar from "../SideBar";
 import "./Story.css";
 
-const Stories = ({user}) => {
+const Stories = ({ user }) => {
   // const user = useSelector((state) => state.session.user);
   const history = useHistory();
   const stories = Object.values(useSelector((state) => state.stories));
@@ -32,22 +32,50 @@ const Stories = ({user}) => {
   };
 
   return (
-    <div>
-      <SideBar />
-      <div className="flexCol pagePadding">
-        <div className="width700">
-          <div className="flexRow centerCol spread bottomBorder titlePadding">
-            <h3 className="fontSize42">Your Stories</h3>
-            <button className="writeStory" onClick={() => history.push('/new-story')}>Write a Story</button>
-          </div>
-          <ul className="noBullets">
-            {userStories && userStories[0] &&
-              userStories.map((story) => (
-                <li className="bottomBorder titlePadding">
-                  <h4 className="widthFit cursorPointer" onClick={(e) => storyDetails(story, e)}>{story.title}</h4>
-                </li>
-              ))}
-          </ul>
+    <div className="story-page-container">
+      <div className="story-page-holder">
+        <div className="story-page">
+          <SideBar />
+          <main className="story-main">
+            <div className="story-main-container">
+              <div className="your-story-body">
+                <div className="body-holder">
+                  <div className="your-story-header">
+                    <div className="centerCol flexRo">
+                      <div className="spread container">
+                        <div className="header-wrapper">
+                          <h1 className="fontSize42">Your Stories</h1>
+                        </div>
+                        <div className="write-button-container">
+                          <button
+                            className="writeStory"
+                            onClick={() => history.push("/new-story")}
+                          >
+                            Write a Story
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <ul className="noBullets">
+                    {userStories &&
+                      userStories[0] &&
+                      userStories.map((story) => (
+                        <li className="bottomBorder titlePadding">
+                          <h4
+                            className="widthFit cursorPointer"
+                            onClick={(e) => storyDetails(story, e)}
+                          >
+                            {story.title}
+                          </h4>
+                        </li>
+                      ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </main>
+          <div className="right-sidebar"></div>
         </div>
       </div>
     </div>

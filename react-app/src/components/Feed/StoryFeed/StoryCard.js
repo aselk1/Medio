@@ -32,7 +32,7 @@ export default function StoryCard({ stories }) {
                                 <NavLink className='story-page-link' to={`/stories/${story.id}`}>
                                     <h2>{story.title}</h2>
                                     <div className='story-body-preview'>
-                                        <h3 className='story-feed-body'>{story.body}</h3>
+                                        {/* <h3 className='story-feed-body'>{story.body}</h3> */}
                                     </div>
                                 </NavLink>
                             </div>

@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from sqlalchemy.orm import relationship, sessionmaker, joinedload
 from app.models import Story, db, Comment, User
 from flask_login import login_required, current_user
@@ -70,14 +70,16 @@ def delete_story(id):
         return story.to_dict()
     return {'errors': ['Unauthorized']}
 
-@stories_routes.route('/<int:id>/comments')
-@login_required
-def get_comments(id):
-    """
-    Query for all comments for a story and returns them in a list of dictionaries
-    """
-    story = Story.query.get(id)
-    print(story)
+# @stories_routes.route('/<int:id>/comments')
+# @login_required
+# def get_comments(id):
+#     """
+#     Query for all comments for a story and returns them in a list of dictionaries
+#     """
+#     story = Story.query.get(id)
+#     comments = Comment.query.get(story.id)
+#     print(comments)
+#     return comments.to_dict()
 
 
 @stories_routes.route('/<int:id>/comments', methods=['POST'])
@@ -156,7 +158,7 @@ def delete_like(id):
     all_liked_user =  story.liked_story_user.all()
 
     users = [ user.id for user in all_liked_user]
-    
+
     if like_story_user.id in users:
         story.liked_story_user.remove(like_story_user)
     else:
