@@ -32,7 +32,7 @@ const StoryDetails = () => {
 
   const removeComment = () => {
     dispatch(deleteComment(id))
-    .then(() => history.push('/home'))
+      .then(() => history.push('/home'))
   };
 
   // if (story.body) {
@@ -139,7 +139,7 @@ const StoryDetails = () => {
                           <section>
                             <div className="story-page-body">
                               <div>
-                                <h1 className="titlePadding">{story?.title}</h1>
+                                <h1 className="title-padding">{story?.title}</h1>
                               </div>
                               <div>
                                 {body[0] &&
@@ -195,7 +195,7 @@ const StoryDetails = () => {
                             <button className="detailButton1" onClick={() => dispatch(deleteComment(comment.id))}>Delete</button>
                             <button className="detailButton2" onClick={() => setShowEdit(!showEdit)}>Edit</button>
                             {showEdit && (
-                            <CommentEditForm />
+                              <CommentEditForm />
                             )}
                           </div>
                         ))}

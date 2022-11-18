@@ -40,7 +40,7 @@
 .width700 {
     display: flex;
     justify-content: center;
-    /* width: 700px; */
+    width: 700px;
 }
 
 .width500 {
@@ -270,6 +270,11 @@
 }
 
 .titlePadding {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.title-padding {
     letter-spacing: -0.016em;
     line-height: 40px;
     margin-top: 0.6em;
@@ -279,7 +284,10 @@
     color: rgba(41, 41, 41, 1);
     font-weight: 700;
     margin: 0;
-    font-family: " Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Helvetica Neue",
+        Helvetica,
+        Arial,
+        sans-serif;
 }
 
 .user-interactions {

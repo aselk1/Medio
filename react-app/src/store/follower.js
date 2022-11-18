@@ -23,11 +23,10 @@ const loadFollowing = (listOfFollowing) => ({
 // })
 
 export const followingList = (id) => async (dispatch) => {
-    const res = await fetch(`/api/${id}/following`)
+    const res = await fetch(`/api/users/${id}/following`)
     if (res.ok) {
         const list = await res.json()
-        // might have to tap into the list object
-        // console.log for testing to see what is in list
+        console.log('list', list)
         dispatch(loadFollowing(list))
         return list
     }
