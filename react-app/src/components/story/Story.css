@@ -418,7 +418,7 @@
     display: flex;
 }
 
-.follow-button {
+.follow-user-button {
     border-color: rgb(26, 137, 23);
     background: rgb(26, 137, 23);
     width: auto;
@@ -431,6 +431,27 @@
     fill: rgba(255, 255, 255, 1);
     padding: 7px 16px 9px;
     color: rgba(255, 255, 255, 1);
+    line-height: 20px;
+    font-size: 14px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    margin: 0;
+    cursor: pointer;
+}
+
+.following-user-button {
+    border-color: rgb(26, 137, 23);
+    background: 0px center;
+    width: auto;
+    text-decoration: none;
+    display: inline-block;
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 99em;
+    fill: rgba(26, 137, 23, 1);
+    padding: 7px 16px 9px;
+    color: rgba(26, 137, 23, 1);
     line-height: 20px;
     font-size: 14px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;

@@ -13,9 +13,9 @@ const loadFollowing = (listOfFollowing) => ({
 //     payload: listOfFollowers
 // })
 
-const addFollowing = ({ follower_id }) => ({
+const addFollowing = (following) => ({
     type: ADD_FOLLOWING,
-    payload: follower_id
+    payload: following
 })
 
 const removeFollowing = () => ({
@@ -46,8 +46,9 @@ export const follow = (follower_id, followed_id) => async (dispatch) => {
 
     if (res.ok) {
         const followData = await res.json()
+        console.log('followData', followData)
         dispatch(addFollowing(followData))
-        return
+        return followData
     } else if (res.status < 500) {
         const data = await res.json()
         if (data.errors) {
@@ -69,6 +70,7 @@ export const unfollow = (follower_id, followed_id) => async (dispatch) => {
 
     if (res.ok) {
         const followData = await res.json()
+        console.log('followdata', followData)
         dispatch(removeFollowing(followData))
         return
     } else if (res.status < 500) {
@@ -93,15 +95,19 @@ export default function followReducer(state = initialState, action) {
         case LOAD_FOLLOWERS:
             return
         case LOAD_FOLLOWING:
-            action.payload.forEach(user => {
-                following[user.id] = user
-            })
+            // action.payload.forEach(user => {
+            //     following[user.id] = user
+            // })
+            // return {
+            //     ...state,
+            //     following: { ...following }
+            // }
+            return
+        case ADD_FOLLOWING:
             return {
                 ...state,
-                following: { ...following }
+                followers: { ...action.payload }
             }
-        case ADD_FOLLOWING:
-            return
         case REMOVE_FOLLOWING:
             return {
 

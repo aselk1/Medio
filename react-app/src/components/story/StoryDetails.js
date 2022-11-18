@@ -30,8 +30,7 @@ const StoryDetails = () => {
 
   const [showMenu, setShowMenu] = useState(false);
   const [showEdit, setShowEdit] = useState(false)
-  const [follow, setFollow] = useState(false)
-  const [unfollow, setUnfollow] = useState(true)
+  const [following, setFollowing] = useState(false)
 
   const removeComment = () => {
     dispatch(deleteComment(id))
@@ -79,10 +78,12 @@ const StoryDetails = () => {
   };
 
   const handleClick = () => {
-    if (follow) {
+    if (!following) {
       dispatch(followActions.follow(user.id, story.user_id))
+        .then(() => setFollowing(true))
     } else {
       dispatch(followActions.unfollow())
+        .then(() => setFollowing(false))
     }
   }
   // useEffect(() => {
@@ -241,8 +242,7 @@ const StoryDetails = () => {
                         </h2>
                       </NavLink>
                       <div className="follow-button-holder">
-                        <button className={follow ? "follow-button" : "unfollow-button"} onClick={handleClick}></button>
-                        {/* <button className="unfollow-button">Unfollow</button> */}
+                        <button className={following ? "following-user-button" : "follow-user-button"} onClick={handleClick}>{following ? 'Following' : 'Follow'}</button>
                       </div>
                     </div>
                   </div>

@@ -27,8 +27,11 @@ def follow():
 def unfollow(id):
     req_body = request.json
     user_follower = User.query.get(req_body['follower_id'])
-    user_followed = User.query.get(id)
-    print(user_follower.id)
-    user_follower.followers.remove(user_followed.id)
-    # db.session.commit()
-    return f"{user_follower.id} deleted"
+    user_followed = User.query.get(int(id))
+    user_followed.followers.remove(user_follower)
+    db.session.commit()
+    updated_followers = user_followed.followers.all()
+    users = {}
+    for i in range(len(updated_followers)):
+        users[i]=updated_followers[i].to_dict()
+    return users
