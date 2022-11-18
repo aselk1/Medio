@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { Dispatch } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
-import { createComment } from "../../store/comment";
+import { useHistory, useLocation, useParams } from "react-router-dom";
+import { editComment } from "../../store/comment";
 
-function CommentForm() {
+function CommentEditForm() {
+  const comment = useSelector((state) => state.session.singleComment)
+
+
   const [body, setBody] = useState("");
   const userId = useSelector((state) => state.session.user.id);
   const storyId = Number(useLocation().pathname.split("/")[2]);
@@ -12,6 +15,7 @@ function CommentForm() {
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const dispatch = useDispatch()
   const history = useHistory()
+  const { id } = useParams()
 
   useEffect(() => {
     if (!body) {
@@ -38,7 +42,7 @@ function CommentForm() {
     };
 
 
-    await dispatch(createComment(storyId, commentForm))
+    await dispatch(editComment(id, commentForm))
     .then(history.push(`/stories/${storyId}`))
 
     // Reset the form state.
@@ -67,4 +71,4 @@ function CommentForm() {
 );
 }
 
-export default CommentForm;
+export default CommentEditForm;
