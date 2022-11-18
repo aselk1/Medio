@@ -13,14 +13,14 @@ const loadFollowing = (listOfFollowing) => ({
 //     payload: listOfFollowers
 // })
 
-// const addFollowing = ({ follower_id }) => ({
-//     type: ADD_FOLLOWING,
-//     payload: follower_id
-// })
+const addFollowing = ({ follower_id }) => ({
+    type: ADD_FOLLOWING,
+    payload: follower_id
+})
 
-// const removeFollowing = () => ({
-//     type: REMOVE_FOLLOWING
-// })
+const removeFollowing = () => ({
+    type: REMOVE_FOLLOWING
+})
 
 export const followingList = (id) => async (dispatch) => {
     const res = await fetch(`/api/users/${id}/following`)
@@ -32,31 +32,54 @@ export const followingList = (id) => async (dispatch) => {
     }
 }
 
-// export const follow = (follower_id, followed_id) => async (dispatch) => {
-//     const res = await fetch('/api/followers', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify({
-//             follower_id,
-//             followed_id
-//         })
-//     })
+export const follow = (follower_id, followed_id) => async (dispatch) => {
+    const res = await fetch('/api/followers', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            follower_id,
+            followed_id
+        })
+    })
 
-//     if (res.ok) {
-//         const followData = await res.json()
-//         dispatch(addFollowing(followData))
-//         return
-//     } else if (res.status < 500) {
-//         const data = await res.json()
-//         if (data.errors) {
-//             return data.errors
-//         }
-//     } else {
-//         return ['An error occured. Please try again.']
-//     }
-// }
+    if (res.ok) {
+        const followData = await res.json()
+        dispatch(addFollowing(followData))
+        return
+    } else if (res.status < 500) {
+        const data = await res.json()
+        if (data.errors) {
+            return data.errors
+        }
+    } else {
+        return ['An error occured. Please try again.']
+    }
+}
+
+export const unfollow = (follower_id, followed_id) => async (dispatch) => {
+    const res = await fetch('/api/followers', {
+        method: 'DELETE',
+        body: JSON.stringify({
+            follower_id,
+            followed_id
+        })
+    })
+
+    if (res.ok) {
+        const followData = await res.json()
+        dispatch(removeFollowing(followData))
+        return
+    } else if (res.status < 500) {
+        const data = await res.json()
+        if (data.errors) {
+            return data.errors
+        }
+    } else {
+        return ['An error occured. Please try again.']
+    }
+}
 
 const initialState = {
     followers: null,

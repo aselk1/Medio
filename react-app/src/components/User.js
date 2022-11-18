@@ -47,6 +47,9 @@ function User() {
               <div className='user-action-header'>
                 <div className='action-header-wrapper'>
                   <div className='action-header'>
+                    <div className='user-name'>
+                      <span>Welcome back {user.username}!</span>
+                    </div>
                     <div className='action-bar-top' />
                     <div className='action-bar-wrapper'>
                       <div className='action-bar'>

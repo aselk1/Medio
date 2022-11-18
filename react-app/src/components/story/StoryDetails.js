@@ -4,6 +4,7 @@ import { useHistory, useLocation, useParams, NavLink } from "react-router-dom";
 import SideBar from "../SideBar";
 import * as storyDetailsActions from "../../store/storyDetails";
 import * as storyActions from "../../store/stories";
+import * as followActions from '../../store/follower'
 import "./Story.css";
 import { getLikeStory, likeStory } from "../../store/likeStory";
 import { getComments, deleteComment } from "../../store/comment";
@@ -29,6 +30,8 @@ const StoryDetails = () => {
 
   const [showMenu, setShowMenu] = useState(false);
   const [showEdit, setShowEdit] = useState(false)
+  const [follow, setFollow] = useState(false)
+  const [unfollow, setUnfollow] = useState(true)
 
   const removeComment = () => {
     dispatch(deleteComment(id))
@@ -75,6 +78,13 @@ const StoryDetails = () => {
     console.log("opening");
   };
 
+  const handleClick = () => {
+    if (follow) {
+      dispatch(followActions.follow(user.id, story.user_id))
+    } else {
+      dispatch(followActions.unfollow())
+    }
+  }
   // useEffect(() => {
   //   if (!showMenu) return;
 
@@ -231,7 +241,7 @@ const StoryDetails = () => {
                         </h2>
                       </NavLink>
                       <div className="follow-button-holder">
-                        <button className="follow-button">Follow</button>
+                        <button className={follow ? "follow-button" : "unfollow-button"} onClick={handleClick}></button>
                         {/* <button className="unfollow-button">Unfollow</button> */}
                       </div>
                     </div>

@@ -16,6 +16,19 @@
     justify-content: space-between;
 }
 
+.user-name {
+    max-height: 52px;
+    line-height: 52px;
+    font-size: 42px;
+    letter-spacing: 0px;
+    color: rgb(25, 25, 25);
+    font-weight: 700;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 .main-user-page {
     display: block;
     margin-bottom: 0;
