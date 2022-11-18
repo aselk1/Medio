@@ -6,10 +6,11 @@ import * as storyDetailsActions from "../../store/storyDetails";
 import * as storyActions from "../../store/stories";
 import "./Story.css";
 import { getLikeStory, likeStory } from "../../store/likeStory";
-import { getComments } from "../../store/comment";
+import { getComments, deleteComment } from "../../store/comment";
 import RichEditor2 from "../editor/RichEditor2";
 import { Editor, EditorState, convertFromRaw } from "draft-js";
 import CommentForm from "./CommentForm";
+import CommentEditForm from "./CommentEditForm"
 
 const StoryDetails = () => {
   const story = useSelector((state) => state.storyDetails);
@@ -27,6 +28,12 @@ const StoryDetails = () => {
   const storyId = Number(useLocation().pathname.split("/")[2]);
 
   const [showMenu, setShowMenu] = useState(false);
+  const [showEdit, setShowEdit] = useState(false)
+
+  const removeComment = () => {
+    dispatch(deleteComment(id))
+    .then(() => history.push('/home'))
+  };
 
   // if (story.body) {
   //   setBody("this")
@@ -177,7 +184,7 @@ const StoryDetails = () => {
                           ></img><h2>{user?.username}</h2>
                         </div>
                         <div className="textarea-comments"><CommentForm /></div>
-                        {story?.Comments?.map((comment) => (
+                        {story.Comments?.map((comment) => (
                           <div>
                             <img
                               src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
@@ -185,6 +192,11 @@ const StoryDetails = () => {
                               className="profileImage"
                             ></img>
                             {comment.body}
+                            <button className="detailButton1" onClick={() => dispatch(deleteComment(comment.id))}>Delete</button>
+                            <button className="detailButton2" onClick={() => setShowEdit(!showEdit)}>Edit</button>
+                            {showEdit && (
+                            <CommentEditForm />
+                            )}
                           </div>
                         ))}
                       </div>
