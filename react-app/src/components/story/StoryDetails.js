@@ -28,8 +28,6 @@ const StoryDetails = () => {
 
   const [showMenu, setShowMenu] = useState(false);
 
-
-
   // if (story.body) {
   //   setBody("this")
   // }
@@ -116,7 +114,6 @@ const StoryDetails = () => {
                                       alt="Profile"
                                       className="profileImage"
                                     ></img>
-                                    {/* <h4>{story?.User?.username}</h4> */}
                                     {story.User?.id === user?.id && (
                                       <div className="flexRow flexEnd">
                                         <button
