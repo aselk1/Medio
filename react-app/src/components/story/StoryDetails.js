@@ -13,6 +13,7 @@ import CommentForm from "./CommentForm";
 
 const StoryDetails = () => {
   const story = useSelector((state) => state.storyDetails);
+  console.log(story.Comments)
   const history = useHistory();
   const dispatch = useDispatch();
   useEffect(() => {
