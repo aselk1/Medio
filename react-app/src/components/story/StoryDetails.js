@@ -48,9 +48,9 @@ const StoryDetails = () => {
 
   const handleDelete = async (commentId) => {
     console.log(commentId)
-  await dispatch(deleteComment(commentId))
-  await dispatch(storyDetailsActions.fetchStoryDetails(storyId))
-}
+    await dispatch(deleteComment(commentId))
+    await dispatch(storyDetailsActions.fetchStoryDetails(storyId))
+  }
 
   if (allLikeUser === undefined) {
     dispatch(getLikeStory(id));
@@ -147,7 +147,7 @@ const StoryDetails = () => {
                           <section>
                             <div className="story-page-body">
                               <div>
-                                <h1 className="titlePadding">{story?.title}</h1>
+                                <h1 className="title-padding">{story?.title}</h1>
                               </div>
                               <div>
                                 {body[0] &&
@@ -200,27 +200,27 @@ const StoryDetails = () => {
                               className="profileImage"
                             ></img>
                             <div>
-                            {comment.body}
+                              {comment.body}
                             </div>
-                            { comment?.user_id === user?.id && (
+                            {comment?.user_id === user?.id && (
                               <div>
-                              <button className="detailButton1" onClick={() => handleDelete(comment.id)}>Delete</button>
-                              <button id={comment.id} value={comment.id} className="detailButton2"
-                              onClick={() => {
-                                if (editId === comment.id) {
-                                  setEditId(-1);
-                                  setEditId("");
-                                  return;
-                                }
-                                setEditId(comment.id);
-                                setCommentBody(comment.body);
-                              }}
-                              >Edit
-                              </button>
+                                <button className="detailButton1" onClick={() => handleDelete(comment.id)}>Delete</button>
+                                <button id={comment.id} value={comment.id} className="detailButton2"
+                                  onClick={() => {
+                                    if (editId === comment.id) {
+                                      setEditId(-1);
+                                      setEditId("");
+                                      return;
+                                    }
+                                    setEditId(comment.id);
+                                    setCommentBody(comment.body);
+                                  }}
+                                >Edit
+                                </button>
                               </div>
                             )}
                             {editId === comment.id && (
-                            <CommentEditForm comment={comment} setCommentBody={setCommentBody} commentBody={commentBody}/>
+                              <CommentEditForm comment={comment} setCommentBody={setCommentBody} commentBody={commentBody} />
                             )}
                           </div>
                         ))}

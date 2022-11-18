@@ -18,7 +18,7 @@ def follow():
     updated_followers = user_followed.followers.all()
     users = {}
     for i in range(len(updated_followers)):
-        users[i]=user_followed.updated_followers[i].to_dict()
+        users[i]=updated_followers[i].to_dict()
     return users
 
 #  I am able to unfollow other users
@@ -26,8 +26,8 @@ def follow():
 @login_required
 def unfollow(id):
     req_body = request.json
-    user_follower = User.query.get(id)
-    user_followed = User.query.get(req_body["followed_id"])
+    user_follower = User.query.get(req_body['follower_id'])
+    user_followed = User.query.get(id)
     print(user_follower.id)
     user_follower.followers.remove(user_followed.id)
     # db.session.commit()
