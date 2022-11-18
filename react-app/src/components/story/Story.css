@@ -311,6 +311,84 @@
     display: block;
 }
 
+.profile-link {
+    margin: 0;
+    padding: 0;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    font-family: inherit;
+    border: inherit;
+    font-size: inherit;
+    fill: inherit;
+    color: inherit;
+    text-decoration: none;
+}
+
+.profile-picture {
+    position: relative;
+    display: block;
+}
+
+.profile-image {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background-color: rgba(242, 242, 242, 1);
+    box-sizing: border-box;
+    display: block;
+}
+
+.under-image {
+    width: 88px;
+    height: 88px;
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: rgb(0 0 0 / 5%) 0px 0px 0px 1px inset;
+    top: 0;
+    display: block;
+}
+
+.sb-spacer {
+    margin-top: 16px;
+    display: block;
+}
+
+.profile-author-name {
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    letter-spacing: 0;
+    font-weight: 500;
+    font-size: 16px;
+    color: rgba(41, 41, 41, 1);
+    line-height: 20px;
+    margin: 0;
+}
+
+.follow-button-holder {
+    margin-bottom: 40px;
+    display: flex;
+}
+
+.follow-button {
+    border-color: rgb(26, 137, 23);
+    background: rgb(26, 137, 23);
+    width: auto;
+    text-decoration: none;
+    display: inline-block;
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 99em;
+    fill: rgba(255, 255, 255, 1);
+    padding: 7px 16px 9px;
+    color: rgba(255, 255, 255, 1);
+    line-height: 20px;
+    font-size: 14px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    margin: 0;
+    cursor: pointer;
+}
+
 .noBullets {
     list-style: none;
 }

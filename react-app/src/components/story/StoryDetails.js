@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useLocation, useParams } from "react-router-dom";
+import { useHistory, useLocation, useParams, NavLink } from "react-router-dom";
 import SideBar from "../SideBar";
 import * as storyDetailsActions from "../../store/storyDetails";
 import * as storyActions from "../../store/stories";
@@ -206,7 +206,25 @@ const StoryDetails = () => {
                 <div className="user-info-sidebar-holder">
                   <div className="user-info-sidebar-wrapper">
                     <div className="user-sidebar-items">
-
+                      <NavLink to={`/users/${story.user_id}`} className='profile-link'>
+                        <div className="profile-picture">
+                          <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                            alt="Profile"
+                            className="profile-image"
+                          ></img>
+                          <div className="under-image"></div>
+                        </div>
+                      </NavLink>
+                      <div className="sb-spacer"></div>
+                      <NavLink to={`/users/${story.user_id}`} className='profile-link'>
+                        <h2 className="profile-author-name">
+                          <span className="user">{story.User.username}</span>
+                        </h2>
+                      </NavLink>
+                      <div className="follow-button-holder">
+                        <button className="follow-button">Follow</button>
+                        {/* <button className="unfollow-button">Unfollow</button> */}
+                      </div>
                     </div>
                   </div>
                 </div>
