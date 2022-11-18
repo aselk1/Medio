@@ -33,7 +33,6 @@ body {
     display: block;
     right: 0px;
     width: 585px;
-    /* height: 100%; */
     position: absolute;
     padding-top: 15px;
 }
@@ -125,15 +124,45 @@ body {
     padding: 3px;
 }
 
+
+/*  sidebar CSS */
+.sidebar-container {
+    border-right: 1px solid rgba(230, 230, 230, 1);
+    flex-shrink: 1;
+    min-height: 100vh;
+    width: 80px;
+    /* position: fixed; */
+}
+
 .sideBar {
-    width: 70px;
     height: 100%;
+    /* width: 70px;
     border-right: .3px solid rgb(227, 226, 226);
     position: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 50;
+    z-index: 50; */
+}
+
+.sidebar {
+    display: block;
+}
+
+.sidebar-items {
+    z-index: 500;
+    justify-content: space-between;
+    position: sticky;
+    height: 100vh;
+    flex-direction: column;
+    display: flex;
+    top: 0;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.medio-home-link {
+    padding: 40px 0;
+    text-align: center;
 }
 
 .home-logo {
@@ -142,66 +171,176 @@ body {
     margin-top: 30%;
 }
 
-#icon2 {
-    width: 35px;
-    margin-top: 175px;
-    font-size: 20px;
+.user-buttons {
+    display: block;
+}
+
+.icon {
+    padding-bottom: 35px;
+}
+
+.user-button-link {
+    margin: 0;
+    padding: 0;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    font-family: inherit;
+    border: inherit;
+    font-size: inherit;
+    color: inherit;
+    fill: inherit;
     text-decoration: none;
-    color: black;
-    vertical-align: middle;
 }
 
-#icon3 {
-    width: 30px;
-    font-size: 20px;
-    text-decoration: none;
-    color: black;
-    margin-top: 25px;
-}
-
-#icon4 {
-    width: 30px;
-    font-size: 20px;
-    text-decoration: none;
-    color: black;
-    margin-top: 25px;
-}
-
-#icon5 {
-    width: 30px;
-    font-size: 20px;
-    margin-top: 300px;
-    background-color: white;
-    border-style: none;
-    cursor: pointer;
-}
-
-.dropdown-container {
+.button-container {
     position: relative;
+    display: flex;
+}
+
+.button-holder {
+    display: flex;
+    color: rgba(41, 41, 41, 1);
+    fill: rgba(41, 41, 41, 1);
+    padding-left: 28px;
+}
+
+.inner-button-container {
+    margin-right: 28px;
+    display: block;
+}
+
+.button-icon {
     display: inline-block;
 }
 
-.dropdown {
-    position: absolute;
-    top: 1%;
-    left: 0;
-    margin-right: 30%;
-    width: 200px;
-    height: 300px;
-    z-index: 100;
-    background-color: white;
-    border: 1px solid rgba(0, 0, 0, 0.04);
-    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14);
+.user-menu {
+    padding-bottom: 16px;
+    display: block;
 }
 
-.dropdown-text {
+.horizontal-line-container {
+    width: 24px;
+    margin: 0px 0px 35px 28px;
+    display: block;
+}
+
+.horizontal-line {
+    background-color: rgba(230, 230, 230, 1);
+    height: 1px;
+    border: 0;
+    margin: 0;
+}
+
+
+#icon2 {
+    vertical-align: middle;
+    /* width: 35px;
+    margin-top: 175px;
+    font-size: 20px;
+    text-decoration: none;
+    color: black; */
+}
+
+#icon3 {
+    vertical-align: middle;
+    /* width: 30px;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+    margin-top: 25px; */
+}
+
+#icon4 {
+    vertical-align: middle;
+    /* width: 30px;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+    margin-top: 25px; */
+}
+
+#icon5 {
+    vertical-align: middle;
+    width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    cursor: pointer;
+    /* font-size: 20px;
+    margin-top: 300px;
+    background-color: white;
+    border-style: none; */
+}
+
+.user-profile-button {
+    color: black;
+    background: transparent;
+    border: none;
+    padding: 0;
+    width: 100%;
+    margin: 0;
+    overflow: visible;
+}
+
+.dropdown-container {
+    display: flex;
+    align-items: center;
+}
+
+.user-icon-holder {
+    margin: 8px 24px;
+    position: relative;
+    display: block;
+}
+
+.user-icon-wrapper {
+    display: block;
+    position: relative;
+}
+
+/* dropdown menu */
+.dropdown {
+    position: absolute;
+    inset: auto auto 0px 0px;
+    transform: translate3d(5px, -74px, 0px);
+    box-shadow: rgb(230, 230, 230) 0px 1px 4px;
+    z-index: 700;
+    border-radius: 4px;
+    border: 1px solid rgba(230, 230, 230, 1);
+    box-sizing: border-box;
+}
+
+.main-menu-holder {
+    overflow-y: auto;
+    max-height: 598px;
+    border-radius: 4px;
+    background: rgb(255, 255, 255);
+}
+
+.main-menu-inner {
+    border-radius: 3px;
+    background: rgb(255, 255, 255);
+}
+
+.main-menu-wrapper {
+    min-width: 280px;
+    padding: 24px 0;
+    display: block;
+}
+
+.log-out {
+    cursor: pointer;
+}
+
+/* .dropdown-text {
     display: flex;
     flex-direction: column;
     margin-left: 10%;
     gap: 25px;
     margin-top: 15%;
-}
+} */
 
+
+/*  splash page M's CSS */
 #m5 {
     animation-name: myAnimation;
     animation-delay: 1.7s;
