@@ -194,7 +194,7 @@ const StoryDetails = () => {
                         <div className="textarea-comments"><CommentForm /></div>
                         {story.Comments?.map((comment) => (
                           <div>
-                            <div>
+                            <div className="item-header">
                             <img
                               src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
                               alt="Profile"
@@ -204,12 +204,12 @@ const StoryDetails = () => {
                               {comment.User.username}
                             </div>
                             </div>
-                            <div>
+                            <div className="comment-body">
                               {comment.body}
 
                             </div>
                             { comment?.user_id === user?.id && (
-                              <div>
+                              <div className="comment-buttons">
                               <button className="detailButton1" onClick={() => handleDelete(comment.id)}>Delete</button>
                               <button id={comment.id} value={comment.id} className="detailButton2"
                               onClick={() => {
@@ -225,9 +225,12 @@ const StoryDetails = () => {
                               </button>
                               </div>
                             )}
+                            <div className="editform">
                             {editId === comment.id && (
-                            <CommentEditForm comment={comment} setCommentBody={setCommentBody} commentBody={commentBody}/>
+                            <CommentEditForm className="comment-edit-form"comment={comment} setCommentBody={setCommentBody} commentBody={commentBody}/>
                             )}
+                            </div>
+                            <hr className="divider-comments"/>
                           </div>
                         ))}
                       </div>
