@@ -94,6 +94,10 @@
     display: block;
 }
 
+.story-main-top {
+    display: block;
+}
+
 .story-holder {
     display: block;
 }
@@ -103,6 +107,33 @@
     margin: 0 32px;
     min-width: 0;
     width: 100%;
+}
+
+.story-header-section {
+    margin-top: 56px;
+    margin-bottom: 32px;
+    display: block;
+}
+
+.story-header-user {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+
+.user-image {
+    position: relative;
+    display: block;
+}
+
+.story-user-holder {
+    display: flex;
+}
+
+.user-image-wrapper {
+    display: block;
+    margin-right: 16px;
 }
 
 .comments-icon {
@@ -169,10 +200,12 @@
 }
 
 .profileImage {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    margin-right: 20px;
+    box-sizing: border-box;
+    display: block;
+    vertical-align: middle;
 }
 
 .comment-box {
@@ -199,8 +232,83 @@
 }
 
 .titlePadding {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    letter-spacing: -0.016em;
+    line-height: 40px;
+    margin-top: 0.6em;
+    font-size: 32px;
+    margin-bottom: -0.27em;
+    font-style: normal;
+    color: rgba(41, 41, 41, 1);
+    font-weight: 700;
+    margin: 0;
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.user-interactions {
+    bottom: 16px;
+    z-index: 900;
+    opacity: 1;
+    position: sticky;
+    justify-content: center;
+    display: flex;
+}
+
+.user-interactions-wrapper {
+    box-shadow: rgb(0 0 0 / 10%) 0px 2px 10px 0px;
+    padding: 0px 14px 0px 16px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    align-items: center;
+    display: flex;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.user-info-sidebar {
+    width: 394px;
+    display: block;
+    min-height: 100vh;
+    border-left: 1px solid rgba(230, 230, 230, 1);
+    padding: 0 32px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.user-sidebar {
+    height: 100%;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.user-info-sidebar-container {
+    position: relative;
+    top: 0px;
+    margin-top: 12px;
+    display: block;
+}
+
+.user-info-sidebar-holder {
+    min-height: calc(100vh - 0px);
+    flex-direction: column;
+    display: flex;
+}
+
+.user-info-sidebar-wrapper {
+    flex: 1 0 auto;
+    display: block;
+}
+
+.like-items {
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+}
+
+.user-sidebar-items {
+    margin-top: 40px;
+    border-bottom: 0px;
+    display: block;
 }
 
 .noBullets {

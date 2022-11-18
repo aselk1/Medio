@@ -103,75 +103,119 @@ const StoryDetails = () => {
               <div className="flexCol centerCol">
                 <div className="width700">
                   <div className="story-width">
-                    <div className="flexRow centerRow centerCol">
-                      <img
-                        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                        alt="Profile"
-                        className="profileImage"
-                      ></img>
-                      <h4>{story?.User?.username}</h4>
-                      {story.User?.id === user?.id && (
-                        <div className="flexRow flexEnd">
-                          <button
-                            onClick={() => history.push(`/stories/${story.id}/edit`)}
-                          >
-                            Edit
-                          </button>
-                          <button onClick={deleteStory}>Delete</button>
+                    <article>
+                      <div className="story-main-top">
+                        <div className="story-main-top">
+                          <header className="story-header-section">
+                            <div className="story-header-user">
+                              <div className="story-user-holder">
+                                <div className="user-image-wrapper">
+                                  <div className="user-image">
+                                    <img
+                                      src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                                      alt="Profile"
+                                      className="profileImage"
+                                    ></img>
+                                    {/* <h4>{story?.User?.username}</h4> */}
+                                    {story.User?.id === user?.id && (
+                                      <div className="flexRow flexEnd">
+                                        <button
+                                          onClick={() => history.push(`/stories/${story.id}/edit`)}
+                                        >
+                                          Edit
+                                        </button>
+                                        <button onClick={deleteStory}>Delete</button>
+                                      </div>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </header>
+                          <section>
+                            <div className="story-page-body">
+                              <div>
+                                <h1 className="titlePadding">{story?.title}</h1>
+                              </div>
+                              <div>
+                                {body[0] &&
+                                  body.map((el) => {
+                                    const contentState = convertFromRaw(JSON.parse(el));
+                                    const editorState =
+                                      EditorState.createWithContent(contentState);
+                                    return (
+                                      <RichEditor2 editorState={editorState} readOnly={true} />
+                                    );
+                                  })}
+                              </div>
+                            </div>
+                          </section>
                         </div>
-                      )}
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+              <div className="user-interactions">
+                <div className="user-interactions-wrapper">
+                  <div className="like-items">
+                    <div>
                       <button id="likeClickBt" onClick={clickLike}>
                         Like
-                      </button>{" "}
+                      </button>
+                    </div>
+                    <div>
+                      {" "}
                       {likeInfo?.num}
                     </div>
-                    <h2 className="titlePadding">{story?.title}</h2>
-                    <div>
-                      {body[0] &&
-                        body.map((el) => {
-                          const contentState = convertFromRaw(JSON.parse(el));
-                          const editorState =
-                            EditorState.createWithContent(contentState);
-                          return (
-                            <RichEditor2 editorState={editorState} readOnly={true} />
-                          );
-                        })}
+                  </div>
+                  <div className="comments">
+                    {showMenu && (
+                      <div className="comments-sidebar">
+                        <div className="comments-headline">
+                          <img
+                            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                            alt="Profile"
+                            className="profileImage"
+                          ></img><h2>{user?.username}</h2>
+                        </div>
+                        <div className="textarea-comments"><CommentForm /></div>
+                        {story.Comments?.map((comment) => (
+                          <div>
+                            <img
+                              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                              alt="Profile"
+                              className="profileImage"
+                            ></img>
+                            {comment.body}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  <div onClick={openMenu} className="comment-icon">
+                    <i className="fa-regular fa-comment"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
+          <div className="user-info-sidebar">
+            <div className="user-sidebar">
+              <div className="user-info-sidebar-container">
+                <div className="user-info-sidebar-holder">
+                  <div className="user-info-sidebar-wrapper">
+                    <div className="user-sidebar-items">
+
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="comments">
-                {showMenu && (
-                  <div className="comments-sidebar">
-                    <div className="comments-headline">
-                      <img
-                        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                        alt="Profile"
-                        className="profileImage"
-                      ></img><h2>{user?.username}</h2>
-                    </div>
-                    <div className="textarea-comments"><CommentForm /></div>
-                    {story.Comments?.map((comment) => (
-                      <div>
-                        <img
-                          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-                          alt="Profile"
-                          className="profileImage"
-                        ></img>
-                        {comment.body}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-              <div onClick={openMenu} className="comment-icon">
-                <i className="fa-regular fa-comment"></i>
-              </div>
             </div>
-          </main>
-        </div>
-      </div>}
-    </div>
+          </div>
+        </div >
+      </div >}
+    </div >
   );
 };
 
