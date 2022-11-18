@@ -27,6 +27,7 @@ def fix_comment(id):
     if current_user.id == comment.user_id:
         form = CommentForm()
         form['csrf_token'].data = request.cookies['csrf_token']
+        print(form.data)
         if form.validate_on_submit():
             comment.body = form.data['body']
             db.session.add(comment)
@@ -45,6 +46,7 @@ def remove_comment(id):
     if current_user.id == comment.user_id:
         db.session.delete(comment)
         db.session.commit()
+        print(comment)
         return comment.to_dict()
     return {'errors': ['Unauthorized']}
 

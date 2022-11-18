@@ -55,7 +55,7 @@ const NavBar = () => {
                   </p>
                 </div>
               </span> */}
-                      <LoginFormModal />
+              <LoginFormModal nav={false}/>
               <div className="get-started">
                 <span>
                   {/* <NavLink
@@ -74,7 +74,7 @@ const NavBar = () => {
                       Get Started
                     </button>
                   </NavLink> */}
-                  <SignupFormModal startedButton={startedButton}/>
+                  <SignupFormModal startedButton={startedButton} />
                 </span>
               </div>
             </div>

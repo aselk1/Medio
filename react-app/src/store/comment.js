@@ -81,6 +81,7 @@ export const editComment = (commentId, payload) => async dispatch => {
 
   if (response.ok) {
     const comment = await response.json();
+    console.log("this is the payload", payload)
     dispatch(add(comment));
   }
 };

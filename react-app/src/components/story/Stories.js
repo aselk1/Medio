@@ -38,7 +38,7 @@ const Stories = ({ user }) => {
           <SideBar />
           <main className="story-main">
             <div className="story-main-container">
-              <div className="your-story-body">
+              <div className="your-story-body bottomBorder">
                 <div className="body-holder">
                   <div className="your-story-header">
                     <div className="centerCol flexRo">
@@ -47,16 +47,27 @@ const Stories = ({ user }) => {
                           <h1 className="fontSize42">Your Stories</h1>
                         </div>
                         <div className="write-button-container">
-                          <button className="writeStory" onClick={() => history.push('/new-story')}>Write a Story</button>
+                          <button
+                            className="writeStory"
+                            onClick={() => history.push("/new-story")}
+                          >
+                            Write a Story
+                          </button>
                         </div>
                       </div>
                     </div>
                   </div>
                   <ul className="noBullets">
-                    {userStories && userStories[0] &&
+                    {userStories &&
+                      userStories[0] &&
                       userStories.map((story) => (
-                        <li className="">
-                          <h4 className="widthFit cursorPointer" onClick={(e) => storyDetails(story, e)}>{story.title}</h4>
+                        <li className="topBorder titlePadding">
+                          <h4
+                            className="widthFit cursorPointer"
+                            onClick={(e) => storyDetails(story, e)}
+                          >
+                            {story.title}
+                          </h4>
                         </li>
                       ))}
                   </ul>
@@ -64,7 +75,7 @@ const Stories = ({ user }) => {
               </div>
             </div>
           </main>
-          <div className='right-sidebar'></div>
+          <div className="right-sidebar"></div>
         </div>
       </div>
     </div>

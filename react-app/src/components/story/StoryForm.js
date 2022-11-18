@@ -44,9 +44,7 @@ const StoryForm = () => {
   };
 
   return (
-    <div className="story-page-container">
-      <div className="story-page-holder">
-        <div className="story-page">
+        <div className="flexRow">
           <SideBar />
           <div className="centerCol flexCol">
             <form className="flexCol centerCol" onSubmit={postStory}>
@@ -99,8 +97,6 @@ const StoryForm = () => {
             </form>
           </div>
         </div>
-      </div>
-    </div>
   );
 };
 

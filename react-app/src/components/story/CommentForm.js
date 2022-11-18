@@ -3,6 +3,7 @@ import { Dispatch } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { createComment } from "../../store/comment";
+import * as storyDetailsActions from "../../store/storyDetails"
 
 function CommentForm() {
   const [body, setBody] = useState("");
@@ -39,7 +40,7 @@ function CommentForm() {
 
 
     await dispatch(createComment(storyId, commentForm))
-    .then(history.push(`/stories/${storyId}`))
+    .then(await dispatch(storyDetailsActions.fetchStoryDetails(storyId)))
 
     // Reset the form state.
     setBody("");
