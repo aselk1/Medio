@@ -96,10 +96,6 @@ const StoryDetails = () => {
   //   // return () => document.removeEventListener("click", closeMenu);
   // }, [showMenu]);
 
-  useEffect(() => {
-    dispatch(getComments(storyId));
-  }, [dispatch]);
-
   const deleteStory = async () => {
     await dispatch(storyActions.fetchDeleteStory(storyId));
     await dispatch(storyDetailsActions.deleteStoryDetails());

@@ -47,7 +47,7 @@ def remove_comment(id):
         db.session.delete(comment)
         db.session.commit()
         return comment.to_dict()
-    return {'errors': ['Unauthorized']}
+    # return {'errors': ['Unauthorized']}
 
 # ====================likes comments====================================
 
