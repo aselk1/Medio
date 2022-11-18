@@ -72,12 +72,13 @@ def delete_story(id):
 
 @stories_routes.route('/<int:id>/comments')
 @login_required
-def get_comments():
+def get_comments(id):
     """
     Query for all comments for a story and returns them in a list of dictionaries
     """
-    comments = Comment.query.all()
-    return {'comments': [comment.to_dict() for comment in comments]}
+    story = Story.query.get(id)
+    print(story)
+
 
 @stories_routes.route('/<int:id>/comments', methods=['POST'])
 @login_required
