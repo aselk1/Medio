@@ -28,5 +28,6 @@ class Story(db.Model):
             'title': self.title,
             'body': self.body,
             'user_id': self.user_id,
-            'User': self.user.to_dict()
+            'User': self.user.to_dict(),
+            'Comments': [comment.to_dict() for comment in self.comments]
         }
