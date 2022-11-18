@@ -14,7 +14,7 @@ const StoryForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [editorState, setEditorState] = useState(() =>
-  EditorState.createEmpty()
+    EditorState.createEmpty()
   );
   const [body, setBody] = useState(
     JSON.stringify(convertToRaw(editorState.getCurrentContent()))
@@ -83,7 +83,7 @@ const StoryForm = () => {
             editorState={editorState}
             setEditorState={setEditorState}
             /> */}
-            <RichEditor2 editorState={editorState} setEditorState={setEditorState}/>
+            <RichEditor2 editorState={editorState} setEditorState={setEditorState} />
             {/* <textarea
               className="noResize width700 fontSize21"
               name="body"

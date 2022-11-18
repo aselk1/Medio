@@ -55,20 +55,20 @@ function User() {
                             <NavLink to={`/users/${user.id}`} className='for-you-link'>
                               <p className='for-you-link-container'>
                                 <span className='for-you-holder'>
-                                  <button className='for-you-button' onClick={forYou}>For You</button>
+                                  <button className='for-you-button' onClick={forYou}>About</button>
                                 </span>
                               </p>
                             </NavLink>
                           </div>
-                          <div className={followingButton ? 'following-action-clicked' : 'following-action'}>
-                            <NavLink to={`/users/${user.id}/following-feed`} className='following-link'>
+                          {/* <div className={followingButton ? 'following-action-clicked' : 'following-action'}>
+                            <NavLink to={`/following-feed`} className='following-link'>
                               <p className='following-container'>
                                 <span className='following-holder'>
                                   <button className='following-button' onClick={following}>Following</button>
                                 </span>
                               </p>
                             </NavLink>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </div>
