@@ -50,6 +50,7 @@ def edit_story(id):
     if current_user.id == story.user_id:
         form = StoryForm()
         form['csrf_token'].data = request.cookies['csrf_token']
+        print(form.data)
         if form.validate_on_submit():
             story.title = form.data['title']
             story.body = form.data['body']
@@ -67,7 +68,7 @@ def delete_story(id):
     if current_user.id == story.user_id:
         db.session.delete(story)
         db.session.commit()
-        return story.to_dict()
+        return "Deleted"
     return {'errors': ['Unauthorized']}
 
 # @stories_routes.route('/<int:id>/comments')
@@ -89,7 +90,11 @@ def post_comment(id):
     Posts a comment to a story
     """
     form = CommentForm()
+    print(request)
     form['csrf_token'].data = request.cookies['csrf_token']
+    print(form.data)
+    print(form.errors)
+    print(form.validate_on_submit())
     if form.validate_on_submit():
         comment = Comment(body=form.data['body'],
                       user_id=current_user.id,

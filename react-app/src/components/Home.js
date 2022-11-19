@@ -55,13 +55,13 @@ function Home() {
                             </a>
                           </div>
                           <div className={followingButton ? 'following-action-clicked' : 'following-action'}>
-                            <NavLink to={`/following-feed`} className='following-link'>
+                            {/* <NavLink to={`/following-feed`} className='following-link'>
                               <p className='following-container'>
                                 <span className='following-holder'>
                                   <button className='following-button' onClick={following}>Following</button>
                                 </span>
                               </p>
-                            </NavLink>
+                            </NavLink> */}
                           </div>
                         </div>
                       </div>

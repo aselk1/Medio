@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf";
+import Cookies from "js-cookie";
 
 const POST_STORY = "stories/POST_STORY";
 const EDIT_STORY = "stories/EDIT_STORY";
@@ -36,15 +37,15 @@ export const fetchAllStories = () => async (dispatch) => {
 
 export const fetchPostStory = (story) => async (dispatch) => {
   const { title, body } = story;
-  const formData = new FormData();
-  formData.append("title", title);
-  formData.append("body", body);
-  const response = await csrfFetch("/api/stories", {
+  // const formData = new FormData();
+  // formData.append("title", title);
+  // formData.append("body", body);
+  const response = await fetch("/api/stories", {
     method: "POST",
     headers: {
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "application/json",
     },
-    body: formData,
+    body: JSON.stringify(story),
   });
   if (response.ok) {
     const story = await response.json();
@@ -54,16 +55,17 @@ export const fetchPostStory = (story) => async (dispatch) => {
 };
 
 export const fetchEditStory = (id, story) => async (dispatch) => {
+  console.log(story)
   const { newTitle, newBody } = story;
-  const formData = new FormData();
-  formData.append("title", newTitle);
-  formData.append("body", newBody);
-  const res = await csrfFetch(`/api/stories/${id}`, {
+  // const formData = new FormData();
+  // formData.append("title", newTitle);
+  // formData.append("body", newBody);
+  const res = await fetch(`/api/stories/${id}`, {
     method: "PUT",
     headers: {
-      "Content-Type": "multipart/form-data"
+      "Content-Type": "application/json"
     },
-    body: formData
+    body: JSON.stringify(story)
   });
   if (res.ok) {
     const data = await res.json()
@@ -73,9 +75,9 @@ export const fetchEditStory = (id, story) => async (dispatch) => {
 }
 
 export const fetchDeleteStory = (id) => async (dispatch) => {
-  const response = await csrfFetch(`/api/stories/${id}`, {
-    method: "DELETE"
-  })
+  const response = await fetch(`/api/stories/${id}`, {
+    method: "DELETE",
+  });
   if (response.ok) {
     dispatch(deleteStory(id))
     return response
