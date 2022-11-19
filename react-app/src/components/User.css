@@ -16,6 +16,19 @@
     justify-content: space-between;
 }
 
+.user-name {
+    max-height: 52px;
+    line-height: 52px;
+    font-size: 42px;
+    letter-spacing: 0px;
+    color: rgb(25, 25, 25);
+    font-weight: 700;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 .main-user-page {
     display: block;
     margin-bottom: 0;
@@ -134,6 +147,49 @@
     padding: 0 32px;
     box-sizing: border-box;
     background-color: rgba(255, 255, 255, 1);
+}
+
+/*  user profile */
+.follow-user-button {
+    border-color: rgb(26, 137, 23);
+    background: rgb(26, 137, 23);
+    width: auto;
+    text-decoration: none;
+    display: inline-block;
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 99em;
+    fill: rgba(255, 255, 255, 1);
+    padding: 7px 16px 9px;
+    color: rgba(255, 255, 255, 1);
+    line-height: 20px;
+    font-size: 14px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    margin: 0;
+    cursor: pointer;
+}
+
+.following-user-button {
+    border-color: rgb(26, 137, 23);
+    background: 0px center;
+    width: auto;
+    text-decoration: none;
+    display: inline-block;
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 99em;
+    fill: rgba(26, 137, 23, 1);
+    padding: 7px 16px 9px;
+    color: rgba(26, 137, 23, 1);
+    line-height: 20px;
+    font-size: 14px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    margin: 0;
+    cursor: pointer;
 }
 
 @media screen and (min-width: 1080px) {

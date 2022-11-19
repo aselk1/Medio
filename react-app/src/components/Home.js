@@ -80,6 +80,9 @@ function Home() {
                               <div className='story-card-preview'>
                                 <div className="story-author">
                                   <div className='story-author-feed-holder'>
+                                    <div>
+                                      <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="Profile" className="profile-image-splash"></img>
+                                    </div>
                                     {/* add link on author name */}
                                     <div className='story-author-feed-container'>
                                       <div className='feed-inner-container'>
