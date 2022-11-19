@@ -191,6 +191,12 @@
     margin-right: 16px;
 }
 
+.story-image-feed {
+    vertical-align: middle;
+    width: 200px;
+    height: 134px;
+}
+
 #root>div>div.story-page-container>div>div>main>div>div.user-interactions>div {
     display: flex;
     gap: 10px;

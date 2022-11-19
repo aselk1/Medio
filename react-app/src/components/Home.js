@@ -98,6 +98,11 @@ function Home() {
                                   </div>
                                 </NavLink>
                               </div>
+                              <NavLink className='story-page-link' to={`/stories/${story.id}`}>
+                                <img className='story-image-feed'>
+                                  {/* add image here for stories */}
+                                </img>
+                              </NavLink>
                             </div>
                           </div>
                         </div>
