@@ -43,7 +43,7 @@ const LikeStory = () => {
     if (allLikeUser === undefined) {
             dispatch(getLikeStory(id));
         }
-        const btn = document?.getElementById("likeStoryClickBt");
+    const btn = document?.getElementById("likeStoryClickBt");
 
     btn === null ? dispatch(getLikeStory(id)) :
       btn.style.backgroundColor = "#F5F5F5"
@@ -60,13 +60,13 @@ const LikeStory = () => {
       btn === null ? dispatch(getLikeStory(id)) :
       btn.style.backgroundColor = "#F5F5F5"
       dispatch(deleteLikeStory(id))
-      dispatch(getLikeStory(id))
+      // dispatch(getLikeStory(id))
     } else {
       dispatch(likeStory(id))
       btn === null ? dispatch(getLikeStory(id)) :
-      btn.style.backgroundColor = "#3895D3";
+      btn.style.backgroundColor = "#64afe1";
     }
-    dispatch(getLikeStory(id))
+    // dispatch(getLikeStory(id))
 };
 // story like with color ==============================
 
