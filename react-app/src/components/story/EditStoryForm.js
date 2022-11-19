@@ -8,6 +8,7 @@ import RichEditor2 from "../editor/RichEditor2";
 import { Editor, EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import "./Story.css";
 
+
 const EditStoryForm = () => {
   const story = useSelector((state) => state.storyDetails);
   const title = useSelector((state) => state.storyDetails.title);

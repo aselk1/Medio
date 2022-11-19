@@ -6,6 +6,7 @@ import SideBar from "../SideBar";
 import RichEditor from "../editor/RichEditor";
 import { Editor, EditorState, getDefaultKeyBinding, RichUtils, convertToRaw } from "draft-js";
 import RichEditor2 from "../editor/RichEditor2";
+import './StoryForm.css'
 
 const StoryForm = () => {
   const [errors, setErrors] = useState([]);

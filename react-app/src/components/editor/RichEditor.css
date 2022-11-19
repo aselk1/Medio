@@ -27,7 +27,7 @@
   margin-top: 10px;
 }
 
-.RichEditor-editor .public-DraftEditorPlaceholder-root,
+.RichEditor-editor .public-Placeholder-root,
 .RichEditor-editor .public-DraftEditor-content {
   margin: 0 -15px -15px;
   padding: 15px;
@@ -74,4 +74,8 @@
 
 .RichEditor-activeButton {
   color: #5890ff;
+}
+
+.editorTextSize {
+  width: 700px;
 }
