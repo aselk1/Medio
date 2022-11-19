@@ -83,8 +83,8 @@ const StoryDetails = () => {
   // }, [showMenu]);
 
   const deleteStory = async () => {
-    await dispatch(storyDetailsActions.deleteStoryDetails());
     await dispatch(storyActions.fetchDeleteStory(storyId));
+    await dispatch(storyDetailsActions.deleteStoryDetails());
     history.push('/stories')
   };
 

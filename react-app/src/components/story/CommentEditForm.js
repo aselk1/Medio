@@ -33,11 +33,7 @@ function CommentEditForm({comment, setCommentBody, commentBody, setEditId}) {
     if (validationErrors.length) return alert(`Cannot Submit`);
 
     // Create a new object for the song form information.
-    const commentForm = {
-      body: commentBody,
-      userId,
-      storyId
-    };
+    const commentForm = {body: commentBody};
 
 
     await dispatch(editComment(comment.id, commentForm, storyId))

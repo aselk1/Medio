@@ -46,7 +46,8 @@ const EditStoryForm = () => {
   const editStory = async (e) => {
     e.preventDefault();
     setErrors([]);
-    const editStory = { newTitle, newBody };
+    const editStory = { title: newTitle, body: newBody };
+    console.log(editStory)
     let data = await dispatch(
       storyActions.fetchEditStory(story.id, editStory)
     ).catch(async (res) => {

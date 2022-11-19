@@ -23,7 +23,7 @@ export const editStoryDetails = (story) => ({
 
 
 export const fetchStoryDetails = (id) => async (dispatch) => {
-  const response = await csrfFetch(`/api/stories/${id}`);
+  const response = await fetch(`/api/stories/${id}`);
   if (response.ok) {
     const story = await response.json();
     dispatch(getStoryDetails(story));
