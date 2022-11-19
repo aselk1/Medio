@@ -127,10 +127,7 @@ const StoryDetails = () => {
                                           <button
                                             onClick={() =>
                                               history.push(
-                                                `/stories/${story.id}/edit`
-                                              )
-                                            }
-                                          >
+                                                `/stories/${story.id}/edit`)}>
                                             Edit
                                           </button>
                                           <button onClick={deleteStory}>
@@ -163,8 +160,7 @@ const StoryDetails = () => {
                                       return (
                                         <RichEditor2
                                           editorState={editorState}
-                                          readOnly={true}
-                                        />
+                                          readOnly={true} />
                                       );
                                     })}
                                 </div>
@@ -209,12 +205,6 @@ const StoryDetails = () => {
                                 <div>{comment.User.username}</div>
                               </div>
                               <div className="comment-body">{comment.body}</div>
-                              {/* <div className="likeComment">
-                                <div>
-                                  <LikeComment comment={comment} />
-                                </div>
-                              </div> */}
-
                               {comment?.user_id === user?.id && (
                                 <div className="comment-buttons">
                                   <div
@@ -231,8 +221,7 @@ const StoryDetails = () => {
                                       if (editId === comment.id) {
                                         setEditId(-1);
                                         setEditId("");
-                                        return;
-                                      }
+                                        return;}
                                       setEditId(comment.id);
                                       setCommentBody(comment.body);
                                     }}
@@ -265,6 +254,7 @@ const StoryDetails = () => {
                     </div>
                   </div>
                   </div>}
+                </div>
                 </div>
             </main>
             <div className="user-info-sidebar">
@@ -322,6 +312,6 @@ const StoryDetails = () => {
         </div >
       }
     </div>
-  )
-}
+  );
+};
 export default StoryDetails;
