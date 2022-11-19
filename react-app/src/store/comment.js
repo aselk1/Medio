@@ -59,13 +59,20 @@ export const getCommentsByUser = (userId) => async dispatch => {
 };
 
 export const createComment = (storyId, payload) => async dispatch => {
+  console.log(payload)
   const response = await fetch(`/api/stories/${storyId}/comments`, {
     method: 'POST',
-    header: {
+    headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(payload)
   })
+  // const response = await fetch(`/api/stories/${storyId}/comments`, {
+  //   method: "POST",
+  //   headers: {
+
+  //   }
+  // })
 
   if (response.ok) {
     const comment = await response.json();
@@ -75,8 +82,12 @@ export const createComment = (storyId, payload) => async dispatch => {
 
 
 export const editComment = (commentId, payload, storyId) => async dispatch => {
+  console.log(payload)
   const response = await fetch(`/api/comments/${commentId}`, {
     method: 'PUT',
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify(payload)
   })
 

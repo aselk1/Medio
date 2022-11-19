@@ -54,6 +54,7 @@ export const fetchPostStory = (story) => async (dispatch) => {
 };
 
 export const fetchEditStory = (id, story) => async (dispatch) => {
+  console.log(story)
   const { newTitle, newBody } = story;
   // const formData = new FormData();
   // formData.append("title", newTitle);
