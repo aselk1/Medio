@@ -55,13 +55,6 @@ const StoryDetails = () => {
   };
 
 
-  const clickLike = (e) => {
-    e.preventDefault();
-    allLikeUser?.find((id) => id === user.id)
-      ? alert("you already clicked")
-      : dispatch(likeStory(id));
-  };
-
   const openMenu = () => {
     // if (showMenu) return;
     if (!showMenu) setShowMenu(true);
