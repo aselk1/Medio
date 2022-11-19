@@ -4,6 +4,7 @@ import { useHistory, useLocation, useParams, NavLink } from "react-router-dom";
 import SideBar from "../SideBar";
 import * as storyDetailsActions from "../../store/storyDetails";
 import * as storyActions from "../../store/stories";
+import * as followActions from '../../store/follower'
 import "./Story.css";
 import { getLikeStory, likeStory } from "../../store/likeStory";
 import { getComments, deleteComment } from "../../store/comment";
@@ -34,6 +35,7 @@ const StoryDetails = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [commentBody, setCommentBody] = useState("");
+  const [following, setFollowing] = useState(false)
   const [editId, setEditId] = useState(-1);
 
   // if (story.body) {
@@ -60,6 +62,16 @@ const StoryDetails = () => {
       ? alert("you already clicked")
       : dispatch(likeStory(id));
   };
+
+  const handleClick = () => {
+    if (!following) {
+      dispatch(followActions.follow(user.id, story.user_id))
+        .then(() => setFollowing(true))
+    } else {
+      dispatch(followActions.unfollow(user.id, story.user_id))
+        .then(() => setFollowing(false))
+    }
+  }
 
   const openMenu = () => {
     // if (showMenu) return;
@@ -297,7 +309,6 @@ const StoryDetails = () => {
               </div>
             </div>
           </div>
-        </div>
         </div>
       }
     </div >
