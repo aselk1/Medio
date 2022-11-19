@@ -77,9 +77,6 @@ export const fetchEditStory = (id, story) => async (dispatch) => {
 export const fetchDeleteStory = (id) => async (dispatch) => {
   const response = await fetch(`/api/stories/${id}`, {
     method: "DELETE",
-    headers: {
-      "XSRF-Token": Cookies.get("XSRF-TOKEN"),
-    },
   });
   if (response.ok) {
     dispatch(deleteStory(id))
