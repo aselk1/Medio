@@ -41,7 +41,7 @@ export const getComments = (storyId) => async dispatch => {
 
 export const getCommentDetails = (commentId) => async dispatch => {
 
-  const response = await csrfFetch(`/api/comments/${commentId}`);
+  const response = await fetch(`/api/comments/${commentId}`);
 
   if (response.ok) {
     const list = await response.json();
@@ -50,7 +50,7 @@ export const getCommentDetails = (commentId) => async dispatch => {
 };
 
 export const getCommentsByUser = (userId) => async dispatch => {
-  const response = await csrfFetch(`/api/artists/${userId}/comments`);
+  const response = await fetch(`/api/artists/${userId}/comments`);
 
   if (response.ok) {
     const list = await response.json();
@@ -59,7 +59,7 @@ export const getCommentsByUser = (userId) => async dispatch => {
 };
 
 export const createComment = (storyId, payload) => async dispatch => {
-  const response = await csrfFetch(`/api/stories/${storyId}/comments`, {
+  const response = await fetch(`/api/stories/${storyId}/comments`, {
     method: 'POST',
     header: {
       "Content-Type": "application/json"
@@ -75,7 +75,7 @@ export const createComment = (storyId, payload) => async dispatch => {
 
 
 export const editComment = (commentId, payload, storyId) => async dispatch => {
-  const response = await csrfFetch(`/api/comments/${commentId}`, {
+  const response = await fetch(`/api/comments/${commentId}`, {
     method: 'PUT',
     body: JSON.stringify(payload)
   })

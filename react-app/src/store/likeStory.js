@@ -20,7 +20,7 @@ const deleteLike = story_id => ({
 });
 
 export const getLikeStory =spotId =>async dispatch =>{
-    const response = await csrfFetch(`/api/stories/${spotId}/likes`)
+    const response = await fetch(`/api/stories/${spotId}/likes`)
 
     if (response.ok) {
         const numLike = await response.json();
@@ -32,7 +32,7 @@ export const getLikeStory =spotId =>async dispatch =>{
 
 
 export const likeStory = (storyId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/stories/${storyId}/likes`, {
+    const response = await fetch(`/api/stories/${storyId}/likes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         // body is neccessary?
@@ -44,7 +44,7 @@ export const likeStory = (storyId) => async (dispatch) => {
 }
 
 export const deleteLikeStory = (storyId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/stories/${storyId}/likes`, {
+    const response = await fetch(`/api/stories/${storyId}/likes`, {
         method: "DELETE",
     });
 
