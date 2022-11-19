@@ -99,7 +99,7 @@ const StoryDetails = () => {
             <SideBar />
             <main className="story-main">
               <div className="story-holder">
-                <div className="flexCol centerCol">
+                <div className="flexCol margin-padding">
                   <div className="width700">
                     <div className="story-width">
                       <article>

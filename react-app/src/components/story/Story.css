@@ -3,6 +3,11 @@
     padding-top: 10px;
 }
 
+.margin-padding {
+    margin-bottom: 40px;
+    padding-top: 10px;
+}
+
 .centerRow {
     justify-content: center;
 }
