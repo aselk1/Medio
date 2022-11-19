@@ -236,6 +236,7 @@ const StoryDetails = () => {
                                     comment={comment}
                                     setCommentBody={setCommentBody}
                                     commentBody={commentBody}
+                                    setEditId={setEditId}
                                   />
                                 )}
                               </div>
