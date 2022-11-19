@@ -55,6 +55,9 @@ const LoginForm = () => {
         ))}
       </div>
       <div>
+        <center>
+        <h2>Welcome back.</h2>
+        </center>
         <div>
           <label className="loginEmail" htmlFor="email">
             Email
@@ -88,8 +91,8 @@ const LoginForm = () => {
         <button className="loginBt" type="submit">
           Login
         </button>
-        <button className="demoUser" onClick={signInDemo}>
-          Demo User
+        <button onClick={signInDemo}>
+          Demo
         </button>
       </div>
     </form>
