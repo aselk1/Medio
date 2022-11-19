@@ -13,7 +13,7 @@ class Story(db.Model):
     body = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     user = db.relationship("User", lazy='joined', back_populates="stories")
-    comments = db.relationship("Comment", back_populates="story")
+    comments = db.relationship("Comment", cascade="all,delete", back_populates="story")
 
     liked_story_user = db.relationship(
         "User",
