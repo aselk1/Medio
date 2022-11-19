@@ -40,8 +40,7 @@ function CommentEditForm({comment, setCommentBody, commentBody}) {
     };
 
 
-    await dispatch(editComment(comment.id, commentForm))
-    .then(history.push("/home"))
+    await dispatch(editComment(comment.id, commentForm, storyId))
 
     // Reset the form state.
     setCommentBody("");

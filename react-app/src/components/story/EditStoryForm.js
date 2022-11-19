@@ -60,7 +60,7 @@ const EditStoryForm = () => {
   };
 
   return (
-    <div>
+    <div className="flexRow">
       <SideBar />
       <div className="centerCol flexCol">
         <form className="flexCol centerCol" onSubmit={editStory}>
