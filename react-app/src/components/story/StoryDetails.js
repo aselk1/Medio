@@ -49,9 +49,8 @@ const StoryDetails = () => {
     dispatch(getLikeStory(id));
   }, [dispatch]);
 
-  const handleDelete = async (commentId) => {
-    await dispatch(deleteComment(commentId));
-    await dispatch(storyDetailsActions.fetchStoryDetails(storyId));
+  const handleDelete = async (commentId, storyId) => {
+    await dispatch(deleteComment(commentId, storyId))
   };
 
 
@@ -208,7 +207,7 @@ const StoryDetails = () => {
                                 <div className="comment-buttons">
                                   <div
                                     className="detailButton1"
-                                    onClick={() => handleDelete(comment.id)}
+                                    onClick={() => handleDelete(comment.id, storyId)}
                                   >
                                     <i class="fa-solid fa-trash"></i>
                                   </div>

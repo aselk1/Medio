@@ -1,4 +1,5 @@
 import { csrfFetch } from './csrf';
+import { fetchStoryDetails } from './storyDetails';
 
 export const LOAD_COMMENT = "comments/LOAD_COMMENTS";
 export const UPDATE_COMMENT = "comments/UPDATE_COMMENTS";
@@ -87,7 +88,7 @@ export const editComment = (commentId, payload) => async dispatch => {
 };
 
 
-export const deleteComment = (id) => async dispatch => {
+export const deleteComment = (id, storyId) => async dispatch => {
   const response = await csrfFetch(`/api/comments/${id}`, {
     method: 'DELETE'
   });
@@ -95,6 +96,7 @@ export const deleteComment = (id) => async dispatch => {
   if (response.ok) {
     const list = await response.json();
     dispatch(remove(id));
+    dispatch(fetchStoryDetails(storyId))
   }
 }
 const initialState = { allComments: {}, singleComment: {} };
