@@ -90,7 +90,7 @@ export const editComment = (commentId, payload, storyId) => async dispatch => {
 
 
 export const deleteComment = (id, storyId) => async dispatch => {
-  const response = await csrfFetch(`/api/comments/${id}`, {
+  const response = await fetch(`/api/comments/${id}`, {
     method: 'DELETE'
   });
 
