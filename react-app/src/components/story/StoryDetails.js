@@ -4,7 +4,6 @@ import { useHistory, useLocation, useParams, NavLink } from "react-router-dom";
 import SideBar from "../SideBar";
 import * as storyDetailsActions from "../../store/storyDetails";
 import * as storyActions from "../../store/stories";
-import * as followActions from '../../store/follower'
 import "./Story.css";
 import { getLikeStory, likeStory } from "../../store/likeStory";
 import { getComments, deleteComment } from "../../store/comment";
@@ -35,7 +34,6 @@ const StoryDetails = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [commentBody, setCommentBody] = useState("");
-  const [following, setFollowing] = useState(false)
   const [editId, setEditId] = useState(-1);
 
   // if (story.body) {
@@ -51,9 +49,8 @@ const StoryDetails = () => {
     dispatch(getLikeStory(id));
   }, [dispatch]);
 
-  const handleDelete = async (commentId) => {
-    await dispatch(deleteComment(commentId));
-    await dispatch(storyDetailsActions.fetchStoryDetails(storyId));
+  const handleDelete = async (commentId, storyId) => {
+    await dispatch(deleteComment(commentId, storyId))
   };
 
 
@@ -72,15 +69,6 @@ const StoryDetails = () => {
     console.log("opening");
   };
 
-  const handleClick = () => {
-    if (!following) {
-      dispatch(followActions.follow(user.id, story.user_id))
-        .then(() => setFollowing(true))
-    } else {
-      dispatch(followActions.unfollow(user.id, story.user_id))
-        .then(() => setFollowing(false))
-    }
-  }
   // useEffect(() => {
   //   if (!showMenu) return;
 
@@ -127,7 +115,10 @@ const StoryDetails = () => {
                                           <button
                                             onClick={() =>
                                               history.push(
-                                                `/stories/${story.id}/edit`)}>
+                                                `/stories/${story.id}/edit`
+                                              )
+                                            }
+                                          >
                                             Edit
                                           </button>
                                           <button onClick={deleteStory}>
@@ -160,7 +151,8 @@ const StoryDetails = () => {
                                       return (
                                         <RichEditor2
                                           editorState={editorState}
-                                          readOnly={true} />
+                                          readOnly={true}
+                                        />
                                       );
                                     })}
                                 </div>
@@ -190,7 +182,7 @@ const StoryDetails = () => {
                               className="profileImage"
                             ></img>
                             <h2>{user?.username}</h2>
-                          </div >
+                          </div>
                           <div className="textarea-comments">
                             <CommentForm />
                           </div>
@@ -205,11 +197,17 @@ const StoryDetails = () => {
                                 <div>{comment.User.username}</div>
                               </div>
                               <div className="comment-body">{comment.body}</div>
+                              {/* <div className="likeComment">
+                                <div>
+                                  <LikeComment comment={comment} />
+                                </div>
+                              </div> */}
+
                               {comment?.user_id === user?.id && (
                                 <div className="comment-buttons">
                                   <div
                                     className="detailButton1"
-                                    onClick={() => handleDelete(comment.id)}
+                                    onClick={() => handleDelete(comment.id, storyId)}
                                   >
                                     <i class="fa-solid fa-trash"></i>
                                   </div>
@@ -221,31 +219,32 @@ const StoryDetails = () => {
                                       if (editId === comment.id) {
                                         setEditId(-1);
                                         setEditId("");
-                                        return;}
+                                        return;
+                                      }
                                       setEditId(comment.id);
                                       setCommentBody(comment.body);
                                     }}
                                   >
                                     <i class="fa-solid fa-pen"></i>
                                   </div>
-                                )}
-                                <div className="editform">
-                                  {editId === comment.id && (
-                                    <CommentEditForm
-                                      className="comment-edit-form"
-                                      comment={comment}
-                                      setCommentBody={setCommentBody}
-                                      commentBody={commentBody}
-                                    />
-                                  )}
                                 </div>
-                                <hr className="divider-comments" />
+                              )}
+                              <div className="editform">
+                                {editId === comment.id && (
+                                  <CommentEditForm
+                                    className="comment-edit-form"
+                                    comment={comment}
+                                    setCommentBody={setCommentBody}
+                                    commentBody={commentBody}
+                                  />
+                                )}
                               </div>
-                            ))
-                          }
-                        </div >
+                              <hr className="divider-comments" />
+                            </div>
+                          ))}
+                        </div>
                       )}
-                    </div >
+                    </div>
                     <div onClick={openMenu} className="comment-icon">
                       <div>
                         <i className="fa-regular fa-comment"></i>
@@ -253,9 +252,8 @@ const StoryDetails = () => {
                       <div>{story?.Comments?.length}</div>
                     </div>
                   </div>
-                  </div>}
-                </div>
-                </div>
+                </div>}
+              </div>
             </main>
             <div className="user-info-sidebar">
               <div className="user-sidebar">
@@ -287,31 +285,24 @@ const StoryDetails = () => {
                             </span>
                           </h2>
                         </NavLink>
-                        <NavLink>
-                          <div className="follow-button-holder">
-                            {user && (
-                              <button className="follow-button">Follow</button>)}
-                          </div>
-                        </NavLink >
-                        <div className="sb-spacer"></div>
-                        <NavLink to={`/users/${story.user_id}`} className='profile-link'>
-                          <h2 className="profile-author-name">
-                            <span className="user">{story?.User?.username}</span>
-                          </h2>
-                        </NavLink>
                         <div className="follow-button-holder">
-                          <button className={following ? "following-user-button" : "follow-user-button"} onClick={handleClick}>{following ? 'Following' : 'Follow'}</button>
+                          {user && (
+                            <button className={following ? "following-user-button" : "follow-user-button"} onClick={handleClick}>{following ? 'Following' : 'Follow'}</button>
+                          )}
                         </div>
-                      </div >
-                    </div >
-                  </div >
-                </div >
-              </div >
-            </div >
-          </div >
-        </div >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
       }
-    </div>
+    </div >
   );
 };
+
 export default StoryDetails;
+
