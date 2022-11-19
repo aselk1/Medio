@@ -55,6 +55,9 @@ const SignUpForm = () => {
             <div key={ind}>{error}</div>
           ))}
         </div>
+        <center>
+        <h2>Join Medium.</h2>
+        </center>
         <input
           type="text"
           name="username"

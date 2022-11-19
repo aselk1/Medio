@@ -34,12 +34,9 @@ const NavBar = () => {
         <div className="nav bar">
           <div className="navigation-items">
             <div className="medio-logo">
-              <NavLink to="/" exact={true}>
-                <img
-                  className="logo"
-                  src="https://miro.medium.com/max/8978/1*s986xIGqhfsN8U--09_AdA.png"
-                  alt="logo"
-                />
+              <NavLink className="logo-container" to="/" exact={true}>
+              <i id="logo"class="fa-brands fa-medium"></i>
+              <div className="logo-text">Medio</div>
               </NavLink>
             </div>
             <div className="spacer" />

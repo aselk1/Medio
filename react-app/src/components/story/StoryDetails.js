@@ -55,19 +55,10 @@ const StoryDetails = () => {
   };
 
 
-  const clickLike = (e) => {
-    e.preventDefault();
-    allLikeUser?.find((id) => id === user.id)
-      ? alert("you already clicked")
-      : dispatch(likeStory(id));
-  };
-
   const openMenu = () => {
     // if (showMenu) return;
     if (!showMenu) setShowMenu(true);
     if (showMenu) setShowMenu(false);
-
-    console.log("opening");
   };
 
   // useEffect(() => {
@@ -112,6 +103,7 @@ const StoryDetails = () => {
                                         alt="Profile"
                                         className="profileImage"
                                       ></img>
+                                      <span>{story.User?.username}</span>
                                       {story.User?.id === user?.id && (
                                         <div className="flexRow flexEnd">
                                           <button
