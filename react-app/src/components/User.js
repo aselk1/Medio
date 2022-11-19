@@ -93,16 +93,12 @@ function User() {
                           <span className="user">{user.username}</span>
                         </h2>
                       </NavLink>
-                      <div className="follow-button-holder">
-                        <button className={following ? "following-user-button" : "follow-user-button"} onClick={handleClick}>{following ? 'Following' : 'Follow'}</button>
-                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          {/* <div className='right-sidebar'></div> */}
         </div>
       </div>
     </div>

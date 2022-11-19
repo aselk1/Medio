@@ -301,7 +301,7 @@ const StoryDetails = () => {
                           </h2>
                         </NavLink>
                         <div className="follow-button-holder">
-                          {user && user?.id !== story?.user_id && (
+                          {user && (user?.id !== story?.user_id) && (
                             <button className={following ? "following-user-button" : "follow-user-button"} onClick={handleClick}>{following ? 'Following' : 'Follow'}</button>
                           )}
                         </div>
