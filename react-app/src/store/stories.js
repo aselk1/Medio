@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf";
+import Cookies from "js-cookie";
 
 const POST_STORY = "stories/POST_STORY";
 const EDIT_STORY = "stories/EDIT_STORY";
@@ -75,8 +76,11 @@ export const fetchEditStory = (id, story) => async (dispatch) => {
 
 export const fetchDeleteStory = (id) => async (dispatch) => {
   const response = await fetch(`/api/stories/${id}`, {
-    method: "DELETE"
-  })
+    method: "DELETE",
+    headers: {
+      "XSRF-Token": Cookies.get("XSRF-TOKEN"),
+    },
+  });
   if (response.ok) {
     dispatch(deleteStory(id))
     return response
