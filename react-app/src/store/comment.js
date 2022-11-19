@@ -31,7 +31,7 @@ export const remove = (commentId) => ({
 
 export const getComments = (storyId) => async dispatch => {
 
-  const response = await csrfFetch(`/api/stories/${storyId}/comments`);
+  const response = await fetch(`/api/stories/${storyId}/comments`);
 
   if (response.ok) {
     const list = await response.json();
