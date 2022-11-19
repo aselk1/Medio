@@ -6,7 +6,7 @@ import SideBar from "../SideBar";
 import RichEditor from "../editor/RichEditor";
 import { Editor, EditorState, getDefaultKeyBinding, RichUtils, convertToRaw } from "draft-js";
 import RichEditor2 from "../editor/RichEditor2";
-import './StoryForm.css'
+import './Story.css'
 
 const StoryForm = () => {
   const [errors, setErrors] = useState([]);
@@ -45,9 +45,11 @@ const StoryForm = () => {
   };
 
   return (
+    <div className="user-page-container">
+      <div className="user-page-holder">
         <div className="flexRow">
           <SideBar />
-          <div className="centerCol flexCol">
+          <div className="centerCol flexCol pagePadding">
             <form className="flexCol centerCol" onSubmit={postStory}>
               <div>
                 {errors.map((error, ind) => (
@@ -55,21 +57,8 @@ const StoryForm = () => {
                 ))}
               </div>
               <div>
-                {/* <label htmlFor="title">Title</label> */}
-                {/* <h3
-            contentEditable
-            className="noResize width700 fontSize42 heightFitContent"
-            id="titleHeader"
-            // name="title"
-            // type="text"
-            // placeholder="Title"
-            // value={title}
-            // onChange={(e) => setTitle(e.target.value)}
-          >
-            {titleDiv}
-          </h3> */}
                 <textarea
-                  className="noResize width700 fontSize42 heightFitContent"
+                  className="noResize width700 fontSize42 heightFitContent noBorder"
                   name="title"
                   type="text"
                   placeholder="Title"
@@ -79,25 +68,16 @@ const StoryForm = () => {
                 ></textarea>
               </div>
               <div className="width700">
-                {/* <label htmlFor="body">Body</label> */}
-                {/* <RichEditor
-            editorState={editorState}
-            setEditorState={setEditorState}
-            /> */}
                 <RichEditor2 editorState={editorState} setEditorState={setEditorState} />
-                {/* <textarea
-              className="noResize width700 fontSize21"
-              name="body"
-              type="text"
-              placeholder="Body"
-              value={body}
-              onChange={(e) => setBody(e.target.value)}
-            /> */}
               </div>
-              <button type="submit">Add Story</button>
+              <div className="flexRow centerRow">
+                <button type="submit" className="writeStory">Write a Story</button>
+              </div>
             </form>
           </div>
         </div>
+      </div>
+    </div>
   );
 };
 

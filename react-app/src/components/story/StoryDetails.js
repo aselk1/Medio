@@ -107,6 +107,7 @@ const StoryDetails = () => {
                                       {story.User?.id === user?.id && (
                                         <div className="flexRow flexEnd">
                                           <button
+                                            className="profButtons"
                                             onClick={() =>
                                               history.push(
                                                 `/stories/${story.id}/edit`
@@ -115,7 +116,7 @@ const StoryDetails = () => {
                                           >
                                             Edit
                                           </button>
-                                          <button onClick={deleteStory}>
+                                          <button onClick={deleteStory} className="profButtons">
                                             Delete
                                           </button>
                                         </div>
