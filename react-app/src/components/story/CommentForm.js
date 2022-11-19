@@ -40,7 +40,7 @@ function CommentForm() {
 
 
     await dispatch(createComment(storyId, commentForm))
-    .then(await dispatch(storyDetailsActions.fetchStoryDetails(storyId)))
+    await dispatch(storyDetailsActions.fetchStoryDetails(storyId))
 
     // Reset the form state.
     setBody("");

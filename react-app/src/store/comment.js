@@ -1,4 +1,5 @@
 import { csrfFetch } from './csrf';
+import { fetchStoryDetails } from './storyDetails';
 
 export const LOAD_COMMENT = "comments/LOAD_COMMENTS";
 export const UPDATE_COMMENT = "comments/UPDATE_COMMENTS";
@@ -73,7 +74,7 @@ export const createComment = (storyId, payload) => async dispatch => {
 };
 
 
-export const editComment = (commentId, payload) => async dispatch => {
+export const editComment = (commentId, payload, storyId) => async dispatch => {
   const response = await csrfFetch(`/api/comments/${commentId}`, {
     method: 'PUT',
     body: JSON.stringify(payload)
@@ -83,11 +84,12 @@ export const editComment = (commentId, payload) => async dispatch => {
     const comment = await response.json();
     console.log("this is the payload", payload)
     dispatch(add(comment));
+    dispatch(fetchStoryDetails(storyId));
   }
 };
 
 
-export const deleteComment = (id) => async dispatch => {
+export const deleteComment = (id, storyId) => async dispatch => {
   const response = await csrfFetch(`/api/comments/${id}`, {
     method: 'DELETE'
   });
@@ -95,6 +97,7 @@ export const deleteComment = (id) => async dispatch => {
   if (response.ok) {
     const list = await response.json();
     dispatch(remove(id));
+    dispatch(fetchStoryDetails(storyId))
   }
 }
 const initialState = { allComments: {}, singleComment: {} };

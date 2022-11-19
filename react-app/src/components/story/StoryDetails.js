@@ -17,6 +17,7 @@ import LikeComment from "../likeButton/LikeComment";
 const StoryDetails = () => {
   const story = useSelector((state) => state.storyDetails);
   const history = useHistory();
+  if (!story.id) history.push('/stories')
   const dispatch = useDispatch();
   useEffect(() => {
     (async () => {
@@ -49,9 +50,8 @@ const StoryDetails = () => {
     dispatch(getLikeStory(id));
   }, [dispatch]);
 
-  const handleDelete = async (commentId) => {
-    await dispatch(deleteComment(commentId));
-    await dispatch(storyDetailsActions.fetchStoryDetails(storyId));
+  const handleDelete = async (commentId, storyId) => {
+    await dispatch(deleteComment(commentId, storyId))
   };
 
 
@@ -85,6 +85,7 @@ const StoryDetails = () => {
   const deleteStory = async () => {
     await dispatch(storyDetailsActions.deleteStoryDetails());
     await dispatch(storyActions.fetchDeleteStory(storyId));
+    history.push('/stories')
   };
 
   return (
@@ -208,7 +209,7 @@ const StoryDetails = () => {
                                 <div className="comment-buttons">
                                   <div
                                     className="detailButton1"
-                                    onClick={() => handleDelete(comment.id)}
+                                    onClick={() => handleDelete(comment.id, storyId)}
                                   >
                                     <i class="fa-solid fa-trash"></i>
                                   </div>
@@ -237,6 +238,7 @@ const StoryDetails = () => {
                                     comment={comment}
                                     setCommentBody={setCommentBody}
                                     commentBody={commentBody}
+                                    setEditId={setEditId}
                                   />
                                 )}
                               </div>
