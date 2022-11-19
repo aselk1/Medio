@@ -130,15 +130,15 @@ def post_like(id):
     like_story_user = User.query.get(current_user.id)
     all_liked_user =  story.liked_story_user.all()
 
-    # if not all_liked_user:
-    #     story.liked_story_user.append(like_story_user)
-    #     # db.session.commit()
-    # else:
-    #     for user in all_liked_user:
-    #         if user.id == current_user.id:
-    #             return "You already clicked"
-    #         else:
-    story.liked_story_user.append(like_story_user)
+    if not all_liked_user:
+        story.liked_story_user.append(like_story_user)
+        # db.session.commit()
+    else:
+        for user in all_liked_user:
+            if user.id == current_user.id:
+                return "You already clicked"
+            else:
+                story.liked_story_user.append(like_story_user)
 
     db.session.commit()
     # the number of like for the story
