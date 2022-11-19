@@ -17,6 +17,7 @@ import LikeComment from "../likeButton/LikeComment";
 const StoryDetails = () => {
   const story = useSelector((state) => state.storyDetails);
   const history = useHistory();
+  if (!story.id) history.push('/stories')
   const dispatch = useDispatch();
   useEffect(() => {
     (async () => {
@@ -84,6 +85,7 @@ const StoryDetails = () => {
   const deleteStory = async () => {
     await dispatch(storyDetailsActions.deleteStoryDetails());
     await dispatch(storyActions.fetchDeleteStory(storyId));
+    history.push('/stories')
   };
 
   return (
