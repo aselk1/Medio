@@ -68,7 +68,7 @@ def delete_story(id):
     if current_user.id == story.user_id:
         db.session.delete(story)
         db.session.commit()
-        return story.to_dict()
+        return "Deleted"
     return {'errors': ['Unauthorized']}
 
 # @stories_routes.route('/<int:id>/comments')
