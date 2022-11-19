@@ -78,10 +78,10 @@ const commentInfo = {}
 
 return (
   <>
-    <div>
-      <button id="likeStoryClickBt" onClick={clickStoryLike}>
+    <div className="likeItems">
+      <div id="likeStoryClickBt" onClick={clickStoryLike}>
         <i class="fa fa-thin fa-hands-clapping"></i>
-      </button>
+      </div>
       {likeInfo?.num}
     </div>
   </>)

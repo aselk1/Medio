@@ -66,8 +66,6 @@ const StoryDetails = () => {
     // if (showMenu) return;
     if (!showMenu) setShowMenu(true);
     if (showMenu) setShowMenu(false);
-
-    console.log("opening");
   };
 
   // useEffect(() => {
