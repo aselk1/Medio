@@ -18,6 +18,7 @@ import LikeComment from "../likeButton/LikeComment";
 const StoryDetails = () => {
   const story = useSelector((state) => state.storyDetails);
   const history = useHistory();
+  if (!story.id) history.push('/stories')
   const dispatch = useDispatch();
   useEffect(() => {
     (async () => {
@@ -94,8 +95,9 @@ const StoryDetails = () => {
   // }, [showMenu]);
 
   const deleteStory = async () => {
-    await dispatch(storyDetailsActions.deleteStoryDetails());
     await dispatch(storyActions.fetchDeleteStory(storyId));
+    // await dispatch(storyDetailsActions.deleteStoryDetails());
+    history.push('/stories')
   };
 
   return (
@@ -248,6 +250,7 @@ const StoryDetails = () => {
                                     comment={comment}
                                     setCommentBody={setCommentBody}
                                     commentBody={commentBody}
+                                    setEditId={setEditId}
                                   />
                                 )}
                               </div>

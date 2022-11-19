@@ -32,15 +32,11 @@ function CommentForm() {
     if (validationErrors.length) return alert(`Cannot Submit`);
 
     // Create a new object for the song form information.
-    const commentForm = {
-      body,
-      userId,
-      storyId
-    };
+    const commentForm = {body};
 
 
     await dispatch(createComment(storyId, commentForm))
-    .then(await dispatch(storyDetailsActions.fetchStoryDetails(storyId)))
+    await dispatch(storyDetailsActions.fetchStoryDetails(storyId))
 
     // Reset the form state.
     setBody("");

@@ -5,7 +5,7 @@ import { useHistory, useLocation, useParams } from "react-router-dom";
 import { editComment } from "../../store/comment";
 import * as storyDetailsActions from "../../store/storyDetails"
 
-function CommentEditForm({comment, setCommentBody, commentBody}) {
+function CommentEditForm({comment, setCommentBody, commentBody, setEditId}) {
 
   const userId = useSelector((state) => state.session.user.id);
   const storyId = Number(useLocation().pathname.split("/")[2]);
@@ -33,15 +33,12 @@ function CommentEditForm({comment, setCommentBody, commentBody}) {
     if (validationErrors.length) return alert(`Cannot Submit`);
 
     // Create a new object for the song form information.
-    const commentForm = {
-      body: commentBody,
-      userId,
-      storyId
-    };
+    const commentForm = {body: commentBody};
 
 
-    await dispatch(editComment(comment.id, commentForm))
-    .then(history.push("/home"))
+    await dispatch(editComment(comment.id, commentForm, storyId))
+    setEditId(-1)
+
 
     // Reset the form state.
     setCommentBody("");

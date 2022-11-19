@@ -46,7 +46,8 @@ const EditStoryForm = () => {
   const editStory = async (e) => {
     e.preventDefault();
     setErrors([]);
-    const editStory = { newTitle, newBody };
+    const editStory = { title: newTitle, body: newBody };
+    console.log(editStory)
     let data = await dispatch(
       storyActions.fetchEditStory(story.id, editStory)
     ).catch(async (res) => {
@@ -60,7 +61,7 @@ const EditStoryForm = () => {
   };
 
   return (
-    <div>
+    <div className="flexRow">
       <SideBar />
       <div className="centerCol flexCol">
         <form className="flexCol centerCol" onSubmit={editStory}>

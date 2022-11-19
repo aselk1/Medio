@@ -1,4 +1,5 @@
 import { csrfFetch } from './csrf';
+import { fetchStoryDetails } from './storyDetails';
 
 export const LOAD_COMMENT = "comments/LOAD_COMMENTS";
 export const UPDATE_COMMENT = "comments/UPDATE_COMMENTS";
@@ -30,7 +31,7 @@ export const remove = (commentId) => ({
 
 export const getComments = (storyId) => async dispatch => {
 
-  const response = await csrfFetch(`/api/stories/${storyId}/comments`);
+  const response = await fetch(`/api/stories/${storyId}/comments`);
 
   if (response.ok) {
     const list = await response.json();
@@ -40,7 +41,7 @@ export const getComments = (storyId) => async dispatch => {
 
 export const getCommentDetails = (commentId) => async dispatch => {
 
-  const response = await csrfFetch(`/api/comments/${commentId}`);
+  const response = await fetch(`/api/comments/${commentId}`);
 
   if (response.ok) {
     const list = await response.json();
@@ -49,7 +50,7 @@ export const getCommentDetails = (commentId) => async dispatch => {
 };
 
 export const getCommentsByUser = (userId) => async dispatch => {
-  const response = await csrfFetch(`/api/artists/${userId}/comments`);
+  const response = await fetch(`/api/artists/${userId}/comments`);
 
   if (response.ok) {
     const list = await response.json();
@@ -58,9 +59,33 @@ export const getCommentsByUser = (userId) => async dispatch => {
 };
 
 export const createComment = (storyId, payload) => async dispatch => {
-  const response = await csrfFetch(`/api/stories/${storyId}/comments`, {
+  console.log(payload)
+  const response = await fetch(`/api/stories/${storyId}/comments`, {
     method: 'POST',
-    header: {
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  })
+  // const response = await fetch(`/api/stories/${storyId}/comments`, {
+  //   method: "POST",
+  //   headers: {
+
+  //   }
+  // })
+
+  if (response.ok) {
+    const comment = await response.json();
+    dispatch(add(comment));
+  }
+};
+
+
+export const editComment = (commentId, payload, storyId) => async dispatch => {
+  console.log(payload)
+  const response = await fetch(`/api/comments/${commentId}`, {
+    method: 'PUT',
+    headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(payload)
@@ -68,33 +93,22 @@ export const createComment = (storyId, payload) => async dispatch => {
 
   if (response.ok) {
     const comment = await response.json();
-    dispatch(add(comment));
-  }
-};
-
-
-export const editComment = (commentId, payload) => async dispatch => {
-  const response = await csrfFetch(`/api/comments/${commentId}`, {
-    method: 'PUT',
-    body: JSON.stringify(payload)
-  })
-
-  if (response.ok) {
-    const comment = await response.json();
     console.log("this is the payload", payload)
     dispatch(add(comment));
+    dispatch(fetchStoryDetails(storyId));
   }
 };
 
 
-export const deleteComment = (id) => async dispatch => {
-  const response = await csrfFetch(`/api/comments/${id}`, {
+export const deleteComment = (id, storyId) => async dispatch => {
+  const response = await fetch(`/api/comments/${id}`, {
     method: 'DELETE'
   });
 
   if (response.ok) {
     const list = await response.json();
     dispatch(remove(id));
+    dispatch(fetchStoryDetails(storyId))
   }
 }
 const initialState = { allComments: {}, singleComment: {} };
