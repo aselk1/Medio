@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory, NavLink } from 'react-router-dom'
 import * as storyDetailActions from '../../../store/storyDetails'
+import { storyImage } from '../../../storyImage'
 
 export default function StoryCard({ stories }) {
     const dispatch = useDispatch()
@@ -14,7 +15,7 @@ export default function StoryCard({ stories }) {
     }
     return (
         <>
-            {stories.map(story => (
+            {stories.map((story, i) => (
                 <div className="story-card">
                     <div className='story-feed-item' onClick={(e) => storyPage(story, e)}>
                         <div className='story-feed-item-holder'>
@@ -38,6 +39,9 @@ export default function StoryCard({ stories }) {
                                     </div>
                                 </NavLink>
                             </div>
+                            <NavLink className='story-page-link' to={`/stories/${story.id}`}>
+                                <img className='story-image-feed' src={storyImage[i]} /> 
+                              </NavLink>
                         </div>
                     </div>
                 </div>

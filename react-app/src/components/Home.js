@@ -4,6 +4,7 @@ import { useHistory, NavLink } from 'react-router-dom';
 import * as storyDetailActions from "../store/storyDetails"
 import SideBar from './SideBar';
 import './User.css'
+import { storyImage } from '../storyImage';
 
 function Home() {
   const dispatch = useDispatch()
@@ -73,7 +74,7 @@ function Home() {
                 <div className='user-buttons'>
                   <div>
                     <div className='user-buttons'>
-                      {stories.map(story => (
+                      {stories.map((story, i) => (
                         <div className="story-card">
                           <div className='story-feed-item' onClick={(e) => storyPage(story, e)}>
                             <div className='story-feed-item-holder'>
@@ -99,9 +100,7 @@ function Home() {
                                 </NavLink>
                               </div>
                               <NavLink className='story-page-link' to={`/stories/${story.id}`}>
-                                <img className='story-image-feed'>
-                                  {/* add image here for stories */}
-                                </img>
+                                <img className='story-image-feed' src={storyImage[i]} /> 
                               </NavLink>
                             </div>
                           </div>
