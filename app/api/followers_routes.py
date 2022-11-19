@@ -22,7 +22,7 @@ def follow():
     return users
 
 #  I am able to unfollow other users
-@followers_routes.route("/<int:id>", methods=["DELETE"])
+@followers_routes.route("", methods=["DELETE"])
 @login_required
 def unfollow(id):
     req_body = request.json

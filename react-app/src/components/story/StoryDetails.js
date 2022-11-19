@@ -274,7 +274,7 @@ const StoryDetails = () => {
                     <div className="user-info-sidebar-wrapper">
                       <div className="user-sidebar-items">
                         <NavLink
-                          to={`/users/${story.user_id}`}
+                          to={`/users/${story?.user_id}`}
                           className="profile-link"
                         >
                           <div className="profile-picture">
@@ -288,7 +288,7 @@ const StoryDetails = () => {
                         </NavLink>
                         <div className="sb-spacer"></div>
                         <NavLink
-                          to={`/users/${story.user_id}`}
+                          to={`/users/${story?.user_id}`}
                           className="profile-link"
                         >
                           <h2 className="profile-author-name">
@@ -298,7 +298,7 @@ const StoryDetails = () => {
                           </h2>
                         </NavLink>
                         <div className="follow-button-holder">
-                          {user && (
+                          {user && user?.id !== story?.user_id && (
                             <button className={following ? "following-user-button" : "follow-user-button"} onClick={handleClick}>{following ? 'Following' : 'Follow'}</button>
                           )}
                         </div>
