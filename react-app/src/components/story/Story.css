@@ -281,6 +281,16 @@
     vertical-align: middle;
 }
 
+.profile-image-splash {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(242, 242, 242, 1);
+    box-sizing: border-box;
+    display: block;
+    vertical-align: middle;
+}
+
 .comment-box {
     height: 150px;
     overflow-wrap: break-word;
