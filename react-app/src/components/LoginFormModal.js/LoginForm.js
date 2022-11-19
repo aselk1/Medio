@@ -89,7 +89,7 @@ const LoginForm = () => {
           Login
         </button>
         <button onClick={signInDemo}>
-          Demo User
+          Demo
         </button>
       </div>
     </form>
