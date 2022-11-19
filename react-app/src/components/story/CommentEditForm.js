@@ -5,7 +5,7 @@ import { useHistory, useLocation, useParams } from "react-router-dom";
 import { editComment } from "../../store/comment";
 import * as storyDetailsActions from "../../store/storyDetails"
 
-function CommentEditForm({comment, setCommentBody, commentBody}) {
+function CommentEditForm({comment, setCommentBody, commentBody, setEditId}) {
 
   const userId = useSelector((state) => state.session.user.id);
   const storyId = Number(useLocation().pathname.split("/")[2]);
@@ -40,8 +40,9 @@ function CommentEditForm({comment, setCommentBody, commentBody}) {
     };
 
 
-    await dispatch(editComment(comment.id, commentForm))
-    .then(history.push("/home"))
+    await dispatch(editComment(comment.id, commentForm, storyId))
+    setEditId(-1)
+
 
     // Reset the form state.
     setCommentBody("");

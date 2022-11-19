@@ -43,11 +43,12 @@ def remove_comment(id):
     Query for all comments for a story and returns them in a list of dictionaries
     """
     comment = Comment.query.get(id)
+    print(current_user.id == comment.user_id)
     if current_user.id == comment.user_id:
         db.session.delete(comment)
         db.session.commit()
         print(comment)
-        return comment.to_dict()
+        return {'message': 'Deleted'}
     return {'errors': ['Unauthorized']}
 
 # ====================likes comments====================================
