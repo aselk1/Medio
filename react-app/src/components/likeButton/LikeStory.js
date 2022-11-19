@@ -5,6 +5,7 @@ import * as storyActions from "../../store/stories";
 import * as storyDetailsActions from "../../store/storyDetails";
 import SideBar from "../SideBar";
 import { getLikeStory, likeStory, deleteLikeStory } from "../../store/likeStory";
+import './LikeStory.css'
 
 const LikeStory = () => {
   const user = useSelector((state) => state.session.user);
