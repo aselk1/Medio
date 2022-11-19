@@ -1,0 +1,19 @@
+.width500 {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width:500px;
+    align-content: center;
+    justify-items: center;
+}
+.signUpButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.width200 {
+    width: 400px;
+}
+
