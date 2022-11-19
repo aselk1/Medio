@@ -185,16 +185,17 @@
     display: block;
     margin-right: 16px;
 }
-#root > div > div.story-page-container > div > div > main > div > div.user-interactions > div {
+
+#root>div>div.story-page-container>div>div>main>div>div.user-interactions>div {
     display: flex;
     gap: 10px;
 }
 
-#root > div > div.story-page-container > div > div > main > div > div.user-interactions > div:hover {
+#root>div>div.story-page-container>div>div>main>div>div.user-interactions>div:hover {
     cursor: pointer;
 }
 
-#root > div > div.story-page-container > div > div > main > div > div.user-interactions > div > div.comment-icon {
+#root>div>div.story-page-container>div>div>main>div>div.user-interactions>div>div.comment-icon {
     display: flex;
     gap: 10px;
 }
@@ -214,6 +215,7 @@
     color: rgb(199, 198, 198);
     opacity: .6;
 }
+
 .comments-sidebar {
     height: 100%;
     top: 0;
@@ -586,4 +588,11 @@ h4 {
     height: 30px;
     border-radius: 20px;
     cursor: pointer;
+}
+
+
+@media screen and (max-width: 1132px) {
+    .user-info-sidebar {
+        display: none;
+    }
 }
