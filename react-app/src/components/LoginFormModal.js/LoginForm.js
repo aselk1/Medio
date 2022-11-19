@@ -88,8 +88,8 @@ const LoginForm = () => {
         <button className="loginBt" type="submit">
           Login
         </button>
-        <button className="demoUser" onClick={signInDemo}>
-          Demo User
+        <button onClick={signInDemo}>
+          Demo
         </button>
       </div>
     </form>
