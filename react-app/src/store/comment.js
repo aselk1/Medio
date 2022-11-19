@@ -74,7 +74,7 @@ export const createComment = (storyId, payload) => async dispatch => {
 };
 
 
-export const editComment = (commentId, payload) => async dispatch => {
+export const editComment = (commentId, payload, storyId) => async dispatch => {
   const response = await csrfFetch(`/api/comments/${commentId}`, {
     method: 'PUT',
     body: JSON.stringify(payload)
@@ -84,6 +84,7 @@ export const editComment = (commentId, payload) => async dispatch => {
     const comment = await response.json();
     console.log("this is the payload", payload)
     dispatch(add(comment));
+    dispatch(fetchStoryDetails(storyId));
   }
 };
 
