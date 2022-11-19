@@ -1,6 +1,5 @@
 .centerCol {
-    margin-bottom: 40px;
-    padding-top: 10px;
+    align-items: center;
 }
 
 .margin-padding {
@@ -638,3 +637,16 @@ h4 {
         display: none;
     }
 }
+
+.noBorder {
+    border: none;
+}
+
+.profButtons {
+    background-color: green;
+    width: auto;
+    height: 15px;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+   }
