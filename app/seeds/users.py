@@ -6,21 +6,21 @@ def seed_users():
     demo = User(
         username='Demo', email='demo@aa.io', password='password')
     marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
+        username='Marnie', email='marnie@aa.io', password='password')
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+        username='Bobbie', email='bobbie@aa.io', password='password')
     test1 = User(
-        username='test1', email='test1@aa.io', password='1111')
+        username='Hunter', email='test1@aa.io', password='password2')
     test2 = User(
-        username='test2', email='test2@aa.io', password='1111')
+        username='Melanie', email='test2@aa.io', password='password3')
     test3 = User(
-        username='test3', email='test3@aa.io', password='1111')
+        username='Robert', email='test3@aa.io', password='password4')
     test4 = User(
-        username='test4', email='test4@aa.io', password='1111')
+        username='Anna', email='test4@aa.io', password='password5')
     test5 = User(
-        username='test5', email='test5@aa.io', password='1111')
+        username='Chadwick', email='test5@aa.io', password='password6')
     test6 = User(
-        username='test6', email='test6@aa.io', password='1111')
+        username='Ronald', email='test6@aa.io', password='password7')
 
     db.session.add(demo)
     db.session.add(marnie)
