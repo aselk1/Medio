@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required
 from app.models import db, User
+import json
 
 followers_routes = Blueprint("followers", __name__)
 
@@ -24,10 +25,10 @@ def follow():
 #  I am able to unfollow other users
 @followers_routes.route("", methods=["DELETE"])
 @login_required
-def unfollow(id):
-    req_body = request.json
+def unfollow():
+    req_body = json.loads(request.data)
     user_follower = User.query.get(req_body['follower_id'])
-    user_followed = User.query.get(int(id))
+    user_followed = User.query.get(req_body["followed_id"])
     user_followed.followers.remove(user_follower)
     db.session.commit()
     updated_followers = user_followed.followers.all()

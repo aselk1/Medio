@@ -84,33 +84,33 @@ export const unfollow = (follower_id, followed_id) => async (dispatch) => {
 }
 
 const initialState = {
-    followers: null,
-    following: null
+    followers: {},
+    following: {}
 }
 
 export default function followReducer(state = initialState, action) {
-    let followers = {}
-    let following = {}
+    // let followers = {}
+    // let following = {}
+    let newState
     switch (action.type) {
         case LOAD_FOLLOWERS:
+            // newState = Object.assign({}, state);
+            // newState.following = action.payload
+            // return newState
             return
         case LOAD_FOLLOWING:
-            // action.payload.forEach(user => {
-            //     following[user.id] = user
-            // })
-            // return {
-            //     ...state,
-            //     following: { ...following }
-            // }
-            return
+            newState = Object.assign({}, state);
+            newState.following = action.payload;
+            return newState;
         case ADD_FOLLOWING:
+            // newState = Object.assign({}, state);
+
             return {
                 ...state,
                 followers: { ...action.payload }
             }
         case REMOVE_FOLLOWING:
             return {
-
             }
         default:
             return state;

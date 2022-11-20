@@ -32,12 +32,14 @@ const StoryDetails = () => {
   const commentsObj = useSelector((state) => state.comment.allComments);
   const comments = Object.values(commentsObj);
   const storyId = Number(useLocation().pathname.split("/")[2]);
-
+  let followings = useSelector((state) => Object.values(state.follower.following))
+  followings = followings.map((user) => user.id)
   const [showMenu, setShowMenu] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [commentBody, setCommentBody] = useState("");
-  const [following, setFollowing] = useState(false)
+  const [following, setFollowing] = useState(followings.includes(story.user_id))
   const [editId, setEditId] = useState(-1);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   // if (story.body) {
   //   setBody("this")
@@ -50,6 +52,10 @@ const StoryDetails = () => {
 
   useEffect(() => {
     dispatch(getLikeStory(id));
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(followActions.followingList(user.id));
   }, [dispatch]);
 
   const handleDelete = async (commentId, storyId) => {
@@ -65,6 +71,8 @@ const StoryDetails = () => {
       dispatch(followActions.unfollow(user.id, story.user_id))
         .then(() => setFollowing(false))
     }
+    dispatch(followActions.followingList(user.id))
+
   }
 
   const openMenu = () => {
@@ -312,4 +320,3 @@ const StoryDetails = () => {
 };
 
 export default StoryDetails;
-
