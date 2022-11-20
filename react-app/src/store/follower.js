@@ -92,7 +92,8 @@ const initialState = {
 export default function followReducer(state = initialState, action) {
     // let followers = {}
     // let following = {}
-    let newState
+    let newState;
+    // let thing;
     switch (action.type) {
         case LOAD_FOLLOWERS:
             // newState = Object.assign({}, state);
@@ -104,12 +105,9 @@ export default function followReducer(state = initialState, action) {
             newState.following = action.payload;
             return newState;
         case ADD_FOLLOWING:
-            // newState = Object.assign({}, state);
-
-            return {
-                ...state,
-                following: { ...action.payload }
-            }
+            newState = Object.assign({}, state);
+            newState.following[action.payload["0"].id] = action.payload
+            return newState
         case REMOVE_FOLLOWING:
             newState = Object.assign({}, state);
             delete newState.following[action.payload]
