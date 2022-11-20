@@ -15,6 +15,10 @@ function User() {
   const stories = Object.values(storiesObj)
   const [following, setFollowing] = useState(false)
 
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
   const handleClick = () => {
     if (!following) {
       dispatch(followActions.follow(sessionUser.id, user.id))
@@ -73,8 +77,10 @@ function User() {
                     {stories.map((story) => {
                     if(story.User.id === Number(userId)) return (
                     <div>
-                      <div>{story.title}</div>
-                      <div></div>
+                      <NavLink className='story-page-link' to={`/stories/${story.id}`}>{story?.title}</NavLink>
+                      <NavLink className='story-page-link' to={`/stories/${story.id}`}>
+                        <img className='story-image-feed' alt="image" src={storyImage[getRandomInt(10)]} />
+                      </NavLink>
                     </div>
                     )})}
                   </div>
