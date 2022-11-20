@@ -65,10 +65,12 @@ def edit_story(id):
 @login_required
 def delete_story(id):
     story = Story.query.get(id)
+    print(story)
+    print(id)
     if current_user.id == story.user_id:
         db.session.delete(story)
         db.session.commit()
-        return "Deleted"
+        return {"data": "Deleted"}
     return {'errors': ['Unauthorized']}
 
 # @stories_routes.route('/<int:id>/comments')
