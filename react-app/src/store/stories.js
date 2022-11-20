@@ -78,6 +78,7 @@ export const fetchDeleteStory = (id) => async (dispatch) => {
   const response = await fetch(`/api/stories/${id}`, {
     method: "DELETE",
   });
+  console.log(response)
   if (response.ok) {
     dispatch(deleteStory(id))
     return response

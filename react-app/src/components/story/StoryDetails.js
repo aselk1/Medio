@@ -4,6 +4,7 @@ import { useHistory, useLocation, useParams, NavLink } from "react-router-dom";
 import SideBar from "../SideBar";
 import * as storyDetailsActions from "../../store/storyDetails";
 import * as storyActions from "../../store/stories";
+import * as followActions from '../../store/follower'
 import "./Story.css";
 import { getLikeStory, likeStory } from "../../store/likeStory";
 import { getComments, deleteComment } from "../../store/comment";
@@ -35,6 +36,7 @@ const StoryDetails = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [commentBody, setCommentBody] = useState("");
+  const [following, setFollowing] = useState(false)
   const [editId, setEditId] = useState(-1);
 
   // if (story.body) {
@@ -54,6 +56,16 @@ const StoryDetails = () => {
     await dispatch(deleteComment(commentId, storyId))
   };
 
+
+  const handleClick = () => {
+    if (!following) {
+      dispatch(followActions.follow(user.id, story.user_id))
+        .then(() => setFollowing(true))
+    } else {
+      dispatch(followActions.unfollow(user.id, story.user_id))
+        .then(() => setFollowing(false))
+    }
+  }
 
   const openMenu = () => {
     // if (showMenu) return;
@@ -87,7 +99,7 @@ const StoryDetails = () => {
             <SideBar />
             <main className="story-main">
               <div className="story-holder">
-                <div className="flexCol centerCol">
+                <div className="flexCol margin-padding">
                   <div className="width700">
                     <div className="story-width">
                       <article>
@@ -107,6 +119,7 @@ const StoryDetails = () => {
                                       {story.User?.id === user?.id && (
                                         <div className="flexRow flexEnd">
                                           <button
+                                            className="profButtons"
                                             onClick={() =>
                                               history.push(
                                                 `/stories/${story.id}/edit`
@@ -115,7 +128,7 @@ const StoryDetails = () => {
                                           >
                                             Edit
                                           </button>
-                                          <button onClick={deleteStory}>
+                                          <button onClick={deleteStory} className="profButtons">
                                             Delete
                                           </button>
                                         </div>
@@ -257,7 +270,7 @@ const StoryDetails = () => {
                     <div className="user-info-sidebar-wrapper">
                       <div className="user-sidebar-items">
                         <NavLink
-                          to={`/users/${story.user_id}`}
+                          to={`/users/${story?.user_id}`}
                           className="profile-link"
                         >
                           <div className="profile-picture">
@@ -271,7 +284,7 @@ const StoryDetails = () => {
                         </NavLink>
                         <div className="sb-spacer"></div>
                         <NavLink
-                          to={`/users/${story.user_id}`}
+                          to={`/users/${story?.user_id}`}
                           className="profile-link"
                         >
                           <h2 className="profile-author-name">
@@ -281,10 +294,9 @@ const StoryDetails = () => {
                           </h2>
                         </NavLink>
                         <div className="follow-button-holder">
-                          {user && (
-                            <button className="follow-button">Follow</button>
+                          {user && (user?.id !== story?.user_id) && (
+                            <button className={following ? "following-user-button" : "follow-user-button"} onClick={handleClick}>{following ? 'Following' : 'Follow'}</button>
                           )}
-                          {/* <button className="unfollow-button">Unfollow</button> */}
                         </div>
                       </div>
                     </div>
@@ -295,8 +307,9 @@ const StoryDetails = () => {
           </div>
         </div>
       }
-    </div>
+    </div >
   );
 };
 
 export default StoryDetails;
+

@@ -8,6 +8,7 @@ import RichEditor2 from "../editor/RichEditor2";
 import { Editor, EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import "./Story.css";
 
+
 const EditStoryForm = () => {
   const story = useSelector((state) => state.storyDetails);
   const title = useSelector((state) => state.storyDetails.title);
@@ -17,7 +18,7 @@ const EditStoryForm = () => {
   const [errors, setErrors] = useState([]);
   const user = useSelector((state) => state.session.user);
   const [editorState, setEditorState] = useState(() => {
-      return EditorState.createEmpty();
+    return EditorState.createEmpty();
   });
   const storyId = Number(useLocation().pathname.split("/")[2]);
   const dispatch = useDispatch();
@@ -25,18 +26,18 @@ const EditStoryForm = () => {
 
 
   useEffect(() => {
-      dispatch(storyDetailsActions.fetchStoryDetails(storyId));
+    dispatch(storyDetailsActions.fetchStoryDetails(storyId));
   }, [dispatch]);
 
   useEffect(() => {
-    if(body)
+    if (body)
       setEditorState(EditorState.createWithContent(convertFromRaw(JSON.parse(body))))
   }, [dispatch, story]);
 
 
   useEffect(() => {
-      setNewBody(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
-      setNewTitle(newTitle || title)
+    setNewBody(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
+    setNewTitle(newTitle || title)
   }, [editorState]);
 
   // useEffect(() => {
@@ -61,30 +62,32 @@ const EditStoryForm = () => {
   };
 
   return (
-    <div className="flexRow">
-      <SideBar />
-      <div className="centerCol flexCol">
-        <form className="flexCol centerCol" onSubmit={editStory}>
-          <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-          </div>
-          <div>
-            {title && (
-              <textarea
-                className="noResize width700 fontSize42 heightFitContent"
-                name="title"
-                type="text"
-                placeholder="Title"
-                value={newTitle}
-                onChange={(e) => setNewTitle(e.target.value)}
-                required={true}
-              ></textarea>
-            )}
-          </div>
-          <div>
-            {/* <h3>
+    <div className="user-page-container">
+      <div className="user-page-holder">
+        <div className="flexRow">
+          <SideBar />
+          <div className="centerCol flexCol pagePadding">
+            <form className="flexCol centerCol" onSubmit={editStory}>
+              <div>
+                {errors.map((error, ind) => (
+                  <div key={ind}>{error}</div>
+                ))}
+              </div>
+              <div>
+                {title && (
+                  <textarea
+                    className="noResize width700 fontSize42 heightFitContent noBorder"
+                    name="title"
+                    type="text"
+                    placeholder="Title"
+                    value={newTitle}
+                    onChange={(e) => setNewTitle(e.target.value)}
+                    required={true}
+                  ></textarea>
+                )}
+              </div>
+              <div>
+                {/* <h3>
             <textarea
               className="noResize width700 fontSize21"
               name="body"
@@ -94,23 +97,27 @@ const EditStoryForm = () => {
               onChange={(e) => setBody(e.target.value)}
             />
           </h3> */}
-            <div className="width700">
-              <RichEditor2
-                editorState={editorState}
-                readOnly={false}
-                setEditorState={setEditorState}
-              />
-              {/* body.map((el) => {
+                <div className="width700">
+                  <RichEditor2
+                    editorState={editorState}
+                    readOnly={false}
+                    setEditorState={setEditorState}
+                  />
+                  {/* body.map((el) => {
                   const contentState = convertFromRaw(JSON.parse(el));
                   const editorState =
                     EditorState.createWithContent(contentState);
                   return (
                   );
                 }) */}
-            </div>
+                </div>
+              </div>
+              <div className="flexRow centerRow">
+                <button type="submit" className="writeStory">Edit Story</button>
+              </div>
+            </form>
           </div>
-          <button type="submit">Edit Story</button>
-        </form>
+        </div>
       </div>
     </div>
   );

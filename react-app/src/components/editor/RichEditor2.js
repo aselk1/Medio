@@ -5,7 +5,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 const RichEditor2 = ({ editorState, setEditorState, readOnly }) => {
   return (
     <div>
-      <div
+      <div className="editorTextSize"
       // style={{
       //   border: "1px solid black",
       //   padding: "2px",

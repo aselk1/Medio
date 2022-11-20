@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams, NavLink } from 'react-router-dom';
 import SideBar from './SideBar';
+import * as followActions from '../store/follower'
 import './User.css'
 
 function User() {
+  const dispatch = useDispatch();
   const [user, setUser] = useState({});
+  const sessionUser = useSelector(state => state.session.user)
   const { userId } = useParams();
-  const [forButton, setForButton] = useState(true)
-  const [followingButton, setFollowingButton] = useState(false)
+  const [following, setFollowing] = useState(false)
 
-  const forYou = () => {
-    if (forButton) return
-    setForButton(true)
-    setFollowingButton(false)
-  }
-
-  const following = () => {
-    if (followingButton) return
-    setFollowingButton(true)
-    setForButton(false)
+  const handleClick = () => {
+    if (!following) {
+      dispatch(followActions.follow(sessionUser.id, user.id))
+        .then(() => setFollowing(true))
+    } else {
+      dispatch(followActions.unfollow(sessionUser.id, user.id))
+        .then(() => setFollowing(false))
+    }
   }
 
   useEffect(() => {
@@ -32,7 +33,7 @@ function User() {
     })();
   }, [userId]);
 
-  if (!user) {
+  if (!sessionUser) {
     return null;
   }
 
@@ -47,28 +48,22 @@ function User() {
               <div className='user-action-header'>
                 <div className='action-header-wrapper'>
                   <div className='action-header'>
+                    <div className='user-name'>
+                      <span>{user.username}</span>
+                    </div>
                     <div className='action-bar-top' />
                     <div className='action-bar-wrapper'>
                       <div className='action-bar'>
                         <div className='action-items'>
-                          <div className={forButton ? 'for-you-action-clicked' : 'for-you-action'}>
-                            <NavLink to={`/users/${user.id}`} className='for-you-link'>
+                          <div className='for-you-action-clicked'>
+                            <NavLink to={`/users/${userId}`} className='for-you-link'>
                               <p className='for-you-link-container'>
                                 <span className='for-you-holder'>
-                                  <button className='for-you-button' onClick={forYou}>About</button>
+                                  <button className='for-you-button'>About</button>
                                 </span>
                               </p>
                             </NavLink>
                           </div>
-                          {/* <div className={followingButton ? 'following-action-clicked' : 'following-action'}>
-                            <NavLink to={`/following-feed`} className='following-link'>
-                              <p className='following-container'>
-                                <span className='following-holder'>
-                                  <button className='following-button' onClick={following}>Following</button>
-                                </span>
-                              </p>
-                            </NavLink>
-                          </div> */}
                         </div>
                       </div>
                     </div>
@@ -77,7 +72,33 @@ function User() {
               </div>
             </div>
           </main>
-          <div className='right-sidebar'></div>
+          <div className="user-info-sidebar">
+            <div className="user-sidebar">
+              <div className="user-info-sidebar-container">
+                <div className="user-info-sidebar-holder">
+                  <div className="user-info-sidebar-wrapper">
+                    <div className="user-sidebar-items">
+                      <NavLink to={`/users/${user.id}`} className='profile-link'>
+                        <div className="profile-picture">
+                          <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+                            alt="Profile"
+                            className="profile-image"
+                          ></img>
+                          <div className="under-image"></div>
+                        </div>
+                      </NavLink>
+                      <div className="sb-spacer"></div>
+                      <NavLink to={`/users/${user.id}`} className='profile-link'>
+                        <h2 className="profile-author-name">
+                          <span className="user">{user.username}</span>
+                        </h2>
+                      </NavLink>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

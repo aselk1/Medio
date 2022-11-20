@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory, NavLink } from 'react-router-dom'
 import * as storyDetailActions from '../../../store/storyDetails'
+import { storyImage } from '../../../storyImage'
 
 export default function StoryCard({ stories }) {
     const dispatch = useDispatch()
@@ -14,14 +15,16 @@ export default function StoryCard({ stories }) {
     }
     return (
         <>
-            {stories.map(story => (
+            {stories.map((story, i) => (
                 <div className="story-card">
                     <div className='story-feed-item' onClick={(e) => storyPage(story, e)}>
                         <div className='story-feed-item-holder'>
                             <div className='story-card-preview'>
                                 <div className="story-author">
                                     <div className='story-author-feed-holder'>
-                                        {/* add link on author name */}
+                                        <div>
+                                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="Profile" className="profile-image-splash"></img>
+                                        </div>
                                         <div className='story-author-feed-container'>
                                             <div className='feed-inner-container'>
                                                 <h4 className='feed-author-name'>{story.User.username}</h4>
@@ -32,10 +35,13 @@ export default function StoryCard({ stories }) {
                                 <NavLink className='story-page-link' to={`/stories/${story.id}`}>
                                     <h2>{story.title}</h2>
                                     <div className='story-body-preview'>
-                                        {/* <h3 className='story-feed-body'>{story.body}</h3> */}
+                                        {/* <h3 className='story-feed-body'>{story.body.substring(1, story.body.length - 1).replace(/""/gi, `"`)}</h3> */}
                                     </div>
                                 </NavLink>
                             </div>
+                            <NavLink className='story-page-link' to={`/stories/${story.id}`}>
+                                <img className='story-image-feed' src={storyImage[i]} /> 
+                              </NavLink>
                         </div>
                     </div>
                 </div>

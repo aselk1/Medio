@@ -1,4 +1,8 @@
 .centerCol {
+    align-items: center;
+}
+
+.margin-padding {
     margin-bottom: 40px;
     padding-top: 10px;
 }
@@ -186,6 +190,12 @@
     margin-right: 16px;
 }
 
+.story-image-feed {
+    vertical-align: middle;
+    width: 200px;
+    height: 134px;
+}
+
 #root>div>div.story-page-container>div>div>main>div>div.user-interactions>div {
     display: flex;
     gap: 10px;
@@ -276,6 +286,16 @@
     width: 48px;
     height: 48px;
     border-radius: 50%;
+    box-sizing: border-box;
+    display: block;
+    vertical-align: middle;
+}
+
+.profile-image-splash {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(242, 242, 242, 1);
     box-sizing: border-box;
     display: block;
     vertical-align: middle;
@@ -391,7 +411,7 @@
 }
 
 .user-info-sidebar {
-    width: 700px;
+    width: 394px;
     display: block;
     min-height: 100vh;
     border-left: 1px solid rgba(230, 230, 230, 1);
@@ -499,7 +519,7 @@
     display: flex;
 }
 
-.follow-button {
+.follow-user-button {
     border-color: rgb(26, 137, 23);
     background: rgb(29, 159, 29);
     width: auto;
@@ -518,6 +538,27 @@
     font-weight: 400;
     margin: 0;
     margin-top: 5px;
+    cursor: pointer;
+}
+
+.following-user-button {
+    border-color: rgb(26, 137, 23);
+    background: 0px center;
+    width: auto;
+    text-decoration: none;
+    display: inline-block;
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 99em;
+    fill: rgba(26, 137, 23, 1);
+    padding: 7px 16px 9px;
+    color: rgba(26, 137, 23, 1);
+    line-height: 20px;
+    font-size: 14px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    margin: 0;
     cursor: pointer;
 }
 
@@ -596,3 +637,16 @@ h4 {
         display: none;
     }
 }
+
+.noBorder {
+    border: none;
+}
+
+.profButtons {
+    background-color: green;
+    width: auto;
+    height: 15px;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+   }
