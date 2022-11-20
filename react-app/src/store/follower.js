@@ -8,14 +8,9 @@ const loadFollowing = (listOfFollowing) => ({
     payload: listOfFollowing
 })
 
-// const loadFollowers = (listOfFollowers) => ({
-//     type: LOAD_FOLLOWERS,
-//     payload: listOfFollowers
-// })
-
-const addFollowing = (following) => ({
+const addFollowing = (userData) => ({
     type: ADD_FOLLOWING,
-    payload: following
+    payload: userData
 })
 
 const removeFollowing = (id) => ({
@@ -47,8 +42,8 @@ export const follow = (follower_id, followed_id) => async (dispatch) => {
 
     if (res.ok) {
         const followData = await res.json()
-        console.log('followData', followData)
-        dispatch(addFollowing(followData))
+        console.log('followData', followData[followed_id])
+        dispatch(addFollowing(followData[followed_id]))
         return followData
     } else if (res.status < 500) {
         const data = await res.json()
@@ -71,9 +66,8 @@ export const unfollow = (follower_id, followed_id) => async (dispatch) => {
 
     if (res.ok) {
         const followData = await res.json()
-        console.log('followdata', followData)
-        dispatch(removeFollowing(followed_id))
-        return
+        dispatch(removeFollowing(followData))
+        return followData
     } else if (res.status < 500) {
         const data = await res.json()
         if (data.errors) {
@@ -90,28 +84,23 @@ const initialState = {
 }
 
 export default function followReducer(state = initialState, action) {
-    // let followers = {}
-    // let following = {}
+    let followers = {}
+    let following = {}
     let newState;
-    // let thing;
     switch (action.type) {
-        case LOAD_FOLLOWERS:
-            // newState = Object.assign({}, state);
-            // newState.following = action.payload
-            // return newState
-            return
         case LOAD_FOLLOWING:
             newState = Object.assign({}, state);
-            newState.following = action.payload;
+            newState.following = { ...action.payload };
             return newState;
         case ADD_FOLLOWING:
             newState = Object.assign({}, state);
-            newState.following[action.payload["0"].id] = action.payload
+            newState.following[action.payload.id] = { ...action.payload }
             return newState
         case REMOVE_FOLLOWING:
-            newState = Object.assign({}, state);
-            delete newState.following[action.payload]
-            return newState
+            return {
+                ...state,
+                following: { ...action.payload }
+            }
         default:
             return state;
     }
