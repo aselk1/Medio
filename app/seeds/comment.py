@@ -3,12 +3,12 @@ from app.models import db, User, environment, SCHEMA, Comment
 
 # Adds a demo user, you can add other users here if you want
 def seed_comments():
-    comment1 = Comment(body='good', user_id=1,story_id=2)
-    comment2 = Comment(body='nice', user_id=2,story_id=4)
-    comment3 = Comment(body='great', user_id=3,story_id=5)
-    comment4 = Comment(body='interesting', user_id=4,story_id=1)
-    comment5 = Comment(body='bad idea', user_id=5,story_id=1)
-    comment6 = Comment(body='good idea', user_id=6,story_id=2)
+    comment1 = Comment(body='Good read.', user_id=1,story_id=2)
+    comment2 = Comment(body='Nice.', user_id=2,story_id=4)
+    comment3 = Comment(body='Great.', user_id=3,story_id=5)
+    comment4 = Comment(body='Interesting.', user_id=4,story_id=1)
+    comment5 = Comment(body='Bad idea!', user_id=5,story_id=1)
+    comment6 = Comment(body='Good idea!', user_id=6,story_id=2)
    
 
     db.session.add(comment1)
