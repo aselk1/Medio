@@ -4,12 +4,15 @@ import { useParams, NavLink } from 'react-router-dom';
 import SideBar from './SideBar';
 import * as followActions from '../store/follower'
 import './User.css'
+import { storyImage } from '../storyImage';
 
 function User() {
   const dispatch = useDispatch();
+  const { userId } = useParams();
   const [user, setUser] = useState({});
   const sessionUser = useSelector(state => state.session.user)
-  const { userId } = useParams();
+  const storiesObj = useSelector(state => state.stories)
+  const stories = Object.values(storiesObj)
   const [following, setFollowing] = useState(false)
 
   const handleClick = () => {
@@ -67,6 +70,13 @@ function User() {
                         </div>
                       </div>
                     </div>
+                    {stories.map((story) => {
+                    if(story.User.id === Number(userId)) return (
+                    <div>
+                      <div>{story.title}</div>
+                      <div></div>
+                    </div>
+                    )})}
                   </div>
                 </div>
               </div>
