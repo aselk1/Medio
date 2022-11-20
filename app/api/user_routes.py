@@ -34,7 +34,7 @@ def following(id):
     following = user.following.all()
     users = {}
     for i in range(len(following)):
-        users[i]=user.following[i].to_dict()
+        users[user.following[i].id]=user.following[i].to_dict()
     return users
 
 # get all users who follow me
@@ -45,5 +45,5 @@ def followers(id):
     followers = user.followers.all()
     users = {}
     for i in range(len(followers)):
-        users[i] = user.followers[i].to_dict()
+        users[users.following[i].id] = user.followers[i].to_dict()
     return users
