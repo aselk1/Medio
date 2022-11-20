@@ -18,8 +18,9 @@ const addFollowing = (following) => ({
     payload: following
 })
 
-const removeFollowing = () => ({
-    type: REMOVE_FOLLOWING
+const removeFollowing = (id) => ({
+    type: REMOVE_FOLLOWING,
+    payload: id
 })
 
 export const followingList = (id) => async (dispatch) => {
@@ -71,7 +72,7 @@ export const unfollow = (follower_id, followed_id) => async (dispatch) => {
     if (res.ok) {
         const followData = await res.json()
         console.log('followdata', followData)
-        dispatch(removeFollowing(followData))
+        dispatch(removeFollowing(followed_id))
         return
     } else if (res.status < 500) {
         const data = await res.json()
@@ -107,11 +108,12 @@ export default function followReducer(state = initialState, action) {
 
             return {
                 ...state,
-                followers: { ...action.payload }
+                following: { ...action.payload }
             }
         case REMOVE_FOLLOWING:
-            return {
-            }
+            newState = Object.assign({}, state);
+            delete newState.following[action.payload]
+            return newState
         default:
             return state;
     }
