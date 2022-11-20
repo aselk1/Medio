@@ -84,8 +84,6 @@ const initialState = {
 }
 
 export default function followReducer(state = initialState, action) {
-    let followers = {}
-    let following = {}
     let newState;
     switch (action.type) {
         case LOAD_FOLLOWING:
