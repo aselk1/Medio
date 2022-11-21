@@ -341,7 +341,8 @@
 
 .comment-body {
     margin-left: 2%;
-    margin-top: 5%
+    margin-top: 5%;
+    overflow-wrap: break-word;
 }
 
 .comment-buttons {
