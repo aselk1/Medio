@@ -5,7 +5,7 @@ import { useHistory, useLocation, useParams } from "react-router-dom";
 import { editComment } from "../../store/comment";
 import * as storyDetailsActions from "../../store/storyDetails"
 
-function CommentEditForm({comment, setCommentBody, commentBody, setEditId}) {
+function CommentEditForm({ comment, setCommentBody, commentBody, setEditId }) {
 
   const userId = useSelector((state) => state.session.user.id);
   const storyId = Number(useLocation().pathname.split("/")[2]);
@@ -20,7 +20,6 @@ function CommentEditForm({comment, setCommentBody, commentBody, setEditId}) {
       setValidationErrors([]);
       return;
     }
-    console.log("uE running");
     const errors = [];
     if (!commentBody.length) errors.push("Please enter your comment");
   }, [commentBody]);
@@ -33,7 +32,7 @@ function CommentEditForm({comment, setCommentBody, commentBody, setEditId}) {
     if (validationErrors.length) return alert(`Cannot Submit`);
 
     // Create a new object for the song form information.
-    const commentForm = {body: commentBody};
+    const commentForm = { body: commentBody };
 
 
     await dispatch(editComment(comment.id, commentForm, storyId))
@@ -48,24 +47,24 @@ function CommentEditForm({comment, setCommentBody, commentBody, setEditId}) {
 
   return (
     <form id="form1" noValidate onSubmit={onSubmit}>
-    <ul>
-      {validationErrors.map((error, idx) => (
-        <li key={idx}>{error}</li>
-      ))}
-    </ul>
-    <label>
-      <textarea
-      className="edit-text"
-      id="edit-form-text"
-        type="text"
-        value={commentBody}
-        onChange={(e) => setCommentBody(e.target.value)}
-        required
-      />
-    </label>
-    <button type="submit">Respond</button>
-  </form>
-);
+      <ul>
+        {validationErrors.map((error, idx) => (
+          <li key={idx}>{error}</li>
+        ))}
+      </ul>
+      <label>
+        <textarea
+          className="edit-text"
+          id="edit-form-text"
+          type="text"
+          value={commentBody}
+          onChange={(e) => setCommentBody(e.target.value)}
+          required
+        />
+      </label>
+      <button type="submit">Respond</button>
+    </form>
+  );
 }
 
 export default CommentEditForm;

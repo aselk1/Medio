@@ -14,8 +14,8 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("fixed")
-  },[email])
+
+  }, [email])
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -56,7 +56,7 @@ const SignUpForm = () => {
           ))}
         </div>
         <center>
-        <h2>Join Medio.</h2>
+          <h2>Join Medio.</h2>
         </center>
         <input
           type="text"

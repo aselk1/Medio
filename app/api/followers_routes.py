@@ -29,12 +29,9 @@ def unfollow():
     req_body = json.loads(request.data)
     user_follower = User.query.get(req_body['follower_id'])
     user_followed = User.query.get(req_body["followed_id"])
-    print('user following', user_follower)
-    print('user followed', user_followed)
     user_follower.following.remove(user_followed)
     db.session.commit()
     updated_following = user_follower.following.all()
-    print('updated list of who I follow', updated_following)
     users = {}
     for i in range(len(updated_following)):
         users[updated_following[i].id]=updated_following[i].to_dict()

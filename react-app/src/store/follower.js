@@ -22,7 +22,6 @@ export const followingList = (id) => async (dispatch) => {
     const res = await fetch(`/api/users/${id}/following`)
     if (res.ok) {
         const list = await res.json()
-        console.log('list', list)
         dispatch(loadFollowing(list))
         return list
     }
@@ -42,7 +41,6 @@ export const follow = (follower_id, followed_id) => async (dispatch) => {
 
     if (res.ok) {
         const followData = await res.json()
-        console.log('followData', followData[followed_id])
         dispatch(addFollowing(followData[followed_id]))
         return followData
     } else if (res.status < 500) {

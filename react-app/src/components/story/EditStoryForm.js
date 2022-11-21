@@ -40,15 +40,11 @@ const EditStoryForm = () => {
     setNewTitle(newTitle || title)
   }, [editorState]);
 
-  // useEffect(() => {
-  //   console.log("did it");
-  // }, [newTitle]);
 
   const editStory = async (e) => {
     e.preventDefault();
     setErrors([]);
     const editStory = { title: newTitle, body: newBody };
-    console.log(editStory)
     let data = await dispatch(
       storyActions.fetchEditStory(story.id, editStory)
     ).catch(async (res) => {

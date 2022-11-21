@@ -85,9 +85,10 @@ function Home() {
                                       <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="Profile" className="profile-image-splash"></img>
                                     </div>
                                     {/* add link on author name */}
+
                                     <div className='story-author-feed-container'>
                                       <div className='feed-inner-container'>
-                                        <h4 className='feed-author-name'>{story.User.username}</h4>
+                                        <h4 className='feed-author-name cursor-added'>{story.User.username}</h4>
                                       </div>
                                     </div>
                                   </div>

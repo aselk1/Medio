@@ -50,7 +50,6 @@ def edit_story(id):
     if current_user.id == story.user_id:
         form = StoryForm()
         form['csrf_token'].data = request.cookies['csrf_token']
-        print(form.data)
         if form.validate_on_submit():
             story.title = form.data['title']
             story.body = form.data['body']
@@ -65,25 +64,11 @@ def edit_story(id):
 @login_required
 def delete_story(id):
     story = Story.query.get(id)
-    print(story)
-    print(id)
     if current_user.id == story.user_id:
         db.session.delete(story)
         db.session.commit()
         return {"data": "Deleted"}
     return {'errors': ['Unauthorized']}
-
-# @stories_routes.route('/<int:id>/comments')
-# @login_required
-# def get_comments(id):
-#     """
-#     Query for all comments for a story and returns them in a list of dictionaries
-#     """
-#     story = Story.query.get(id)
-#     comments = Comment.query.get(story.id)
-#     print(comments)
-#     return comments.to_dict()
-
 
 @stories_routes.route('/<int:id>/comments', methods=['POST'])
 @login_required
@@ -92,11 +77,7 @@ def post_comment(id):
     Posts a comment to a story
     """
     form = CommentForm()
-    print(request)
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(form.data)
-    print(form.errors)
-    print(form.validate_on_submit())
     if form.validate_on_submit():
         comment = Comment(body=form.data['body'],
                       user_id=current_user.id,
@@ -145,8 +126,6 @@ def post_like(id):
     db.session.commit()
     # the number of like for the story
     num = story.liked_story_user.count()
-    print ("current_user id", current_user.id)
-    print("the number of like story",num)
 
     num_like = {
         'story_id':story.id,

@@ -19,7 +19,6 @@ function CommentForm() {
       setValidationErrors([]);
       return;
     }
-    console.log("uE running");
     const errors = [];
     if (!body.length) errors.push("Please enter your comment");
   }, [body]);
@@ -32,7 +31,7 @@ function CommentForm() {
     if (validationErrors.length) return alert(`Cannot Submit`);
 
     // Create a new object for the song form information.
-    const commentForm = {body};
+    const commentForm = { body };
 
 
     await dispatch(createComment(storyId, commentForm))
@@ -46,22 +45,22 @@ function CommentForm() {
 
   return (
     <form id="form1" noValidate onSubmit={onSubmit}>
-    <ul>
-      {validationErrors.map((error, idx) => (
-        <li key={idx}>{error}</li>
-      ))}
-    </ul>
-    <label>
-      <textarea
-        type="text"
-        value={body}
-        onChange={(e) => setBody(e.target.value)}
-        required
-      />
-    </label>
-    <button type="submit">Respond</button>
-  </form>
-);
+      <ul>
+        {validationErrors.map((error, idx) => (
+          <li key={idx}>{error}</li>
+        ))}
+      </ul>
+      <label>
+        <textarea
+          type="text"
+          value={body}
+          onChange={(e) => setBody(e.target.value)}
+          required
+        />
+      </label>
+      <button type="submit">Respond</button>
+    </form>
+  );
 }
 
 export default CommentForm;

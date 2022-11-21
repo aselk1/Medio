@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import * as storyActions from "../../../store/stories"
 import StoryCard from './StoryCard'
 import './StoryFeed.css'
+import { NavLink } from 'react-router-dom'
 
 export default function StoryFeed() {
     const dispatch = useDispatch()
@@ -48,16 +49,23 @@ export default function StoryFeed() {
                                                     <div className='trending-preview'>
                                                         <div className='details'>
                                                             <div className='story-author-container'>
+                                                                <div>
+                                                                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="Profile" className="profile-image-splash"></img>
+                                                                </div>
                                                                 <div className='author-name'>
                                                                     {/* turn username into link. link goes here */}
-                                                                    <h4 className='author'>{authorArr[trendingArr.indexOf(story)].username}</h4>
+                                                                    <NavLink className='story-page-link' to={`/stories/${story.id}`}>
+                                                                        <h4 className='author'>{authorArr[trendingArr.indexOf(story)].username}</h4>
+                                                                    </NavLink>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div className='details'>
                                                             {/* turn body into link. link goes here */}
                                                             <div>
-                                                                <h2 className='trending-title'>{story.title}</h2>
+                                                                <NavLink className='story-page-link' to={`/stories/${story.id}`}>
+                                                                    <h2 className='trending-title'>{story.title}</h2>
+                                                                </NavLink>
                                                             </div>
                                                         </div>
                                                     </div>
