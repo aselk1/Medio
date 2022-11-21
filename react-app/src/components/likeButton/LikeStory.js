@@ -33,53 +33,53 @@ const LikeStory = () => {
   // ====================================================
 
   // ===================== story like with color   #F5F5F5
-    if (allLikeUser === undefined) {
-            dispatch(getLikeStory(id));
-        }
-    const btn = document?.getElementById("likeStoryClickBt");
+  if (allLikeUser === undefined) {
+    dispatch(getLikeStory(id));
+  }
+  const btn = document?.getElementById("likeStoryClickBt");
 
+  btn === null ? dispatch(getLikeStory(id)) :
+    btn.style.backgroundColor = "#F5F5F5"
+
+
+  if (allLikeUser?.find((id) => id === user?.id)) {
     btn === null ? dispatch(getLikeStory(id)) :
-      btn.style.backgroundColor = "#F5F5F5"
-
-
-    if (allLikeUser?.find((id) => id === user?.id)) {
-      btn === null ? dispatch(getLikeStory(id)) :
-        btn.style.backgroundColor = "#3895D3";
-    }
+      btn.style.backgroundColor = "#3895D3";
+  }
   const clickStoryLike = (e) => {
     e.preventDefault();
-    if (!user)  alert("please login")
+    if (!user) alert("please login")
     if (allLikeUser?.find((id) => id === user?.id)) {
       btn === null ? dispatch(getLikeStory(id)) :
-      btn.style.backgroundColor = "#F5F5F5"
+        btn.style.backgroundColor = "#F5F5F5"
       dispatch(deleteLikeStory(id))
       // dispatch(getLikeStory(id))
     } else {
       dispatch(likeStory(id))
       btn === null ? dispatch(getLikeStory(id)) :
-      btn.style.backgroundColor = "#64afe1";
+        btn.style.backgroundColor = "#64afe1";
     }
     // dispatch(getLikeStory(id))
-};
+  };
 
-// story like with color ==============================
+  // story like with color ==============================
 
-useEffect(() => {
-  dispatch(getLikeStory(id))
+  useEffect(() => {
+    dispatch(getLikeStory(id))
 
-}, [dispatch]);
+  }, [dispatch]);
 
-const commentInfo = {}
+  const commentInfo = {}
 
-return (
-  <>
-    <div className="likeItems">
-      <div id="likeStoryClickBt" onClick={clickStoryLike}>
-        <i class="fa fa-thin fa-hands-clapping"></i>
+  return (
+    <>
+      <div className="likeItems">
+        <div id="likeStoryClickBt" onClick={clickStoryLike}>
+          <i className="fa fa-thin fa-hands-clapping"></i>
+        </div>
+        {likeInfo?.num}
       </div>
-      {likeInfo?.num}
-    </div>
-  </>)
+    </>)
 };
 
 export default LikeStory;

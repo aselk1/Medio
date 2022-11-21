@@ -29,6 +29,10 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+.cursor-added {
+    cursor: pointer;
+}
+
 .main-user-page {
     display: block;
     margin-bottom: 0;
@@ -190,6 +194,32 @@
     font-weight: 400;
     margin: 0;
     cursor: pointer;
+}
+
+.view-profile-button {
+    border-color: rgb(128, 128, 128);
+    background: 0px center;
+    width: auto;
+    text-decoration: none;
+    display: inline-block;
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 99em;
+    fill: rgba(26, 137, 23, 1);
+    padding: 7px 16px 9px;
+    color: rgb(128, 128, 128);
+    line-height: 20px;
+    font-size: 14px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    margin: 0;
+    cursor: pointer;
+}
+
+.view-profile-button:hover {
+    background-color: black;
+    color: white;
 }
 
 .user-stories {

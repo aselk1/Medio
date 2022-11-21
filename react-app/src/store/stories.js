@@ -55,7 +55,6 @@ export const fetchPostStory = (story) => async (dispatch) => {
 };
 
 export const fetchEditStory = (id, story) => async (dispatch) => {
-  console.log(story)
   const { newTitle, newBody } = story;
   // const formData = new FormData();
   // formData.append("title", newTitle);
@@ -78,7 +77,6 @@ export const fetchDeleteStory = (id) => async (dispatch) => {
   const response = await fetch(`/api/stories/${id}`, {
     method: "DELETE",
   });
-  console.log(response)
   if (response.ok) {
     dispatch(deleteStory(id))
     return response

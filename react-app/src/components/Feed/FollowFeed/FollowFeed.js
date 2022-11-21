@@ -98,7 +98,7 @@ export default function FollowFeed() {
                                                                                 {/* add link on author name */}
                                                                                 <div className='story-author-feed-container'>
                                                                                     <div className='feed-inner-container'>
-                                                                                        <h4 className='feed-author-name'>{story.User.username}</h4>
+                                                                                        <h4 className='feed-author-name cursor-added'>{story.User.username}</h4>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>

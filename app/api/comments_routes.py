@@ -27,7 +27,6 @@ def fix_comment(id):
     if current_user.id == comment.user_id:
         form = CommentForm()
         form['csrf_token'].data = request.cookies['csrf_token']
-        print(form.data)
         if form.validate_on_submit():
             comment.body = form.data['body']
             db.session.add(comment)
@@ -43,11 +42,9 @@ def remove_comment(id):
     Query for all comments for a story and returns them in a list of dictionaries
     """
     comment = Comment.query.get(id)
-    print(current_user.id == comment.user_id)
     if current_user.id == comment.user_id:
         db.session.delete(comment)
         db.session.commit()
-        print(comment)
         return {'message': 'Deleted'}
     return {'errors': ['Unauthorized']}
 
@@ -88,7 +85,6 @@ def post_like(id):
 
     # the number of like for the comment
     num = comment.liked_comment_user.count()
-    print("the number of like comment",num)
     db.session.commit()
     num_like = {
         'comment_id':comment.id,
@@ -107,7 +103,6 @@ def delete_like(id):
     all_liked_user =  comment.liked_comment_user.all()
 
     users = [ user.id for user in all_liked_user]
-    print("users ??????",users)
     if like_comment_user.id in users:
         comment.liked_comment_user.remove(like_comment_user)
     else:

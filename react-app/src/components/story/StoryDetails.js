@@ -15,7 +15,7 @@ import CommentEditForm from "./CommentEditForm";
 import LikeStory from "../likeButton/LikeStory";
 import LikeComment from "../likeButton/LikeComment";
 
-const StoryDetails = ({stories}) => {
+const StoryDetails = ({ stories }) => {
   const story = useSelector((state) => state.storyDetails);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -79,18 +79,6 @@ const StoryDetails = ({stories}) => {
     if (!showMenu) setShowMenu(true);
     if (showMenu) setShowMenu(false);
   };
-
-  // useEffect(() => {
-  //   if (!showMenu) return;
-
-  //   const closeMenu = () => {
-  //     setShowMenu(false);
-  //     console.log("closing");
-  //   };
-
-  //   document.addEventListener("click", closeMenu);
-  //   // return () => document.removeEventListener("click", closeMenu);
-  // }, [showMenu]);
 
   const deleteStory = async () => {
     await dispatch(storyActions.fetchDeleteStory(storyId));
@@ -224,7 +212,7 @@ const StoryDetails = ({stories}) => {
                                     className="detailButton1"
                                     onClick={() => handleDelete(comment.id, storyId)}
                                   >
-                                    <i class="fa-solid fa-trash"></i>
+                                    <i className="fa-solid fa-trash"></i>
                                   </div>
                                   <div
                                     id={comment.id}
@@ -240,7 +228,7 @@ const StoryDetails = ({stories}) => {
                                       setCommentBody(comment.body);
                                     }}
                                   >
-                                    <i class="fa-solid fa-pen"></i>
+                                    <i className="fa-solid fa-pen"></i>
                                   </div>
                                 </div>
                               )}

@@ -10,14 +10,12 @@ const SideBar = () => {
   const openMenu = () => {
     if (showMenu) return
     setShowMenu(true)
-    console.log("opening")
   }
 
   useEffect(() => {
     const closeMenu = () => {
       if (!showMenu) return
       setShowMenu(false)
-      console.log("closing")
     }
 
     document.addEventListener("click", closeMenu)
@@ -115,7 +113,7 @@ const SideBar = () => {
                                               <p>{user.email}</p>
                                             </div>
                                             <NavLink to={`/profile`}>
-                                              <div>View Profile</div>
+                                              <div className='view-profile-button'>View Profile</div>
                                             </NavLink>
                                           </li>
                                         </ul>
