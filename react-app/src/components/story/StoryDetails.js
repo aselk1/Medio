@@ -61,9 +61,10 @@ const StoryDetails = ({ stories }) => {
 
   useEffect(() => {
     if (user) {
-      dispatch(followActions.followingList(user.id));
+      dispatch(followActions.followingList(user.id))
+      .then(() => setIsLoaded(true))
     }
-  }, [dispatch]);
+  }, [dispatch, isLoaded]);
 
   const handleDelete = async (commentId, storyId) => {
     await dispatch(deleteComment(commentId, storyId))
@@ -296,7 +297,7 @@ const StoryDetails = ({ stories }) => {
                           </h2>
                         </NavLink>
                         <div className="follow-button-holder">
-                          {user && followings && followings.length >= 0 && (user?.id !== story?.user_id) && (
+                          {user && isLoaded && followings && followings.length >= 0 && (user?.id !== story?.user_id) && (
                             <button className={following ? "following-user-button" : "follow-user-button"} onClick={handleClick}>{following ? 'Following' : 'Follow'}</button>
                           )}
                         </div>
