@@ -4,13 +4,20 @@ import { useParams, NavLink } from 'react-router-dom';
 import SideBar from './SideBar';
 import * as followActions from '../store/follower'
 import './User.css'
+import { storyImage } from '../storyImage';
 
 function User() {
   const dispatch = useDispatch();
+  const { userId } = useParams();
   const [user, setUser] = useState({});
   const sessionUser = useSelector(state => state.session.user)
-  const { userId } = useParams();
+  const storiesObj = useSelector(state => state.stories)
+  const stories = Object.values(storiesObj)
   const [following, setFollowing] = useState(false)
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
 
   const handleClick = () => {
     if (!following) {
@@ -59,7 +66,7 @@ function User() {
                             <NavLink to={`/users/${userId}`} className='for-you-link'>
                               <p className='for-you-link-container'>
                                 <span className='for-you-holder'>
-                                  <button className='for-you-button'>About</button>
+                                  <button className='for-you-button'>Home</button>
                                 </span>
                               </p>
                             </NavLink>
@@ -67,6 +74,15 @@ function User() {
                         </div>
                       </div>
                     </div>
+                    {stories.map((story) => {
+                    if(story.User.id === Number(userId)) return (
+                    <div>
+                      <NavLink className='story-page-link' to={`/stories/${story.id}`}>{story?.title}</NavLink>
+                      <NavLink className='story-page-link' to={`/stories/${story.id}`}>
+                        <img className='story-image-feed' alt="image" src={storyImage[getRandomInt(10)]} />
+                      </NavLink>
+                    </div>
+                    )})}
                   </div>
                 </div>
               </div>

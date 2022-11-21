@@ -15,10 +15,12 @@ import FollowFeed from "./components/Feed/FollowFeed/FollowFeed";
 import EditStoryForm from "./components/story/EditStoryForm";
 import Home from "./components/Home";
 import { ModalProvider } from "./context/Modal";
+import NotFound from "./components/NotFound";
 
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
+  const stories = Object.keys(useSelector((state) => state.stories)).map(el=> parseInt(el));
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -63,10 +65,13 @@ function App() {
               <FollowFeed />
             </Route>
             <Route path="/stories/:id" exact={true}>
-              <StoryDetails />
+              <StoryDetails stories={stories}/>
             </Route>
             <Route path="/stories/:storyId/edit">
               <EditStoryForm />
+            </Route>
+            <Route>
+              <NotFound />
             </Route>
           </Switch>
         </BrowserRouter>

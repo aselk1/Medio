@@ -192,6 +192,10 @@
     cursor: pointer;
 }
 
+.story-page-link {
+    
+}
+
 @media screen and (min-width: 1080px) {
     .right-sidebar {
         display: block;
