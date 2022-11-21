@@ -50,12 +50,6 @@ function App() {
             <ProtectedRoute path="/new-story" exact={true}>
               <StoryForm />
             </ProtectedRoute>
-            <Route path="/login" exact={true}>
-              <LoginForm />
-            </Route>
-            <Route path="/sign-up" exact={true}>
-              <SignUpForm />
-            </Route>
             <ProtectedRoute path="/users/:userId" exact={true}>
               <User />
             </ProtectedRoute>
