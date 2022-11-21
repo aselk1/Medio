@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { NavLink, useHistory } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import SideBar from '../../SideBar'
+import { storyImage } from '../../../storyImage';
 import * as followActions from "../../../store/follower"
 import * as storyDetailActions from "../../../store/storyDetails"
 
@@ -9,6 +10,8 @@ export default function FollowFeed() {
     const dispatch = useDispatch()
     const history = useHistory()
     const stories = Object.values(useSelector(state => state.stories))
+    const followingList = Object.keys(useSelector(state => state.follower.following)).map((ele => parseInt(ele)))
+    const followingStories = stories.filter(ele => followingList.includes(ele.user_id))
     const currentUser = useSelector(state => state.session.user)
     const [isLoaded, setIsLoaded] = useState(false)
     const [forButton, setForButton] = useState(false)
@@ -82,13 +85,16 @@ export default function FollowFeed() {
                                         <div className='user-buttons'>
                                             <div>
                                                 <div className='user-buttons'>
-                                                    {stories.map(story => (
+                                                    {followingStories.map((story, i) => (
                                                         <div className="story-card">
                                                             <div className='story-feed-item' onClick={(e) => storyPage(story, e)}>
                                                                 <div className='story-feed-item-holder'>
                                                                     <div className='story-card-preview'>
                                                                         <div className="story-author">
                                                                             <div className='story-author-feed-holder'>
+                                                                                <div>
+                                                                                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="Profile" className="profile-image-splash"></img>
+                                                                                </div>
                                                                                 {/* add link on author name */}
                                                                                 <div className='story-author-feed-container'>
                                                                                     <div className='feed-inner-container'>
@@ -104,6 +110,9 @@ export default function FollowFeed() {
                                                                             </div>
                                                                         </NavLink>
                                                                     </div>
+                                                                    <NavLink className='story-page-link' to={`/stories/${story.id}`}>
+                                                                        <img className='story-image-feed' src={storyImage[i]} />
+                                                                    </NavLink>
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -66,7 +66,7 @@ function User() {
                             <NavLink to={`/users/${userId}`} className='for-you-link'>
                               <p className='for-you-link-container'>
                                 <span className='for-you-holder'>
-                                  <button className='for-you-button'>About</button>
+                                  <button className='for-you-button'>Home</button>
                                 </span>
                               </p>
                             </NavLink>

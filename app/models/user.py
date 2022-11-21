@@ -20,6 +20,12 @@ like_comment = db.Table(
     db.Column("comment_id", db.Integer, db.ForeignKey(add_prefix_for_prod("comments.id")))
 )
 
+if environment == "production":
+    follows.schema = SCHEMA
+    like_story.schema = SCHEMA
+    like_comment.schema = SCHEMA
+    
+
 class User(db.Model, UserMixin):
     __tablename__ = "users"
 
