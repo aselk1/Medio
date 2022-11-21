@@ -67,11 +67,9 @@ const StoryDetails = ({stories}) => {
   const handleClick = () => {
     if (!following) {
       dispatch(followActions.follow(user.id, story.user_id))
-        // .then(() => followActions.followingList(user.id))
         .then(() => setFollowing(true))
     } else {
       dispatch(followActions.unfollow(user.id, story.user_id))
-        // .then(() => followActions.followingList(user.id))
         .then(() => setFollowing(false))
     }
   }

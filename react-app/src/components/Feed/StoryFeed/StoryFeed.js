@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import * as storyActions from "../../../store/stories"
 import StoryCard from './StoryCard'
@@ -34,7 +33,7 @@ export default function StoryFeed() {
                             <div className='trending-title-top'>
                                 <div><i className="fa-solid fa-chart-line fa-lg" style={{ marginRight: '10px' }}></i></div>
                                 <div className='title-holder'>
-                                    {stories.length >= 6 ? <p className='title-line'>Trending on Medium</p> : <p className='title-line'>Looks like we have no top stories to share. Write one for the world to see!</p>}
+                                    {stories.length >= 6 ? <p className='title-line'>Trending on Medio</p> : <p className='title-line'>Looks like we have no top stories to share. Write one for the world to see!</p>}
                                 </div>
                             </div>
                             <div className='trending-stories-holder'>

@@ -6,6 +6,7 @@ import SignUpForm from "./components/auth/SignUpForm";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import * as storyActions from "./store/stories"
 import User from "./components/User";
+import Profile from "./components/Profile";
 import { authenticate } from "./store/session";
 import StoryForm from "./components/story/StoryForm";
 import Stories from "./components/story/Stories";
@@ -49,14 +50,11 @@ function App() {
             <ProtectedRoute path="/new-story" exact={true}>
               <StoryForm />
             </ProtectedRoute>
-            <Route path="/login" exact={true}>
-              <LoginForm />
-            </Route>
-            <Route path="/sign-up" exact={true}>
-              <SignUpForm />
-            </Route>
             <ProtectedRoute path="/users/:userId" exact={true}>
               <User />
+            </ProtectedRoute>
+            <ProtectedRoute path="/profile">
+              <Profile />
             </ProtectedRoute>
             <Route path="/stories" exact={true}>
               <Stories user={user} />

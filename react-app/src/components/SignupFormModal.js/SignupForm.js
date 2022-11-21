@@ -56,7 +56,7 @@ const SignUpForm = () => {
           ))}
         </div>
         <center>
-        <h2>Join Medium.</h2>
+        <h2>Join Medio.</h2>
         </center>
         <input
           type="text"
