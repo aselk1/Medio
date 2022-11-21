@@ -41,7 +41,7 @@ live site: https://medio.onrender.com
 ## Splash Page
 
 This is the Medio home page.
-![image]()
+![image](https://github.com/aselk1/Render-Deployment/blob/main/site_pic.png)
 
 
 ## Future Features
