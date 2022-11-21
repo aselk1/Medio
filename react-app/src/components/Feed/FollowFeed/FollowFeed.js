@@ -38,7 +38,7 @@ export default function FollowFeed() {
     useEffect(() => {
         dispatch(followActions.followingList(currentUser.id))
             .then(() => setIsLoaded(true))
-    }, [dispatch, isLoaded])
+    }, [dispatch, isLoaded, currentUser.id])
 
     return (
         <>

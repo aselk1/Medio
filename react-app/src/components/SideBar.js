@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
@@ -114,7 +114,7 @@ const SideBar = () => {
                                               <p>{user.username}</p>
                                               <p>{user.email}</p>
                                             </div>
-                                            <NavLink to={`/users/${user.id}`}>
+                                            <NavLink to={`/profile`}>
                                               <div>View Profile</div>
                                             </NavLink>
                                           </li>

@@ -199,6 +199,7 @@
     font-size: 24;
     border-bottom: 1px solid rgb(218, 216, 216);
 }
+
 .titleAndLogo {
     display: flex;
     flex-direction: column;
@@ -206,10 +207,24 @@
     margin-bottom: 50px;
     padding-top: 25px;
 }
+
 .readings {
     margin-top: 5%;
     margin-bottom: 5%;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.profile-page-link-e {
+    text-decoration: none;
+    color: inherit;
+}
+
+.profile-page-link-holder {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 @media screen and (min-width: 1080px) {
