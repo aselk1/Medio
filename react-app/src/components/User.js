@@ -61,7 +61,6 @@ function User() {
                         </div>
                       </div>
                     </div>
-<<<<<<< HEAD
                     <h4 className='readings'>Readings</h4>
                     {stories.map((story, i) => {
                       if (story.User.id === Number(userId)) return (
@@ -84,16 +83,6 @@ function User() {
                             <img className='story-image-feed' alt="image" src={storyImage[i]} />
                           </NavLink>
                       </div>
-=======
-                    {stories.map((story) => {
-                      if (story.User.id === Number(userId)) return (
-                        <div>
-                          <NavLink className='story-page-link' to={`/stories/${story.id}`}>{story?.title}</NavLink>
-                          <NavLink className='story-page-link' to={`/stories/${story.id}`}>
-                            <img className='story-image-feed' alt="image" src={storyImage[getRandomInt(10)]} />
-                          </NavLink>
-                        </div>
->>>>>>> Erin
                       )
                     })}
                   </div>
