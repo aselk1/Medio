@@ -56,13 +56,13 @@ function Home() {
                             </a>
                           </div>
                           <div className={followingButton ? 'following-action-clicked' : 'following-action'}>
-                            {/* <NavLink to={`/following-feed`} className='following-link'>
+                            <NavLink to={`/following-feed`} className='following-link'>
                               <p className='following-container'>
                                 <span className='following-holder'>
                                   <button className='following-button' onClick={following}>Following</button>
                                 </span>
                               </p>
-                            </NavLink> */}
+                            </NavLink>
                           </div>
                         </div>
                       </div>
@@ -100,7 +100,7 @@ function Home() {
                                 </NavLink>
                               </div>
                               <NavLink className='story-page-link' to={`/stories/${story.id}`}>
-                                <img className='story-image-feed' src={storyImage[i]} /> 
+                                <img className='story-image-feed' src={storyImage[i]} />
                               </NavLink>
                             </div>
                           </div>
