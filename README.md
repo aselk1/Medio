@@ -41,21 +41,25 @@ live site: https://medio.onrender.com
 ## Splash Page
 
 This is the Medio home page.
+
 ![image](https://github.com/aselk1/Render-Deployment/blob/main/site_pic.png)
 
 ## Stories
 
 This is where users can create a new story.
+
 ![image](https://github.com/aselk1/Render-Deployment/blob/main/add_story.png)
 
 ## Comments
 
 This is where users can create a new comment.
+
 ![image](https://github.com/aselk1/Render-Deployment/blob/main/comment.png)
 
 ## Follows
 
 This is where users can follow other users.
+
 ![image](https://github.com/aselk1/Render-Deployment/blob/main/follow_user.png)
 
 ## Future Features
