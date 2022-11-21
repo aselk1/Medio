@@ -55,7 +55,9 @@ const StoryDetails = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(followActions.followingList(user.id));
+    if (user) {
+      dispatch(followActions.followingList(user.id));
+    }
   }, [dispatch]);
 
   const handleDelete = async (commentId, storyId) => {
