@@ -10,6 +10,7 @@ live site: https://medio.onrender.com
 - [Features](https://github.com/aselk1/Render-Deployment/wiki/Features-List)
 - [Database Schema](https://github.com/aselk1/Render-Deployment/wiki/DB-Schema)
 - [User Stories](https://github.com/aselk1/Render-Deployment/wiki/User-Stories)
+- [Redux Shape](https://github.com/aselk1/Render-Deployment/wiki/Redux-State-Shape)
 
 ## Technologies Used
 
