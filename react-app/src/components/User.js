@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, NavLink } from 'react-router-dom';
+import { useParams, NavLink, useLocation } from 'react-router-dom';
 import * as followActions from '../store/follower'
 import { storyImage } from '../storyImage';
 import SideBar from './SideBar';
@@ -8,7 +8,7 @@ import './User.css'
 
 function User() {
   const dispatch = useDispatch()
-  const { userId } = useParams();
+  const userId = Number(useLocation().pathname.split("/")[2]);
   const [user, setUser] = useState({});
   const sessionUser = useSelector(state => state.session.user)
   const storiesObj = useSelector(state => state.stories)
@@ -28,6 +28,12 @@ function User() {
         .then(() => setFollowing(false))
     }
   }
+
+  useEffect(() => {
+    if (user) {
+      setFollowing(followings.includes(userId));
+    }
+  }, [dispatch, followings]);
 
   useEffect(() => {
     if (!userId) {
@@ -136,7 +142,7 @@ function User() {
                             </h2>
                           </NavLink>
                           <div className="follow-button-holder">
-                            {sessionUser && (sessionUser?.id !== userId) && (
+                            {sessionUser && followings && followings.length >= 0 && (sessionUser?.id !== userId) && (
                               <button className={following ? "following-user-button" : "follow-user-button"} onClick={handleClick}>{following ? 'Following' : 'Follow'}</button>
                             )}
                           </div>

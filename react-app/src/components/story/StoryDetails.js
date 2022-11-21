@@ -55,6 +55,12 @@ const StoryDetails = ({ stories }) => {
 
   useEffect(() => {
     if (user) {
+      setFollowing(followings.includes(story.user_id));
+    }
+  }, [dispatch, followings]);
+
+  useEffect(() => {
+    if (user) {
       dispatch(followActions.followingList(user.id));
     }
   }, [dispatch]);
@@ -290,7 +296,7 @@ const StoryDetails = ({ stories }) => {
                           </h2>
                         </NavLink>
                         <div className="follow-button-holder">
-                          {user && (user?.id !== story?.user_id) && (
+                          {user && followings && followings.length >= 0 && (user?.id !== story?.user_id) && (
                             <button className={following ? "following-user-button" : "follow-user-button"} onClick={handleClick}>{following ? 'Following' : 'Follow'}</button>
                           )}
                         </div>
