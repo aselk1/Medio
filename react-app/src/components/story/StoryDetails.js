@@ -15,10 +15,9 @@ import CommentEditForm from "./CommentEditForm";
 import LikeStory from "../likeButton/LikeStory";
 import LikeComment from "../likeButton/LikeComment";
 
-const StoryDetails = () => {
+const StoryDetails = ({stories}) => {
   const story = useSelector((state) => state.storyDetails);
   const history = useHistory();
-  if (!story.id) history.push('/stories')
   const dispatch = useDispatch();
   useEffect(() => {
     (async () => {
@@ -100,6 +99,7 @@ const StoryDetails = () => {
     // await dispatch(storyDetailsActions.deleteStoryDetails());
     history.push('/stories')
   };
+  if (!stories.includes(storyId)) history.push("/stories");
 
   return (
     <div className="story-page-container">
