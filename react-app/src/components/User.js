@@ -1,32 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useParams, NavLink } from 'react-router-dom';
 import SideBar from './SideBar';
-import * as followActions from '../store/follower'
 import './User.css'
 import { storyImage } from '../storyImage';
 
 function User() {
-  const dispatch = useDispatch();
   const { userId } = useParams();
   const [user, setUser] = useState({});
   const sessionUser = useSelector(state => state.session.user)
   const storiesObj = useSelector(state => state.stories)
   const stories = Object.values(storiesObj)
-  const [following, setFollowing] = useState(false)
 
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
-  }
-
-  const handleClick = () => {
-    if (!following) {
-      dispatch(followActions.follow(sessionUser.id, user.id))
-        .then(() => setFollowing(true))
-    } else {
-      dispatch(followActions.unfollow(sessionUser.id, user.id))
-        .then(() => setFollowing(false))
-    }
   }
 
   useEffect(() => {
@@ -75,14 +62,15 @@ function User() {
                       </div>
                     </div>
                     {stories.map((story) => {
-                    if(story.User.id === Number(userId)) return (
-                    <div>
-                      <NavLink className='story-page-link' to={`/stories/${story.id}`}>{story?.title}</NavLink>
-                      <NavLink className='story-page-link' to={`/stories/${story.id}`}>
-                        <img className='story-image-feed' alt="image" src={storyImage[getRandomInt(10)]} />
-                      </NavLink>
-                    </div>
-                    )})}
+                      if (story.User.id === Number(userId)) return (
+                        <div>
+                          <NavLink className='story-page-link' to={`/stories/${story.id}`}>{story?.title}</NavLink>
+                          <NavLink className='story-page-link' to={`/stories/${story.id}`}>
+                            <img className='story-image-feed' alt="image" src={storyImage[getRandomInt(10)]} />
+                          </NavLink>
+                        </div>
+                      )
+                    })}
                   </div>
                 </div>
               </div>

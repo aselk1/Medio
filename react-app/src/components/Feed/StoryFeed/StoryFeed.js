@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import * as storyActions from "../../../store/stories"
 import StoryCard from './StoryCard'

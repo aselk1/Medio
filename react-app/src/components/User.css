@@ -192,8 +192,17 @@
     cursor: pointer;
 }
 
-.story-page-link {
-    
+.profile-page-link-e {
+    text-decoration: none;
+    color: inherit;
+}
+
+.profile-page-link-holder {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 @media screen and (min-width: 1080px) {
