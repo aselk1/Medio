@@ -74,15 +74,30 @@ function User() {
                         </div>
                       </div>
                     </div>
-                    {stories.map((story) => {
-                    if(story.User.id === Number(userId)) return (
-                    <div>
-                      <NavLink className='story-page-link' to={`/stories/${story.id}`}>{story?.title}</NavLink>
-                      <NavLink className='story-page-link' to={`/stories/${story.id}`}>
-                        <img className='story-image-feed' alt="image" src={storyImage[getRandomInt(10)]} />
-                      </NavLink>
-                    </div>
-                    )})}
+                    <h4 className='readings'>Readings</h4>
+                    {stories.map((story, i) => {
+                      if (story.User.id === Number(userId)) return (
+                      <div className='user-stories'>
+                        <div className='titleAndLogo'>
+                          <div className='story-author-feed-holder'>
+                            <div>
+                              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="Profile" className="profile-image-splash"></img>
+                            </div>
+                            {/* add link on author name */}
+                            <div className='story-author-feed-container'>
+                              <div className='feed-inner-container'>
+                                <h4 className='feed-author-name'>{story.User.username}</h4>
+                              </div>
+                            </div>
+                          </div>
+                          <NavLink className='story-page-link' to={`/stories/${story.id}`}><h2>{story?.title}</h2></NavLink>
+                        </div>
+                          <NavLink className='story-page-link' to={`/stories/${story.id}`}>
+                            <img className='story-image-feed' alt="image" src={storyImage[i]} />
+                          </NavLink>
+                      </div>
+                      )
+                    })}
                   </div>
                 </div>
               </div>

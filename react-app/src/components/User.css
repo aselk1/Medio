@@ -192,8 +192,24 @@
     cursor: pointer;
 }
 
-.story-page-link {
-    
+.user-stories {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 24;
+    border-bottom: 1px solid rgb(218, 216, 216);
+}
+.titleAndLogo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 50px;
+    padding-top: 25px;
+}
+.readings {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 @media screen and (min-width: 1080px) {
